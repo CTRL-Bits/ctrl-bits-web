@@ -47,7 +47,6 @@ export default function ProjectsPage(): React.ReactElement {
   const [viewMode, setViewMode] = React.useState<ViewMode>("grid");
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Extended project data with more details for the Projects page
   const projects: Project[] = [
     {
       id: 1,
