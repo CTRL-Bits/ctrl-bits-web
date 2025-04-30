@@ -20,9 +20,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils"; // Assuming you have a utils file with cn function for conditional classNames
+import { cn } from "@/lib/utils";
 
-// Define TypeScript interfaces for our data structures
 interface Project {
   id: number;
   title: string;
