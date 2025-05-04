@@ -15,27 +15,16 @@ import {
   Tag,
   Grid,
   List,
+  ChefHat,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  icon: React.ReactNode;
-  link: string;
-  client?: string;
-  date?: string;
-  tags?: string[];
-  featured?: boolean;
-  fullDescription?: string;
-  thumbnailClass?: string;
-}
+import { Project } from "@/types";
+// Fix: Import fetchProjects correctly from apiClient
+import { fetchProjects } from "@/services/projectService";
 
 type ViewMode = "grid" | "list";
 type CategoryType = string;
@@ -45,200 +34,59 @@ export default function ProjectsPage(): React.ReactElement {
   const [activeCategory, setActiveCategory] =
     React.useState<CategoryType>("All");
   const [viewMode, setViewMode] = React.useState<ViewMode>("grid");
+  const [projects, setProjects] = React.useState<Project[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<string | null>(null);
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      description:
-        "Custom online store with integrated payment gateway, inventory management, and responsive design for a local retail business.",
-      fullDescription:
-        "We developed a comprehensive e-commerce solution that transformed the client's retail business. The platform features a custom product catalog, secure payment processing with multiple gateway options, real-time inventory management, customer account handling, and a responsive design that provides an exceptional shopping experience across all devices. The implementation included advanced analytics tools, allowing the client to track customer behavior and optimize their sales funnel.",
-      category: "Web Development",
-      icon: <ShoppingCart className="stroke-2" />,
-      link: "/projects/ecommerce",
-      client: "Urban Essentials",
-      date: "March 2024",
-      tags: ["React", "Node.js", "Stripe", "MongoDB", "Responsive Design"],
-      featured: true,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 2,
-      title: "Corporate Website Redesign",
-      description:
-        "Modern, user-focused website overhaul with improved UX/UI, SEO optimization, and content management system for a financial services firm.",
-      fullDescription:
-        "We completely reimagined the client's corporate web presence with a focus on user experience and conversion optimization. The redesign involved creating a cleaner information architecture, implementing modern UX/UI principles, optimizing for search engines, and building a custom content management system that allows the client's marketing team to easily update content. The new site resulted in a 45% increase in lead generation and significantly improved user engagement metrics.",
-      category: "UI/UX Design",
-      icon: <Layout className="stroke-2" />,
-      link: "/projects/corporate-redesign",
-      client: "Meridian Financial",
-      date: "January 2024",
-      tags: ["Figma", "WordPress", "SEO", "Adobe XD", "Content Strategy"],
-      featured: true,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 3,
-      title: "Brand Identity System",
-      description:
-        "Comprehensive visual identity including logo design, typography, color palette, and brand guidelines for a tech startup.",
-      fullDescription:
-        "We created a complete brand identity system for an emerging tech startup preparing for their market launch. The project encompassed primary and secondary logo variations, a carefully selected typography system, an adaptable color palette, custom iconography, and comprehensive usage guidelines. The result was a cohesive visual language that communicated the client's innovative approach and established a strong foundation for all their marketing and product materials.",
-      category: "Graphic Design",
-      icon: <Palette className="stroke-2" />,
-      link: "/projects/brand-identity",
-      client: "NexusAI",
-      date: "November 2023",
-      tags: [
-        "Logo Design",
-        "Typography",
-        "Brand Guidelines",
-        "Illustrator",
-        "Identity Design",
-      ],
-      featured: false,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 4,
-      title: "Custom CRM Solution",
-      description:
-        "Tailored customer relationship management system with analytics dashboard, automated workflows, and third-party integrations.",
-      fullDescription:
-        "We developed a bespoke CRM system that addressed the unique operational challenges of our client's business. The solution included a comprehensive customer database, an intuitive analytics dashboard providing actionable insights, automated workflow tools to streamline processes, and seamless integrations with the client's existing software ecosystem. The implementation reduced administrative workload by 30% and provided valuable data for strategic decision-making.",
-      category: "Software Development",
-      icon: <Database className="stroke-2" />,
-      link: "/projects/crm-solution",
-      client: "Tectonic Solutions",
-      date: "February 2024",
-      tags: [
-        "TypeScript",
-        "React",
-        "Node.js",
-        "PostgreSQL",
-        "Data Visualization",
-      ],
-      featured: false,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 5,
-      title: "Mobile Application",
-      description:
-        "Cross-platform mobile app with offline functionality, real-time notifications, and seamless synchronization for a healthcare provider.",
-      fullDescription:
-        "We built a sophisticated mobile application for healthcare providers that allows them to manage patient information securely while on the move. The app features offline functionality for use in areas with limited connectivity, real-time notifications for critical updates, seamless data synchronization across devices, and strict HIPAA-compliant security measures. The intuitive interface was designed specifically for high-pressure healthcare environments, minimizing training time and reducing input errors.",
-      category: "App Development",
-      icon: <Code className="stroke-2" />,
-      link: "/projects/mobile-app",
-      client: "MedSync Health",
-      date: "December 2023",
-      tags: [
-        "React Native",
-        "Firebase",
-        "Offline-First",
-        "Healthcare",
-        "iOS/Android",
-      ],
-      featured: true,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 6,
-      title: "Multi-lingual Portal",
-      description:
-        "International web portal with content localization, cultural adaptations, and region-specific features for a global education company.",
-      fullDescription:
-        "We created a sophisticated multi-lingual web portal for an international education provider operating in 12 countries. The solution included comprehensive content localization systems, culturally adapted user interfaces, region-specific feature sets, and a centralized management dashboard. The architecture was designed to accommodate varying regulatory requirements across different markets while maintaining a consistent brand experience. The implementation helped the client expand their global reach and improve engagement across all regions.",
-      category: "Web Development",
-      icon: <Globe className="stroke-2" />,
-      link: "/projects/multilingual-portal",
-      client: "Global Learning Institute",
-      date: "October 2023",
-      tags: [
-        "Internationalization",
-        "React",
-        "Next.js",
-        "Content Localization",
-        "Multi-region",
-      ],
-      featured: false,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 7,
-      title: "Data Visualization Dashboard",
-      description:
-        "Interactive analytics platform with real-time data processing, customizable visualizations, and automated reporting for a market research firm.",
-      fullDescription:
-        "We developed a sophisticated data visualization dashboard that transformed raw market research data into actionable insights. The platform features real-time data processing capabilities, a library of customizable visualization components, automated report generation, and an intuitive interface that allows non-technical users to explore complex datasets. The solution has become an essential decision-making tool for the client, enabling them to identify market trends and opportunities more efficiently.",
-      category: "Data Visualization",
-      icon: <Database className="stroke-2" />,
-      link: "/projects/data-dashboard",
-      client: "Insight Analytics",
-      date: "January 2024",
-      tags: [
-        "D3.js",
-        "React",
-        "Data Processing",
-        "Interactive Charts",
-        "Real-time Updates",
-      ],
-      featured: false,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 8,
-      title: "E-Learning Platform",
-      description:
-        "Comprehensive online learning system with course management, interactive content delivery, student progress tracking, and certification features.",
-      fullDescription:
-        "We built a complete e-learning platform that revolutionized our client's training programs. The solution includes sophisticated course management tools, interactive lesson content with multimedia support, detailed student progress tracking, automated assessments, and a digital certification system. The platform provides administrators with comprehensive analytics on student engagement and performance, while offering learners a smooth, intuitive educational experience across all devices.",
-      category: "Web Development",
-      icon: <Layout className="stroke-2" />,
-      link: "/projects/elearning",
-      client: "EduTech Solutions",
-      date: "November 2023",
-      tags: [
-        "Learning Management System",
-        "React",
-        "Node.js",
-        "Interactive Content",
-        "Assessment Tools",
-      ],
-      featured: false,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-    {
-      id: 9,
-      title: "IoT Control Application",
-      description:
-        "Secure system for monitoring and controlling smart devices with real-time data visualization, automation rules, and remote management capabilities.",
-      fullDescription:
-        "We created a sophisticated IoT control application that connects and manages an ecosystem of smart devices for industrial use. The system provides real-time monitoring and control capabilities, comprehensive data visualization tools, customizable automation rules, and secure remote management features. The architecture was designed with scalability in mind, allowing for easy integration of new device types as the client's needs evolve. Advanced security features protect sensitive operational data while ensuring reliable performance.",
-      category: "App Development",
-      icon: <Code className="stroke-2" />,
-      link: "/projects/iot-control",
-      client: "Nexus Industrial",
-      date: "February 2024",
-      tags: ["IoT", "React", "WebSockets", "MQTT", "Device Management"],
-      featured: true,
-      thumbnailClass: "bg-neutral-50 dark:bg-neutral-950",
-    },
-  ];
+  // Fetch projects on component mount
+  React.useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchProjects();
+        setProjects(data.results);
+        setError(null);
+      } catch (err) {
+        setError("Failed to load projects. Please try again later.");
+        console.error("Error loading projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const categories: CategoryType[] = [
-    "All",
-    "Web Development",
-    "UI/UX Design",
-    "Graphic Design",
-    "Software Development",
-    "App Development",
-    "Data Visualization",
-  ];
+    loadProjects();
+  }, []);
+
+  // Get available icon components
+  const getIconComponent = (iconName: string | null) => {
+    if (!iconName) return <Code className="stroke-2" />;
+
+    const icons: Record<string, React.ReactNode> = {
+      ShoppingCart: <ShoppingCart className="stroke-2" />,
+      Layout: <Layout className="stroke-2" />,
+      Palette: <Palette className="stroke-2" />,
+      Database: <Database className="stroke-2" />,
+      Globe: <Globe className="stroke-2" />,
+      Code: <Code className="stroke-2" />,
+      ChefHat: <ChefHat className="stroke-2" />,
+    };
+
+    return icons[iconName] || <Code className="stroke-2" />;
+  };
+
+  // Extract categories from projects data
+  const categories = React.useMemo(() => {
+    const categorySet = new Set<string>(["All"]);
+
+    projects.forEach((project) => {
+      if (project.category) {
+        categorySet.add(project.category);
+      }
+    });
+
+    return Array.from(categorySet);
+  }, [projects]);
 
   // Filter projects based on search query and active category
   const filteredProjects = React.useMemo(() => {
@@ -250,7 +98,7 @@ export default function ProjectsPage(): React.ReactElement {
         project.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (project.tags &&
           project.tags.some((tag) =>
-            tag.toLowerCase().includes(searchQuery.toLowerCase())
+            String(tag).toLowerCase().includes(searchQuery.toLowerCase())
           ));
 
       const matchesCategory =
@@ -286,6 +134,50 @@ export default function ProjectsPage(): React.ReactElement {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   }, [projects]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="bg-white dark:bg-black min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+          <header className="mb-12 md:mb-16">
+            <h1 className="text-3xl variable-font md:text-4xl lg:text-5xl font-light tracking-tight mb-3">
+              Our Projects
+            </h1>
+            <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl">
+              Loading projects...
+            </p>
+          </header>
+          <div className="flex items-center justify-center py-32">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 dark:border-neutral-100"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="bg-white dark:bg-black min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+          <header className="mb-12 md:mb-16">
+            <h1 className="text-3xl variable-font md:text-4xl lg:text-5xl font-light tracking-tight mb-3">
+              Our Projects
+            </h1>
+            <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl">
+              {error}
+            </p>
+          </header>
+          <div className="flex flex-col items-center justify-center py-16">
+            <Button onClick={() => window.location.reload()} className="mt-4">
+              Try Again
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white dark:bg-black min-h-screen">
@@ -416,12 +308,28 @@ export default function ProjectsPage(): React.ReactElement {
                     : "flex flex-col gap-6"
                 )}
               >
-                {featuredProjects.map((project) =>
-                  viewMode === "grid" ? (
-                    <ProjectGridItem key={project.id} project={project} />
-                  ) : (
-                    <ProjectListItem key={project.id} project={project} />
+                {featuredProjects.length > 0 ? (
+                  featuredProjects.map((project) =>
+                    viewMode === "grid" ? (
+                      <ProjectGridItem
+                        key={project.id}
+                        project={project}
+                        getIconComponent={getIconComponent}
+                      />
+                    ) : (
+                      <ProjectListItem
+                        key={project.id}
+                        project={project}
+                        getIconComponent={getIconComponent}
+                      />
+                    )
                   )
+                ) : (
+                  <div className="col-span-3 text-center py-8">
+                    <p className="text-neutral-500 dark:text-neutral-400">
+                      No featured projects available at the moment.
+                    </p>
+                  </div>
                 )}
               </div>
             </TabsContent>
@@ -441,9 +349,17 @@ export default function ProjectsPage(): React.ReactElement {
               >
                 {recentProjects.map((project) =>
                   viewMode === "grid" ? (
-                    <ProjectGridItem key={project.id} project={project} />
+                    <ProjectGridItem
+                      key={project.id}
+                      project={project}
+                      getIconComponent={getIconComponent}
+                    />
                   ) : (
-                    <ProjectListItem key={project.id} project={project} />
+                    <ProjectListItem
+                      key={project.id}
+                      project={project}
+                      getIconComponent={getIconComponent}
+                    />
                   )
                 )}
               </div>
@@ -462,9 +378,17 @@ export default function ProjectsPage(): React.ReactElement {
           >
             {filteredProjects.map((project) =>
               viewMode === "grid" ? (
-                <ProjectGridItem key={project.id} project={project} />
+                <ProjectGridItem
+                  key={project.id}
+                  project={project}
+                  getIconComponent={getIconComponent}
+                />
               ) : (
-                <ProjectListItem key={project.id} project={project} />
+                <ProjectListItem
+                  key={project.id}
+                  project={project}
+                  getIconComponent={getIconComponent}
+                />
               )
             )}
           </div>
@@ -492,11 +416,12 @@ export default function ProjectsPage(): React.ReactElement {
 
 interface ProjectItemProps {
   project: Project;
+  getIconComponent: (iconName: string | null) => React.ReactNode;
 }
 
 const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
-  ({ project }, ref) => {
-    const { title, description, category, icon, link, tags, client } = project;
+  ({ project, getIconComponent }, ref) => {
+    const { title, description, category, icon, tags, client } = project;
     const [isHovered, setIsHovered] = React.useState(false);
 
     return (
@@ -512,17 +437,27 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
             project.thumbnailClass || "bg-neutral-50 dark:bg-neutral-950"
           )}
         >
-          {/* Project thumbnail area */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className={cn(
-                "transition-all duration-500",
-                isHovered ? "scale-110 opacity-20" : "scale-100 opacity-30"
-              )}
-            >
-              <div className="size-16">{icon}</div>
+          {/* Project thumbnail */}
+          {project.thumbnail ? (
+            <img
+              src={project.thumbnail}
+              alt={`${title} thumbnail`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div
+                className={cn(
+                  "transition-all duration-500",
+                  isHovered ? "scale-110 opacity-20" : "scale-100 opacity-30"
+                )}
+              >
+                <div className="size-16">
+                  {getIconComponent(typeof icon === "string" ? icon : null)}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Overlay with project details on hover */}
           <div
@@ -533,7 +468,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
             )}
           >
             <Link
-              to={link}
+              to={`/projects/${project.slug || project.id}`}
               className="px-6 py-3 bg-white dark:bg-black text-black dark:text-white text-sm font-medium rounded-md"
               aria-label={`View details for ${title}`}
             >
@@ -547,7 +482,10 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
           <div className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-2">
             {category}
           </div>
-          <Link to={link} className="group/link">
+          <Link
+            to={`/projects/${project.slug || project.id}`}
+            className="group/link"
+          >
             <h3 className="text-xl font-medium mb-2 transition-all duration-300 group-hover/link:underline decoration-1 underline-offset-2">
               {title}
             </h3>
@@ -572,7 +510,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
                   key={index}
                   className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 rounded-full"
                 >
-                  {tag}
+                  {tag.name}
                 </span>
               ))}
               {tags.length > 3 && (
@@ -591,9 +529,8 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
 ProjectGridItem.displayName = "ProjectGridItem";
 
 const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
-  ({ project }, ref) => {
-    const { title, description, category, icon, link, tags, client, date } =
-      project;
+  ({ project, getIconComponent }, ref) => {
+    const { title, description, category, icon, tags, client, date } = project;
 
     return (
       <div
@@ -601,15 +538,27 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
         className="group border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 transition-all duration-300 hover:shadow-sm hover:border-neutral-300 dark:hover:border-neutral-700"
       >
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Project icon */}
-          <div
-            className={cn(
-              "flex-shrink-0 size-16 md:size-20 flex items-center justify-center rounded-md",
-              project.thumbnailClass || "bg-neutral-50 dark:bg-neutral-950"
-            )}
-          >
-            <div className="size-8 md:size-10">{icon}</div>
-          </div>
+          {/* Project thumbnail/icon */}
+          {project.thumbnail ? (
+            <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-md overflow-hidden">
+              <img
+                src={project.thumbnail}
+                alt={`${title} thumbnail`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className={cn(
+                "flex-shrink-0 size-16 md:size-20 flex items-center justify-center rounded-md",
+                project.thumbnailClass || "bg-neutral-50 dark:bg-neutral-950"
+              )}
+            >
+              <div className="size-8 md:size-10">
+                {getIconComponent(typeof icon === "string" ? icon : null)}
+              </div>
+            </div>
+          )}
 
           {/* Project info */}
           <div className="flex-grow">
@@ -625,12 +574,19 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
               {date && (
                 <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
                   <Calendar className="size-3 mr-1" />
-                  {date}
+                  {new Date(date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </div>
               )}
             </div>
 
-            <Link to={link} className="group/link">
+            <Link
+              to={`/projects/${project.slug || project.id}`}
+              className="group/link"
+            >
               <h3 className="text-xl font-medium mb-2 transition-colors duration-300 group-hover/link:underline decoration-1 underline-offset-2">
                 {title}
               </h3>
@@ -659,7 +615,7 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
                         key={index}
                         className="text-xs text-neutral-600 dark:text-neutral-400"
                       >
-                        {tag}
+                        {tag.name}
                         {index < Math.min(tags.length, 4) - 1 ? "," : ""}
                       </span>
                     ))}
@@ -674,7 +630,7 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
 
               <div className="md:ml-auto">
                 <Link
-                  to={link}
+                  to={`/projects/${project.slug || project.id}`}
                   className="text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all"
                   aria-label={`View details for ${title}`}
                 >

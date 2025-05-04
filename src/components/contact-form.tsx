@@ -15,17 +15,7 @@ import {
 import { Link } from "react-router-dom";
 import { Mail, Phone, Globe, MessageSquare, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  company: string;
-  phone: string;
-  country: string;
-  jobFunction: string;
-  serviceInterest: string;
-  message: string;
-}
+import { ContactFormData } from "@/types";
 
 export default function ITContactSection() {
   const [formData, setFormData] = useState<ContactFormData>({

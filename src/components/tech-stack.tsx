@@ -1,18 +1,8 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import { TechData } from "@/types";
 
-// Define interfaces for type safety
-interface TechItem {
-  name: string;
-  icon: string;
-}
-
-interface TechData {
-  [category: string]: TechItem[];
-}
-
-// Tech stack data using skillicons.dev URLs
 const techData: TechData = {
   frontend: [
     { name: "React", icon: "https://skillicons.dev/icons?i=react" },
@@ -25,6 +15,7 @@ const techData: TechData = {
     { name: "Sass", icon: "https://skillicons.dev/icons?i=sass" },
   ],
   backend: [
+    { name: "Django", icon: "https://skillicons.dev/icons?i=django" },
     { name: "Node.js", icon: "https://skillicons.dev/icons?i=nodejs" },
     { name: "Express", icon: "https://skillicons.dev/icons?i=express" },
     { name: "PostgreSQL", icon: "https://skillicons.dev/icons?i=postgres" },

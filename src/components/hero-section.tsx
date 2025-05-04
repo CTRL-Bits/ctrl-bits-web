@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
@@ -6,9 +6,27 @@ import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { ChevronRight } from "lucide-react";
 import VariableProximity from "./variable-proximity-text";
 import "@/fonts.css";
+import { Company, CompanyResponse } from "@/types";
+import axios from "axios";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [companies, setCompanies] = useState<Company[]>([]);
+
+  const fetchCompanies = async () => {
+    try {
+      const response = await axios.get<CompanyResponse>(
+        "https://api.ctrlbits.xyz/api/companies"
+      );
+      setCompanies(response.data.results);
+    } catch (error) {
+      console.error("Failed to fetch companies:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompanies();
+  }, []);
 
   useEffect(() => {
     const loadFonts = async () => {
@@ -110,21 +128,14 @@ export default function HeroSection() {
               </div>
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
-                  {[
-                    "nvidia",
-                    "column",
-                    "github",
-                    "nike",
-                    "lemonsqueezy",
-                    "laravel",
-                    "lilly",
-                    "openai",
-                  ].map((brand) => (
-                    <div className="flex" key={brand}>
+                  {companies.map((company) => (
+                    <div className="flex" key={company.id}>
                       <img
-                        className="mx-auto h-5 w-fit dark:invert"
-                        src={`https://html.tailus.io/blocks/customers/${brand}.svg`}
-                        alt={`${brand} Logo`}
+                        className={`mx-auto h-5 w-fit ${
+                          company.invert ? "invert dark:invert-0" : ""
+                        }`}
+                        src={company.logo}
+                        alt={`${company.name} Logo`}
                         height="20"
                         width="auto"
                       />

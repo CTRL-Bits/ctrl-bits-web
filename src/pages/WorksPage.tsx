@@ -1,109 +1,89 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, X, ChefHat, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import * as React from "react";
-import {
-  Code,
-  Layout,
-  Palette,
-  Database,
-  Globe,
-  ShoppingCart,
-} from "lucide-react";
+import { Code, Layout, Palette, Database, Globe } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Project, ProjectCardProps } from "@/types";
+import { fetchProjects } from "@/services/projectService";
 
-// Define TypeScript interfaces for our data structures
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  icon: React.ReactNode;
-  link: string;
-}
-
-interface ProjectCardProps {
-  project: Project;
-  isHovered: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-}
+// Function to map icon string to the appropriate Lucide icon component
+const getIconComponent = (iconName: string | null) => {
+  switch (iconName) {
+    case "ShoppingCart":
+      return <ShoppingCart className="stroke-2" />;
+    case "ChefHat":
+      return <ChefHat className="stroke-2" />;
+    case "Layout":
+      return <Layout className="stroke-2" />;
+    case "Palette":
+      return <Palette className="stroke-2" />;
+    case "Database":
+      return <Database className="stroke-2" />;
+    case "Globe":
+      return <Globe className="stroke-2" />;
+    case "Code":
+      return <Code className="stroke-2" />;
+    default:
+      return <Layout className="stroke-2" />;
+  }
+};
 
 export default function WorksPage(): React.ReactElement {
   const [activeFilter, setActiveFilter] = React.useState<string>("All");
   const [hoveredProject, setHoveredProject] = React.useState<number | null>(
     null
   );
+  const [projects, setProjects] = React.useState<Project[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  const categories: string[] = [
-    "All",
-    "Web Development",
-    "UI/UX Design",
-    "Graphic Design",
-    "Software Development",
-    "App Development",
-  ];
+  // Extract unique categories from projects for filter options
+  const getCategories = React.useMemo(() => {
+    const projectCategories = projects.map((project) => project.category);
+    const uniqueCategories = Array.from(new Set(projectCategories));
+    return ["All", ...uniqueCategories];
+  }, [projects]);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      description:
-        "Custom online store with integrated payment gateway, inventory management, and responsive design for a local retail business.",
-      category: "Web Development",
-      icon: <ShoppingCart className="stroke-2" />,
-      link: "/projects/ecommerce",
-    },
-    {
-      id: 2,
-      title: "Corporate Website Redesign",
-      description:
-        "Modern, user-focused website overhaul with improved UX/UI, SEO optimization, and content management system for a financial services firm.",
-      category: "UI/UX Design",
-      icon: <Layout className="stroke-2" />,
-      link: "/projects/corporate-redesign",
-    },
-    {
-      id: 3,
-      title: "Brand Identity System",
-      description:
-        "Comprehensive visual identity including logo design, typography, color palette, and brand guidelines for a tech startup.",
-      category: "Graphic Design",
-      icon: <Palette className="stroke-2" />,
-      link: "/projects/brand-identity",
-    },
-    {
-      id: 4,
-      title: "Custom CRM Solution",
-      description:
-        "Tailored customer relationship management system with analytics dashboard, automated workflows, and third-party integrations.",
-      category: "Software Development",
-      icon: <Database className="stroke-2" />,
-      link: "/projects/crm-solution",
-    },
-    {
-      id: 5,
-      title: "Mobile Application",
-      description:
-        "Cross-platform mobile app with offline functionality, real-time notifications, and seamless synchronization for a healthcare provider.",
-      category: "App Development",
-      icon: <Code className="stroke-2" />,
-      link: "/projects/mobile-app",
-    },
-    {
-      id: 6,
-      title: "Multi-lingual Portal",
-      description:
-        "International web portal with content localization, cultural adaptations, and region-specific features for a global education company.",
-      category: "Web Development",
-      icon: <Globe className="stroke-2" />,
-      link: "/projects/multilingual-portal",
-    },
-  ];
+  // Fetch projects data
+  React.useEffect(() => {
+    const getProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchProjects();
+        setProjects(data.results);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const filteredProjects: Project[] =
-    activeFilter === "All"
+    getProjects();
+  }, []);
+
+  // Filter projects based on active filter
+  const filteredProjects: Project[] = React.useMemo(() => {
+    return activeFilter === "All"
       ? projects
       : projects.filter((project) => project.category === activeFilter);
+  }, [projects, activeFilter]);
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <h3 className="text-xl font-medium mb-2">Failed to load projects</h3>
+          <p className="text-neutral-500 dark:text-neutral-400">{error}</p>
+          <Button onClick={() => window.location.reload()} className="mt-4">
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="bg-white dark:bg-black">
@@ -141,20 +121,30 @@ export default function WorksPage(): React.ReactElement {
 
           {/* Project Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                isHovered={hoveredProject === project.id}
-                onHover={() => setHoveredProject(project.id)}
-                onLeave={() => setHoveredProject(null)}
-              />
-            ))}
+            {loading
+              ? // Loading skeletons
+                Array.from({ length: 3 }).map((_, index) => (
+                  <div key={index} className="flex flex-col h-full">
+                    <Skeleton className="h-80 w-full mb-6" />
+                    <Skeleton className="h-4 w-20 mb-2" />
+                    <Skeleton className="h-6 w-4/5 mb-2" />
+                    <Skeleton className="h-4 w-full" />
+                  </div>
+                ))
+              : filteredProjects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    isHovered={hoveredProject === project.id}
+                    onHover={() => setHoveredProject(project.id)}
+                    onLeave={() => setHoveredProject(null)}
+                  />
+                ))}
           </div>
 
           {/* Categories */}
           <div className="mt-24 flex flex-wrap justify-center gap-4">
-            {categories.slice(1).map((category) => (
+            {getCategories.slice(1).map((category) => (
               <Button
                 key={category}
                 variant="ghost"
@@ -198,7 +188,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   onHover,
   onLeave,
 }) => {
-  const { title, description, category, icon, link } = project;
+  const { title, description, category, icon, slug, thumbnail } = project;
 
   return (
     <div
@@ -207,17 +197,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       onMouseLeave={onLeave}
     >
       <div className="relative overflow-hidden h-80 w-full mb-6 bg-neutral-100 dark:bg-neutral-900">
-        {/* Project thumbnail area */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
+        {/* Project thumbnail */}
+        {thumbnail ? (
+          <img
+            src={thumbnail}
+            alt={title}
             className={`
-            transition-all duration-500 
-            ${isHovered ? "scale-110 opacity-20" : "scale-100 opacity-30"}
-          `}
-          >
-            <div className="size-24">{icon}</div>
+              absolute inset-0 w-full h-full object-cover
+              transition-all duration-500 
+              ${isHovered ? "scale-110 opacity-80" : "scale-100"}
+            `}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className={`
+              transition-all duration-500 
+              ${isHovered ? "scale-110 opacity-20" : "scale-100 opacity-30"}
+            `}
+            >
+              <div className="size-24">
+                {icon ? (
+                  getIconComponent(icon)
+                ) : (
+                  <Layout className="stroke-2" />
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Overlay with project details on hover */}
         <div
@@ -228,7 +236,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         `}
         >
           <Link
-            to={link}
+            to={`/projects/${slug || project.id}`}
             className="px-6 py-3 bg-white dark:bg-black text-black dark:text-white text-sm font-medium"
           >
             View Project
