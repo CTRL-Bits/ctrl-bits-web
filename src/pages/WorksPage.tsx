@@ -67,8 +67,10 @@ export default function WorksPage(): React.ReactElement {
   // Filter projects based on active filter
   const filteredProjects: Project[] = React.useMemo(() => {
     return activeFilter === "All"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+      ? projects.filter((project) => project.featured)
+      : projects.filter(
+          (project) => project.category === activeFilter && project.featured
+        );
   }, [projects, activeFilter]);
 
   if (error) {

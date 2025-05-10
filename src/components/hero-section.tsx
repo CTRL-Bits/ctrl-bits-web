@@ -92,7 +92,7 @@ export default function HeroSection() {
                     size="lg"
                     className="h-12 rounded-full pl-5 pr-3 text-base"
                   >
-                    <Link to="/services">
+                    <Link to="/solutions">
                       <span className="text-nowrap">View Services</span>
                       <ChevronRight className="ml-1" />
                     </Link>
