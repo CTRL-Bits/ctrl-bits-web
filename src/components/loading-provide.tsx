@@ -1,31 +1,28 @@
 import { ReactNode, useEffect, useState } from "react";
 import LoadingScreen from "./ui/loading-screen";
 
-interface ILoadingProvider {
+// Interface for LoadingProvider props
+interface LoadingProviderProps {
   children: ReactNode;
   companyName: string;
   criticalEndpoints?: string[];
 }
 
-// Default critical API endpoints
-const DEFAULT_CRITICAL_ENDPOINTS = [
-  "https://api.ctrlbits.xyz/api/testimonials/",
-  "https://api.ctrlbits.xyz/api/team/",
-  "https://api.ctrlbits.xyz/api/companies/",
-  "https://api.ctrlbits.xyz/api/tech/",
-  "https://api.ctrlbits.xyz/api/projects/",
-];
-//using session storage
-const SESSION_LOAD_KEY = "sessionLoadComplete";
-
-const LoadingProvider: React.FC<ILoadingProvider> = ({
+const LoadingProvider = ({
   children,
   companyName,
-  criticalEndpoints,
-}) => {
-  const endpointsToLoad = criticalEndpoints || DEFAULT_CRITICAL_ENDPOINTS;
+  criticalEndpoints = [
+    "https://api.ctrlbits.xyz/api/testimonials/",
+    "https://api.ctrlbits.xyz/api/team/",
+    "https://api.ctrlbits.xyz/api/companies/",
+    "https://api.ctrlbits.xyz/api/tech/",
+    "https://api.ctrlbits.xyz/api/projects/",
+  ],
+}: LoadingProviderProps) => {
+  // Session storage key
+  const SESSION_LOAD_KEY = "sessionLoadComplete";
 
-  //checkin session storage
+  // Check if already loaded in this session
   const hasLoadedInThisSession =
     typeof window !== "undefined" &&
     sessionStorage.getItem(SESSION_LOAD_KEY) === "true";
@@ -33,19 +30,14 @@ const LoadingProvider: React.FC<ILoadingProvider> = ({
   const [isLoading, setIsLoading] = useState(!hasLoadedInThisSession);
 
   useEffect(() => {
-    if (hasLoadedInThisSession) {
-      return;
-    }
-
-    console.log("Loading endpoints for this session");
+    if (hasLoadedInThisSession) return;
 
     const loadAllEndpoints = async () => {
       try {
         // Fetch all endpoints in parallel
         await Promise.all(
-          endpointsToLoad.map((url) =>
+          criticalEndpoints.map((url) =>
             fetch(url).then((response) => {
-              console.log(`Endpoint ${url} status: ${response.status}`);
               if (!response.ok) {
                 throw new Error(`Failed to fetch ${url}`);
               }
@@ -59,7 +51,7 @@ const LoadingProvider: React.FC<ILoadingProvider> = ({
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading critical endpoints:", error);
-
+        // Continue anyway after a short delay
         setTimeout(() => {
           sessionStorage.setItem(SESSION_LOAD_KEY, "true");
           setIsLoading(false);
@@ -69,23 +61,21 @@ const LoadingProvider: React.FC<ILoadingProvider> = ({
 
     loadAllEndpoints();
 
-    // Safety timeout
+    // Safety timeout (10 seconds max)
     const safetyTimeout = setTimeout(() => {
-      console.log("Safety timeout reached, skipping loading");
       sessionStorage.setItem(SESSION_LOAD_KEY, "true");
       setIsLoading(false);
     }, 10000);
 
     return () => clearTimeout(safetyTimeout);
-  }, [hasLoadedInThisSession, endpointsToLoad]);
+  }, [hasLoadedInThisSession, criticalEndpoints]);
 
-  //loading
-  if (isLoading) {
-    return <LoadingScreen companyName={companyName} />;
-  }
-
-  // Once loaded, show the app
-  return <>{children}</>;
+  // Show loading screen or render children
+  return isLoading ? (
+    <LoadingScreen companyName={companyName} />
+  ) : (
+    <>{children}</>
+  );
 };
 
 export default LoadingProvider;
