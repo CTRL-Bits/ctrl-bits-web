@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, Globe, MessageSquare, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ContactFormData } from "@/types";
+import axios from "axios";
 
 export default function ITContactSection() {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -24,13 +25,14 @@ export default function ITContactSection() {
     company: "",
     phone: "",
     country: "",
-    jobFunction: "",
-    serviceInterest: "",
+    job_function: "",
+    service_interest: "",
     message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,15 +45,39 @@ export default function ITContactSection() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
+    //APi
+    try {
+      const response = await axios.post(
+        "https://api.ctrlbits.xyz/api/contact/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    // Simulate API call
-    setTimeout(() => {
+      // Checking if the request is successfull or not
+      if (response.status === 200 || response.status === 201) {
+        setFormSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      // Specific error message
+      const errorMessage =
+        axios.isAxiosError(err) && err.response?.data?.message
+          ? err.response.data.message
+          : "Failed to submit your inquiry. Please check your connection and try again.";
+      setError(errorMessage);
+    } finally {
       setIsSubmitting(false);
-      setFormSubmitted(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -233,7 +259,19 @@ export default function ITContactSection() {
                   </p>
                   <Button
                     variant="outline"
-                    onClick={() => setFormSubmitted(false)}
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setFormData({
+                        name: "",
+                        email: "",
+                        company: "",
+                        phone: "",
+                        country: "",
+                        job_function: "",
+                        service_interest: "",
+                        message: "",
+                      });
+                    }}
                   >
                     Send Another Message
                   </Button>
@@ -247,6 +285,15 @@ export default function ITContactSection() {
                       to you within 24 hours.
                     </p>
                   </div>
+
+                  {error && (
+                    <Alert className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
+                      <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                      <AlertDescription className="text-red-600 dark:text-red-400">
+                        {error}
+                      </AlertDescription>
+                    </Alert>
+                  )}
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
@@ -318,9 +365,9 @@ export default function ITContactSection() {
                     <div className="space-y-2">
                       <Label htmlFor="jobFunction">Job Function *</Label>
                       <Select
-                        value={formData.jobFunction}
+                        value={formData.job_function}
                         onValueChange={(value) =>
-                          handleSelectChange("jobFunction", value)
+                          handleSelectChange("job_function", value)
                         }
                         required
                       >
@@ -346,9 +393,9 @@ export default function ITContactSection() {
                   <div className="space-y-2">
                     <Label htmlFor="serviceInterest">Service Interest *</Label>
                     <Select
-                      value={formData.serviceInterest}
+                      value={formData.service_interest}
                       onValueChange={(value) =>
-                        handleSelectChange("serviceInterest", value)
+                        handleSelectChange("service_interest", value)
                       }
                       required
                     >

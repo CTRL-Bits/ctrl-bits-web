@@ -9,20 +9,23 @@ import SolutionsPage from "./pages/SolutionsPage";
 import WorksPage from "./pages/WorksPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import LoadingProvider from "./components/loading-provide";
 
 const App = () => {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <HeroHeader />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/solutions" element={<SolutionsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/works" element={<WorksPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
+      <LoadingProvider companyName="ctrl bits">
+        <HeroHeader />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/works" element={<WorksPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </LoadingProvider>
       <FooterSection />
     </ThemeProvider>
   );

@@ -4,8 +4,8 @@ export interface ContactFormData {
   company: string;
   phone: string;
   country: string;
-  jobFunction: string;
-  serviceInterest: string;
+  job_function: string;
+  service_interest: string;
   message: string;
 }
 
