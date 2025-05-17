@@ -3,13 +3,14 @@ import FooterSection from "./components/footer";
 import { ThemeProvider } from "./components/theme-provider";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import { HeroHeader } from "./components/hero9-header";
+import HeroHeader from "./components/hero9-header";
 import ContactPage from "./pages/ContactPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import WorksPage from "./pages/WorksPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import LoadingProvider from "./components/loading-provide";
+import { Toaster } from "sonner";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/projects/:slug" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
+        <Toaster richColors />
       </LoadingProvider>
       <FooterSection />
     </ThemeProvider>

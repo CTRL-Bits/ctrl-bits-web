@@ -16,6 +16,8 @@ import {
   Grid,
   List,
   ChefHat,
+  Sparkles,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,8 +25,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Project } from "@/types";
-// Fix: Import fetchProjects correctly from apiClient
 import { fetchProjects } from "@/services/projectService";
+import VariableProximity from "../components/variable-proximity-text";
 
 type ViewMode = "grid" | "list";
 type CategoryType = string;
@@ -38,6 +40,20 @@ export default function ProjectsPage(): React.ReactElement {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
   const searchInputRef = React.useRef<HTMLInputElement>(null);
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = React.useState(0);
+
+  // Parallax effect on scroll
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Fetch projects on component mount
   React.useEffect(() => {
@@ -138,18 +154,29 @@ export default function ProjectsPage(): React.ReactElement {
   // Loading state
   if (loading) {
     return (
-      <div className="bg-white dark:bg-black min-h-screen">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+        {/* Background gradients */}
+        <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
+        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
+        <div className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu" />
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 py-16 sm:py-20">
           <header className="mb-12 md:mb-16">
-            <h1 className="text-3xl variable-font md:text-4xl lg:text-5xl font-light tracking-tight mb-3">
-              Our Projects
+            <div className="flex items-center space-x-2 mb-6">
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
+                <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
+                Our Work
+              </span>
+            </div>
+            <h1 className="text-4xl variable-font md:text-5xl lg:text-6xl font-light tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary">
+              Projects Showcase
             </h1>
-            <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl">
-              Loading projects...
+            <p className="text-muted-foreground text-lg max-w-xl">
+              Loading our work collection...
             </p>
           </header>
           <div className="flex items-center justify-center py-32">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 dark:border-neutral-100"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         </div>
       </div>
@@ -159,19 +186,35 @@ export default function ProjectsPage(): React.ReactElement {
   // Error state
   if (error) {
     return (
-      <div className="bg-white dark:bg-black min-h-screen">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+        {/* Background gradients */}
+        <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
+        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
+        <div className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu" />
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 py-16 sm:py-20">
           <header className="mb-12 md:mb-16">
-            <h1 className="text-3xl variable-font md:text-4xl lg:text-5xl font-light tracking-tight mb-3">
-              Our Projects
+            <div className="flex items-center space-x-2 mb-6">
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
+                <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
+                Our Work
+              </span>
+            </div>
+            <h1 className="text-4xl variable-font md:text-5xl lg:text-6xl font-light tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary">
+              Projects Showcase
             </h1>
-            <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl">
-              {error}
-            </p>
+            <p className="text-muted-foreground text-lg max-w-xl">{error}</p>
           </header>
           <div className="flex flex-col items-center justify-center py-16">
-            <Button onClick={() => window.location.reload()} className="mt-4">
-              Try Again
+            <Button
+              onClick={() => window.location.reload()}
+              className="mt-4 h-12 rounded-full pl-6 pr-5 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-105 transition-all group overflow-hidden relative"
+            >
+              <span className="relative z-10 flex items-center">
+                Try Again
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </div>
         </div>
@@ -180,84 +223,137 @@ export default function ProjectsPage(): React.ReactElement {
   }
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+    <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+      {/* Background gradients */}
+      <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
+      <div
+        className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/20 blur-3xl transform-gpu"
+        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+      />
+      <div
+        className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/15 blur-3xl transform-gpu"
+        style={{ transform: `translateY(${scrollY * -0.15}px)` }}
+      />
+      <div
+        className="absolute bottom-24 left-1/3 h-64 w-64 rounded-full bg-accent/10 blur-3xl transform-gpu"
+        style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 py-16 sm:py-20">
         {/* Header */}
-        <header className="mb-12 md:mb-16">
+        <header className="mb-12 md:mb-16" ref={headerRef}>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
             <div>
-              <h1 className="text-3xl variable-font md:text-4xl lg:text-5xl font-light tracking-tight mb-3">
-                Our Projects
-              </h1>
-              <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl">
+              <div className="flex items-center space-x-2 mb-6 transition-all duration-700 delay-100">
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
+                  <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
+                  Our Work
+                </span>
+              </div>
+
+              <div className="variable-font-container transition-all duration-700 delay-200">
+                <h1 className="text-4xl variable-font md:text-5xl lg:text-6xl font-light tracking-tight mb-3">
+                  <VariableProximity
+                    label="Projects Showcase"
+                    fromFontVariationSettings="'wght' 400, 'wdth' 100"
+                    toFontVariationSettings="'wght' 800, 'wdth' 125"
+                    containerRef={headerRef}
+                    radius={200}
+                    falloff="gaussian"
+                    className="font-bold transition-all duration-100 variable-font bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary"
+                  />
+                </h1>
+              </div>
+
+              <p className="text-muted-foreground text-lg max-w-xl transition-all duration-700 delay-300">
                 A showcase of our work across various industries and
-                technologies.
+                technologies —{" "}
+                <span className="font-medium text-foreground relative">
+                  bit by bit
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 rounded-full"></span>
+                </span>
+                .
               </p>
             </div>
 
-            <div className="relative w-full md:w-72">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-neutral-400" />
-              <Input
-                type="text"
-                placeholder="Search projects..."
-                className="pl-10 pr-10 py-2 bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 focus:border-neutral-400 dark:focus:border-neutral-600 focus:ring-neutral-300 dark:focus:ring-neutral-700"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                ref={searchInputRef}
-                aria-label="Search projects"
-              />
-              {searchQuery && (
-                <button
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                  onClick={handleClearSearch}
-                  type="button"
-                  aria-label="Clear search"
-                >
-                  <X className="size-4 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200" />
-                </button>
-              )}
+            <div className="relative w-full md:w-72 transition-all duration-700 delay-400">
+              <div className="relative bg-background/50 backdrop-blur-md rounded-full border border-muted/50 shadow-sm overflow-hidden hover:border-primary/30 transition-all duration-300">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search projects..."
+                  className="pl-10 pr-10 py-2 border-none focus:ring-0 rounded-full bg-transparent focus:border-none"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  ref={searchInputRef}
+                  aria-label="Search projects"
+                />
+                {searchQuery && (
+                  <button
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    onClick={handleClearSearch}
+                    type="button"
+                    aria-label="Clear search"
+                  >
+                    <X className="size-4 text-muted-foreground hover:text-foreground" />
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </header>
 
         {/* Filters */}
-        <div className="mb-12">
-          <Tabs defaultValue="categories" className="w-full rounded-full">
-            <TabsList className="mb-8 rounded-full bg-neutral-100 dark:bg-neutral-900">
-              <TabsTrigger value="categories" className="rounded-full">
+        <div className="mb-12 transition-all duration-700 delay-500">
+          <Tabs defaultValue="categories" className="w-full">
+            <TabsList className="mb-8 rounded-full bg-muted/30 backdrop-blur-md border border-muted/50 p-1">
+              <TabsTrigger
+                value="categories"
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              >
                 Categories
               </TabsTrigger>
-              <TabsTrigger value="featured" className="rounded-full">
+              <TabsTrigger
+                value="featured"
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              >
                 Featured
               </TabsTrigger>
-              <TabsTrigger value="recent" className="rounded-full">
+              <TabsTrigger
+                value="recent"
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              >
                 Recent
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="categories" className="space-y-8">
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Badge
-                    key={category}
-                    variant={
-                      activeCategory === category ? "default" : "outline"
-                    }
-                    className={cn(
-                      "cursor-pointer transition-all px-4 py-1.5 text-xs rounded-full",
-                      activeCategory === category
-                        ? "bg-black text-white dark:bg-white dark:text-black"
-                        : "text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900"
-                    )}
-                    onClick={() => setActiveCategory(category)}
-                  >
-                    {category}
-                  </Badge>
-                ))}
+              <div className="flex flex-wrap gap-2 relative overflow-hidden rounded-xl py-4">
+                <div className="relative flex-1 overflow-auto scrollbar-hide py-2 px-1">
+                  <div className="flex gap-2">
+                    {categories.map((category) => (
+                      <Badge
+                        key={category}
+                        variant={
+                          activeCategory === category ? "default" : "outline"
+                        }
+                        className={cn(
+                          "cursor-pointer transition-all px-4 py-1.5 text-xs rounded-full",
+                          activeCategory === category
+                            ? "bg-primary text-primary-foreground"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                        )}
+                        onClick={() => setActiveCategory(category)}
+                      >
+                        {category}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className="flex justify-between items-center">
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="flex justify-between items-center backdrop-blur-sm bg-background/50 p-3 rounded-xl border border-muted/50">
+                <p className="text-sm text-muted-foreground">
                   Showing {filteredProjects.length}{" "}
                   {filteredProjects.length === 1 ? "project" : "projects"}
                   {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
@@ -268,10 +364,10 @@ export default function ProjectsPage(): React.ReactElement {
                   <button
                     onClick={() => setViewMode("grid")}
                     className={cn(
-                      "p-2 rounded transition-colors",
+                      "p-2 rounded-lg transition-colors",
                       viewMode === "grid"
-                        ? "bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white"
-                        : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                        ? "bg-primary/10 text-primary ring-1 ring-primary/20"
+                        : "text-muted-foreground hover:text-foreground"
                     )}
                     aria-label="Grid view"
                     aria-pressed={viewMode === "grid"}
@@ -281,10 +377,10 @@ export default function ProjectsPage(): React.ReactElement {
                   <button
                     onClick={() => setViewMode("list")}
                     className={cn(
-                      "p-2 rounded transition-colors",
+                      "p-2 rounded-lg transition-colors",
                       viewMode === "list"
-                        ? "bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white"
-                        : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                        ? "bg-primary/10 text-primary ring-1 ring-primary/20"
+                        : "text-muted-foreground hover:text-foreground"
                     )}
                     aria-label="List view"
                     aria-pressed={viewMode === "list"}
@@ -296,10 +392,13 @@ export default function ProjectsPage(): React.ReactElement {
             </TabsContent>
 
             <TabsContent value="featured">
-              <div className="mb-8">
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                  Our most impactful work showcasing our best capabilities
-                </p>
+              <div className="mb-8 backdrop-blur-sm bg-background/50 p-3 rounded-xl border border-muted/50">
+                <div className="flex items-center gap-2">
+                  <Zap className="size-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">
+                    Our most impactful work showcasing our best capabilities
+                  </p>
+                </div>
               </div>
               <div
                 className={cn(
@@ -326,7 +425,7 @@ export default function ProjectsPage(): React.ReactElement {
                   )
                 ) : (
                   <div className="col-span-3 text-center py-8">
-                    <p className="text-neutral-500 dark:text-neutral-400">
+                    <p className="text-muted-foreground">
                       No featured projects available at the moment.
                     </p>
                   </div>
@@ -335,10 +434,13 @@ export default function ProjectsPage(): React.ReactElement {
             </TabsContent>
 
             <TabsContent value="recent">
-              <div className="mb-8">
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                  Our latest work, sorted by completion date
-                </p>
+              <div className="mb-8 backdrop-blur-sm bg-background/50 p-3 rounded-xl border border-muted/50">
+                <div className="flex items-center gap-2">
+                  <Calendar className="size-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">
+                    Our latest work, sorted by completion date
+                  </p>
+                </div>
               </div>
               <div
                 className={cn(
@@ -394,18 +496,23 @@ export default function ProjectsPage(): React.ReactElement {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Search className="size-12 mb-4 text-neutral-300 dark:text-neutral-700" />
+            <div className="size-16 flex items-center justify-center mb-4 rounded-full bg-muted/30 ring-1 ring-muted/50 backdrop-blur-sm">
+              <Search className="size-8 text-muted-foreground" />
+            </div>
             <h3 className="text-xl font-medium mb-2">No projects found</h3>
-            <p className="text-neutral-500 dark:text-neutral-400 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Try adjusting your search or filter to find what you're looking
               for
             </p>
             <Button
-              variant="outline"
               onClick={handleResetFilters}
-              className="border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"
+              className="h-12 rounded-full pl-6 pr-5 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-105 transition-all group overflow-hidden relative"
             >
-              Reset Filters
+              <span className="relative z-10 flex items-center">
+                Reset Filters
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </div>
         )}
@@ -427,14 +534,14 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
     return (
       <div
         ref={ref}
-        className="group relative flex flex-col h-full border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-sm hover:border-neutral-300 dark:hover:border-neutral-700"
+        className="group relative flex flex-col h-full rounded-xl overflow-hidden bg-background/50 backdrop-blur-md border border-muted/50 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:scale-[1.02]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div
           className={cn(
             "relative overflow-hidden h-56 w-full",
-            project.thumbnailClass || "bg-neutral-50 dark:bg-neutral-950"
+            project.thumbnailClass || "bg-muted/30"
           )}
         >
           {/* Project thumbnail */}
@@ -442,17 +549,17 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
             <img
               src={project.thumbnail}
               alt={`${title} thumbnail`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <div
                 className={cn(
                   "transition-all duration-500",
-                  isHovered ? "scale-110 opacity-20" : "scale-100 opacity-30"
+                  isHovered ? "scale-110 opacity-30" : "scale-100 opacity-50"
                 )}
               >
-                <div className="size-16">
+                <div className="size-16 bg-primary/10 p-4 rounded-full ring-1 ring-primary/20">
                   {getIconComponent(typeof icon === "string" ? icon : null)}
                 </div>
               </div>
@@ -462,41 +569,49 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
           {/* Overlay with project details on hover */}
           <div
             className={cn(
-              "absolute inset-0 bg-black/10 dark:bg-white/10 flex items-center justify-center",
-              "transition-opacity duration-300",
+              "absolute inset-0 flex items-center justify-center bg-gradient-to-t from-background/90 via-background/60 to-transparent",
+              "transition-all duration-300",
               isHovered ? "opacity-100" : "opacity-0"
             )}
           >
             <Link
               to={`/projects/${project.slug || project.id}`}
-              className="px-6 py-3 bg-white dark:bg-black text-black dark:text-white text-sm font-medium rounded-md"
+              className="h-12 rounded-full pl-6 pr-5 text-base font-medium bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-105 transition-all flex items-center"
               aria-label={`View details for ${title}`}
             >
               View Project
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
 
         {/* Project info */}
-        <div className="flex flex-col flex-grow p-5">
-          <div className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-2">
+        <div className="flex flex-col flex-grow p-5 relative">
+          {project.featured && (
+            <div className="absolute top-0 right-5 -translate-y-1/2 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
+              <Sparkles className="mr-1.5 h-3 w-3" />
+              Featured
+            </div>
+          )}
+
+          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
             {category}
           </div>
           <Link
             to={`/projects/${project.slug || project.id}`}
             className="group/link"
           >
-            <h3 className="text-xl font-medium mb-2 transition-all duration-300 group-hover/link:underline decoration-1 underline-offset-2">
+            <h3 className="text-xl font-medium mb-2 transition-all duration-300 group-hover/link:text-primary">
               {title}
             </h3>
           </Link>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-2">
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
             {description}
           </p>
 
           {/* Client info */}
           {client && (
-            <div className="mt-auto flex items-center text-xs text-neutral-500 dark:text-neutral-400 mb-3">
+            <div className="mt-auto flex items-center text-xs text-muted-foreground mb-3 group-hover:text-foreground transition-colors">
               <User className="size-3 mr-1" />
               {client}
             </div>
@@ -508,13 +623,13 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
               {tags.slice(0, 3).map((tag, index) => (
                 <span
                   key={index}
-                  className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 rounded-full"
+                  className="text-xs px-2 py-0.5 bg-muted/50 text-muted-foreground rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-colors"
                 >
                   {tag.name}
                 </span>
               ))}
               {tags.length > 3 && (
-                <span className="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 rounded-full">
+                <span className="text-xs px-2 py-0.5 bg-muted/50 text-muted-foreground rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                   +{tags.length - 3}
                 </span>
               )}
@@ -535,110 +650,106 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
     return (
       <div
         ref={ref}
-        className="group border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 transition-all duration-300 hover:shadow-sm hover:border-neutral-300 dark:hover:border-neutral-700"
+        className="group rounded-xl p-6 bg-background/50 backdrop-blur-md border border-muted/50 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:scale-[1.01]"
       >
         <div className="flex flex-col md:flex-row gap-6">
           {/* Project thumbnail/icon */}
           {project.thumbnail ? (
-            <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-md overflow-hidden">
+            <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden ring-1 ring-muted/50">
               <img
                 src={project.thumbnail}
                 alt={`${title} thumbnail`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
           ) : (
             <div
               className={cn(
-                "flex-shrink-0 size-16 md:size-20 flex items-center justify-center rounded-md",
-                project.thumbnailClass || "bg-neutral-50 dark:bg-neutral-950"
+                "flex-shrink-0 size-16 md:size-20 flex items-center justify-center rounded-lg bg-muted/30 ring-1 ring-muted/50 transition-all duration-300 group-hover:bg-primary/10 group-hover:ring-primary/20",
+                project.thumbnailClass
               )}
             >
-              <div className="size-8 md:size-10">
+              <div className="p-4 transition-all duration-300 group-hover:scale-110">
                 {getIconComponent(typeof icon === "string" ? icon : null)}
               </div>
             </div>
           )}
 
-          {/* Project info */}
+          {/* Project details */}
           <div className="flex-grow">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-              <div className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+            <div className="flex items-center gap-3 mb-2">
+              {project.featured && (
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
+                  <Sparkles className="mr-1 h-3 w-3" />
+                  Featured
+                </span>
+              )}
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                 {category}
-              </div>
-              {date && (
-                <div className="hidden md:flex text-neutral-300 dark:text-neutral-700">
-                  •
-                </div>
-              )}
-              {date && (
-                <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
-                  <Calendar className="size-3 mr-1" />
-                  {new Date(date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </div>
-              )}
+              </span>
             </div>
 
             <Link
               to={`/projects/${project.slug || project.id}`}
               className="group/link"
             >
-              <h3 className="text-xl font-medium mb-2 transition-colors duration-300 group-hover/link:underline decoration-1 underline-offset-2">
+              <h3 className="text-xl font-medium mb-2 transition-all duration-300 group-hover/link:text-primary">
                 {title}
               </h3>
             </Link>
 
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
+            <p className="text-muted-foreground mb-4 line-clamp-2">
               {description}
             </p>
 
-            <div className="flex flex-col md:flex-row md:items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
               {/* Client info */}
               {client && (
-                <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
+                <div className="flex items-center group-hover:text-foreground transition-colors">
                   <User className="size-3 mr-1" />
                   {client}
                 </div>
               )}
 
-              {/* Tags */}
-              {tags && tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 items-center">
-                  <Tag className="size-3 text-neutral-400" />
-                  <div className="flex flex-wrap gap-x-1">
-                    {tags.slice(0, 4).map((tag, index) => (
-                      <span
-                        key={index}
-                        className="text-xs text-neutral-600 dark:text-neutral-400"
-                      >
-                        {tag.name}
-                        {index < Math.min(tags.length, 4) - 1 ? "," : ""}
-                      </span>
-                    ))}
-                    {tags.length > 4 && (
-                      <span className="text-xs text-neutral-500 dark:text-neutral-500 ml-1">
-                        +{tags.length - 4}
-                      </span>
-                    )}
-                  </div>
+              {/* Date */}
+              {date && (
+                <div className="flex items-center group-hover:text-foreground transition-colors">
+                  <Calendar className="size-3 mr-1" />
+                  {new Date(date).toLocaleDateString()}
                 </div>
               )}
-
-              <div className="md:ml-auto">
-                <Link
-                  to={`/projects/${project.slug || project.id}`}
-                  className="text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all"
-                  aria-label={`View details for ${title}`}
-                >
-                  View Details
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
             </div>
+
+            {/* Tags */}
+            {tags && tags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-3">
+                <Tag className="size-3 text-muted-foreground mr-1" />
+                {tags.slice(0, 5).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-2 py-0.5 bg-muted/50 text-muted-foreground rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-colors"
+                  >
+                    {tag.name}
+                  </span>
+                ))}
+                {tags.length > 5 && (
+                  <span className="text-xs px-2 py-0.5 bg-muted/50 text-muted-foreground rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                    +{tags.length - 5}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* View project button */}
+          <div className="flex-shrink-0 self-center mt-4 md:mt-0">
+            <Link
+              to={`/projects/${project.slug || project.id}`}
+              className="inline-flex items-center justify-center rounded-full p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors group/arrow"
+              aria-label={`View details for ${title}`}
+            >
+              <ArrowRight className="size-5 transition-transform group-hover/arrow:translate-x-1" />
+            </Link>
           </div>
         </div>
       </div>

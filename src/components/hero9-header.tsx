@@ -13,7 +13,7 @@ const menuItems = [
   { name: "Contact", to: "/contact" },
 ];
 
-export const HeroHeader = () => {
+const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const { scrollYProgress } = useScroll();
@@ -126,3 +126,5 @@ export const HeroHeader = () => {
     </header>
   );
 };
+
+export default HeroHeader;
