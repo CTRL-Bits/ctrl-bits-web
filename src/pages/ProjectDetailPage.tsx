@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Separator } from "@/components/ui/separator";
 import { Project } from "@/types";
 import { Link, useParams } from "react-router-dom";
 import React from "react";
@@ -19,48 +18,22 @@ import { fetchProjectBySlug } from "@/services/projectService";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
-// // Function to map icon string to the appropriate Lucide icon component
-// const getIconComponent = (iconName: string | null) => {
-//   switch (iconName) {
-//     case "ShoppingCart":
-//       return <ShoppingCart className="stroke-2" />;
-//     case "ChefHat":
-//       return <ChefHat className="stroke-2" />;
-//     case "Layout":
-//       return <Layout className="stroke-2" />;
-//     case "Palette":
-//       return <Palette className="stroke-2" />;
-//     case "Database":
-//       return <Database className="stroke-2" />;
-//     case "Globe":
-//       return <Globe className="stroke-2" />;
-//     case "Code":
-//       return <Code className="stroke-2" />;
-//     default:
-//       return <Layout className="stroke-2" />;
-//   }
-// };
-
 export default function ProjectDetailPage(): React.ReactElement {
   const { slug } = useParams<{ slug: string }>();
-  // const navigate = useNavigate();
   const [project, setProject] = React.useState<Project | null>(null);
-  // const [relatedProjects, setRelatedProjects] = React.useState<Project[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [activeTab, setActiveTab] = React.useState("overview");
   const [scrollY, setScrollY] = React.useState(0);
 
-  // Parallax effect on scroll
+  // Enhanced parallax effect
   React.useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const throttledScroll = () => requestAnimationFrame(handleScroll);
+    window.addEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
 
   // Share project functionality
@@ -73,12 +46,10 @@ export default function ProjectDetailPage(): React.ReactElement {
           url: window.location.href,
         });
       } catch (err) {
-        // Fallback if share API fails or is cancelled
         navigator.clipboard.writeText(window.location.href);
-        alert("Link copied to clipboard!");
+        toast.success("Link copied to clipboard!");
       }
     } else {
-      // Fallback for browsers that don't support the Web Share API
       navigator.clipboard.writeText(window.location.href);
       toast.success("Link copied to clipboard!");
     }
@@ -91,8 +62,6 @@ export default function ProjectDetailPage(): React.ReactElement {
         if (slug) {
           const data = await fetchProjectBySlug(slug);
           setProject(data);
-
-          // Fetch related projects based on category or tags
         }
       } catch (err) {
         setError(
@@ -106,7 +75,6 @@ export default function ProjectDetailPage(): React.ReactElement {
     getProjectDetails();
   }, [slug]);
 
-  // Scroll to top when navigating between projects
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -117,170 +85,204 @@ export default function ProjectDetailPage(): React.ReactElement {
 
   if (error || !project) {
     return (
-      <div className="min-h-screen relative overflow-hidden bg-background flex items-center justify-center">
-        {/* Background gradients */}
-        <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
-        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
-        <div className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu" />
+      <div className="min-h-screen relative overflow-hidden bg-background">
+        {/* Unified background system */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20" />
+          <div className="absolute -top-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/2 -right-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-1/3 w-48 h-48 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
+        </div>
 
-        <div className="text-center max-w-md p-8 rounded-xl bg-background/70 backdrop-blur-md border border-muted/50 shadow-lg">
-          <div className="size-16 bg-muted/30 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <FileText className="size-8 text-muted-foreground" />
+        <div className="relative z-10 flex items-center justify-center min-h-screen p-6">
+          <div className="text-center max-w-md">
+            <div className="relative mb-8">
+              <div className="w-20 h-20 bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl mx-auto flex items-center justify-center backdrop-blur-sm border border-border/50">
+                <FileText className="w-8 h-8 text-muted-foreground" />
+              </div>
+            </div>
+
+            <h3 className="text-3xl font-light mb-4 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+              {error ? "Failed to load project" : "Project not found"}
+            </h3>
+            <p className="text-muted-foreground/80 mb-8 leading-relaxed">
+              {error ||
+                "The project you're looking for doesn't exist or has been moved."}
+            </p>
+
+            <Button
+              asChild
+              size="lg"
+              className="relative overflow-hidden rounded-full px-8 py-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 border-0 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
+            >
+              <Link to="/works" className="group">
+                <span className="relative z-10 flex items-center font-medium">
+                  Back to Projects
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            </Button>
           </div>
-          <h3 className="text-2xl font-medium mb-3">
-            {error ? "Failed to load project" : "Project not found"}
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            {error ||
-              "The project you're looking for doesn't exist or has been moved."}
-          </p>
-          <Button
-            asChild
-            className="h-12 rounded-full pl-6 pr-5 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-105 transition-all group overflow-hidden relative"
-          >
-            <Link to="/works">
-              <span className="relative z-10 flex items-center">
-                Back to Projects
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </Link>
-          </Button>
         </div>
       </div>
     );
   }
 
   return (
-    <section className="bg-background relative overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
-      <div
-        className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu"
-        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-      />
-      <div
-        className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu"
-        style={{ transform: `translateY(${scrollY * -0.15}px)` }}
-      />
-      <div
-        className="absolute bottom-24 left-1/3 h-64 w-64 rounded-full bg-accent/10 blur-3xl transform-gpu"
-        style={{ transform: `translateY(${scrollY * 0.05}px)` }}
-      />
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Unified background system */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20" />
+        <div
+          className="absolute -top-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+          style={{
+            transform: `translate3d(${scrollY * 0.1}px, ${
+              scrollY * 0.05
+            }px, 0)`,
+          }}
+        />
+        <div
+          className="absolute top-1/2 -right-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
+          style={{
+            transform: `translate3d(${scrollY * -0.05}px, ${
+              scrollY * -0.1
+            }px, 0)`,
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-1/3 w-48 h-48 bg-secondary/10 rounded-full blur-3xl"
+          style={{
+            transform: `translate3d(${scrollY * 0.03}px, ${
+              scrollY * 0.08
+            }px, 0)`,
+          }}
+        />
+      </div>
 
-      {/* Hero section with parallax */}
-      <div
-        className="h-[50vh] md:h-[60vh] relative flex items-end bg-gradient-to-b from-background to-background/0"
-        style={{
-          backgroundImage: project.thumbnail
-            ? `url(${project.thumbnail})`
-            : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      {/* Hero Section */}
+      <div className="relative z-10">
+        <div
+          className="h-[70vh] relative flex items-end overflow-hidden"
+          style={{
+            backgroundImage: project.thumbnail
+              ? `url(${project.thumbnail})`
+              : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        >
+          {/* Consistent overlay system */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/30" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-          {/* Back button */}
-          <div className="mb-6">
-            <Button
-              variant="outline"
-              asChild
-              className="rounded-full backdrop-blur-md bg-background/50 border-muted/50 hover:bg-background/80 transition-all"
-            >
-              <Link to="/works" className="flex items-center gap-2">
-                <ArrowLeft className="size-4" />
-                <span>Back to Projects</span>
-              </Link>
-            </Button>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="animate-in fade-in slide-in-from-bottom-3 duration-700 delay-150">
-              {project.featured && (
-                <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm mb-3">
-                  <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
-                  Featured Project
-                </div>
-              )}
-              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
-                {project.category}
-              </div>
-              <h1 className="font-light text-4xl md:text-5xl lg:text-6xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary">
-                {project.title}
-              </h1>
-              <p className="text-muted-foreground text-lg max-w-3xl mt-4">
-                {project.description}
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300">
-              {project.link && (
-                <Button asChild className="rounded-full px-6">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <span>Visit Project</span>
-                    <ExternalLink className="size-4" />
-                  </a>
+          <div className="relative z-10 w-full">
+            <div className="max-w-7xl mx-auto px-6 py-12">
+              {/* Back button with consistent styling */}
+              <div className="mb-8">
+                <Button
+                  variant="outline"
+                  asChild
+                  className="rounded-full bg-background/60 backdrop-blur-md border-border/50 hover:bg-background/80 transition-all duration-300 hover:scale-105"
+                >
+                  <Link to="/works" className="flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Back to Projects</span>
+                  </Link>
                 </Button>
-              )}
-              <Button
-                variant="outline"
-                className="rounded-full aspect-square p-0 size-10"
-                onClick={handleShareProject}
-                aria-label="Share project"
-              >
-                <Share2 className="size-4" />
-              </Button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end">
+                <div className="lg:col-span-2 space-y-6">
+                  {project.featured && (
+                    <div className="inline-flex items-center rounded-full bg-primary/10 backdrop-blur-sm px-4 py-2 text-sm font-medium text-primary border border-primary/20">
+                      <Sparkles className="mr-2 h-4 w-4 animate-pulse" />
+                      Featured Project
+                    </div>
+                  )}
+
+                  <div className="space-y-3">
+                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                      {project.category}
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
+                      {project.title}
+                    </h1>
+                    <p className="text-lg text-muted-foreground/90 max-w-2xl leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
+                  {project.link && (
+                    <Button
+                      asChild
+                      size="lg"
+                      className="rounded-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
+                    >
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        <span>Visit Project</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  )}
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="rounded-full aspect-square p-0 w-12 h-12 bg-background/60 backdrop-blur-md border-border/50 hover:bg-background/80 transition-all duration-300 hover:scale-105"
+                    onClick={handleShareProject}
+                    aria-label="Share project"
+                  >
+                    <Share2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="py-12 md:py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          {/* Project main content area */}
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Project Info Sidebar */}
-            <div className="w-full lg:w-80 lg:flex-shrink-0 space-y-8 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300">
-              <div className="sticky top-24">
-                <div className="rounded-xl bg-background/50 backdrop-blur-md border border-muted/50 p-6 space-y-8">
-                  {/* Client info */}
-                  <div>
-                    <h3 className="text-sm font-medium uppercase tracking-wider mb-4 text-muted-foreground">
+        {/* Main Content */}
+        <div className="relative z-10 py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              {/* Sidebar - Consistent card styling */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-24 space-y-6">
+                  <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-6">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider mb-6 text-muted-foreground">
                       Project Details
                     </h3>
-                    <Separator className="mb-4" />
 
-                    <dl className="space-y-4">
+                    <div className="space-y-6">
                       <div className="flex items-start gap-3">
-                        <div className="size-8 flex-shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
-                          <User className="size-4 text-primary" />
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <User className="w-4 h-4 text-primary" />
                         </div>
-                        <div>
-                          <dt className="text-muted-foreground text-sm mb-0.5">
+                        <div className="min-w-0 flex-1">
+                          <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
                             Client
                           </dt>
-                          <dd className="font-medium">{project.client}</dd>
+                          <dd className="font-medium text-foreground">
+                            {project.client}
+                          </dd>
                         </div>
                       </div>
 
                       {project.date && (
                         <div className="flex items-start gap-3">
-                          <div className="size-8 flex-shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Calendar className="size-4 text-primary" />
+                          <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                            <Calendar className="w-4 h-4 text-accent-foreground" />
                           </div>
-                          <div>
-                            <dt className="text-muted-foreground text-sm mb-0.5">
+                          <div className="min-w-0 flex-1">
+                            <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
                               Completed
                             </dt>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-foreground">
                               {new Date(project.date).toLocaleDateString(
                                 "en-US",
                                 {
@@ -293,21 +295,19 @@ export default function ProjectDetailPage(): React.ReactElement {
                           </div>
                         </div>
                       )}
-                    </dl>
+                    </div>
                   </div>
 
-                  {/* Technologies */}
-                  <div>
-                    <h3 className="text-sm font-medium uppercase tracking-wider mb-4 text-muted-foreground">
+                  <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-6">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider mb-6 text-muted-foreground">
                       Technologies
                     </h3>
-                    <Separator className="mb-4" />
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, index) => (
                         <Badge
                           key={index}
                           variant="outline"
-                          className="bg-primary/5 hover:bg-primary/10 border-primary/20 text-foreground transition-colors"
+                          className="rounded-full bg-primary/5 hover:bg-primary/10 border-primary/20 text-foreground transition-all duration-200 hover:scale-105"
                         >
                           {tag.name}
                         </Badge>
@@ -316,235 +316,155 @@ export default function ProjectDetailPage(): React.ReactElement {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Project Content */}
-            <div className="flex-1 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-450">
-              <Tabs
-                defaultValue="overview"
-                value={activeTab}
-                onValueChange={setActiveTab}
-                className="w-full mb-8"
-              >
-                <TabsList className="rounded-full bg-muted/30 backdrop-blur-md border border-muted/50 p-1">
-                  <TabsTrigger
-                    value="overview"
-                    className="rounded-full data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                  >
-                    Overview
-                  </TabsTrigger>
-                </TabsList>
+              {/* Main Content - Consistent styling */}
+              <div className="lg:col-span-3">
+                <Tabs
+                  defaultValue="overview"
+                  value={activeTab}
+                  onValueChange={setActiveTab}
+                  className="w-full"
+                >
+                  <TabsList className="rounded-full bg-background/60 backdrop-blur-md border border-border/50 p-1 mb-8">
+                    <TabsTrigger
+                      value="overview"
+                      className="rounded-full data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all duration-200"
+                    >
+                      Overview
+                    </TabsTrigger>
+                  </TabsList>
 
-                <TabsContent value="overview" className="mt-6">
-                  <div className="rounded-xl bg-background/50 backdrop-blur-md border border-muted/50 p-6 md:p-8">
-                    <h2 className="text-2xl font-medium mb-6">
-                      Project Overview
-                    </h2>
-                    <div className="prose dark:prose-invert max-w-none">
-                      {project.full_description ? (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: project.full_description,
-                          }}
-                        />
-                      ) : (
-                        <p>{project.description}</p>
-                      )}
-                    </div>
+                  <TabsContent value="overview">
+                    <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-8">
+                      <h2 className="text-2xl font-light mb-8 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                        Project Overview
+                      </h2>
 
-                    {/* Project Image - only shown in overview tab */}
-                    {project.thumbnail && (
-                      <div className="mt-8 rounded-xl overflow-hidden">
-                        <img
-                          src={project.thumbnail}
-                          alt={project.title}
-                          className="w-full h-auto object-cover"
-                        />
+                      <div className="prose prose-neutral dark:prose-invert max-w-none">
+                        {project.full_description ? (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: project.full_description,
+                            }}
+                            className="leading-relaxed text-muted-foreground/90"
+                          />
+                        ) : (
+                          <p className="leading-relaxed text-muted-foreground/90">
+                            {project.description}
+                          </p>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-          </div>
 
-          {/* Related Projects Section */}
-          {/* {relatedProjects.length > 0 && (
-            <div className="mt-16 md:mt-24 animate-in fade-in slide-in-from-bottom-3 duration-700 delay-700">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-medium">Related Projects</h2>
-                <Button variant="ghost" asChild>
-                  <Link to="/works" className="flex items-center gap-2">
-                    View All
-                    <ArrowRight className="size-4" />
-                  </Link>
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedProjects.map((relatedProject) => (
-                  <div
-                    key={relatedProject.id}
-                    onClick={() =>
-                      navigate(
-                        `/projects/${relatedProject.slug || relatedProject.id}`
-                      )
-                    }
-                    className="group cursor-pointer relative flex flex-col rounded-xl overflow-hidden bg-background/50 backdrop-blur-md border border-muted/50 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:scale-[1.02]"
-                  >
-                    <div className="h-48 relative overflow-hidden">
-                      {relatedProject.thumbnail ? (
-                        <img
-                          src={relatedProject.thumbnail}
-                          alt={`${relatedProject.title} thumbnail`}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-muted/30 flex items-center justify-center">
-                          <div className="size-16 opacity-30">
-                            {getIconComponent(relatedProject.icon)}
-                          </div>
+                      {project.thumbnail && (
+                        <div className="mt-8 rounded-xl overflow-hidden border border-border/50">
+                          <img
+                            src={project.thumbnail}
+                            alt={project.title}
+                            className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                          />
                         </div>
                       )}
                     </div>
-
-                    <div className="p-5">
-                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
-                        {relatedProject.category}
-                      </div>
-                      <h3 className="text-lg font-medium mb-2 transition-all duration-300 group-hover:text-primary">
-                        {relatedProject.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-2">
-                        {relatedProject.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  </TabsContent>
+                </Tabs>
               </div>
             </div>
-          )} */}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
-// Enhanced skeleton loader with more modern design
+// Enhanced skeleton with consistent styling
 const ProjectDetailSkeleton = () => (
-  <section className="bg-background relative overflow-hidden min-h-screen">
-    {/* Background gradients */}
-    <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
-    <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
-    <div className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu" />
+  <div className="min-h-screen bg-background relative overflow-hidden">
+    {/* Unified background system */}
+    <div className="fixed inset-0 z-0">
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20" />
+      <div className="absolute -top-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 -right-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 left-1/3 w-48 h-48 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
+    </div>
 
     {/* Hero skeleton */}
-    <div className="h-[50vh] md:h-[60vh] relative flex items-end">
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        {/* Back button skeleton */}
-        <div className="mb-6">
-          <Skeleton className="h-10 w-36 rounded-full" />
-        </div>
+    <div className="relative z-10">
+      <div className="h-[70vh] relative flex items-end">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/30" />
 
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <Skeleton className="h-6 w-32 rounded-full mb-2" />
-            <Skeleton className="h-4 w-24 mb-2" />
-            <Skeleton className="h-12 w-80 mb-4" />
-            <Skeleton className="h-6 w-full max-w-3xl" />
-          </div>
-          <div className="flex items-center gap-3">
-            <Skeleton className="h-10 w-32 rounded-full" />
-            <Skeleton className="h-10 w-10 rounded-full" />
+        <div className="relative z-10 w-full">
+          <div className="max-w-7xl mx-auto px-6 py-12">
+            <div className="mb-8">
+              <Skeleton className="h-10 w-36 rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end">
+              <div className="lg:col-span-2 space-y-6">
+                <Skeleton className="h-8 w-40 rounded-full" />
+                <div className="space-y-3">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-16 w-full max-w-2xl" />
+                  <Skeleton className="h-6 w-full max-w-xl" />
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <Skeleton className="h-12 w-full rounded-full" />
+                <Skeleton className="h-12 w-12 rounded-full" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div className="py-12 md:py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Project main content area */}
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Project Info Sidebar skeleton */}
-          <div className="w-full lg:w-80 lg:flex-shrink-0">
-            <div className="sticky top-24">
-              <div className="rounded-xl bg-background/50 backdrop-blur-md border border-muted/50 p-6 space-y-8">
-                <div>
-                  <Skeleton className="h-5 w-36 mb-4" />
-                  <Skeleton className="h-px w-full mb-4" />
-
-                  <div className="space-y-4">
-                    {[1, 2, 3, 4].map((i) => (
+      <div className="relative z-10 py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Sidebar skeleton */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-6">
+                <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-6">
+                  <Skeleton className="h-4 w-32 mb-6" />
+                  <div className="space-y-6">
+                    {[1, 2].map((i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <Skeleton className="size-8 rounded-full" />
-                        <div className="flex-1">
-                          <Skeleton className="h-4 w-24 mb-1" />
-                          <Skeleton className="h-5 w-36" />
+                        <Skeleton className="w-10 h-10 rounded-xl" />
+                        <div className="flex-1 space-y-2">
+                          <Skeleton className="h-3 w-16" />
+                          <Skeleton className="h-4 w-24" />
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <Skeleton className="h-5 w-36 mb-4" />
-                  <Skeleton className="h-px w-full mb-4" />
+                <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-6">
+                  <Skeleton className="h-4 w-28 mb-6" />
                   <div className="flex flex-wrap gap-2">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Skeleton key={i} className="h-8 w-20 rounded-full" />
+                    {[1, 2, 3, 4].map((i) => (
+                      <Skeleton key={i} className="h-7 w-20 rounded-full" />
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Project Content skeleton */}
-          <div className="flex-1">
-            <div className="mb-8">
-              <Skeleton className="h-10 w-full max-w-md rounded-full" />
-            </div>
+            {/* Main content skeleton */}
+            <div className="lg:col-span-3">
+              <Skeleton className="h-10 w-full max-w-md rounded-full mb-8" />
 
-            <div className="rounded-xl bg-background/50 backdrop-blur-md border border-muted/50 p-6 md:p-8">
-              <Skeleton className="h-8 w-48 mb-6" />
-              <div className="space-y-4">
-                <Skeleton className="h-5 w-full" />
-                <Skeleton className="h-5 w-full" />
-                <Skeleton className="h-5 w-full" />
-                <Skeleton className="h-5 w-3/4" />
-              </div>
-
-              <Skeleton className="h-[400px] w-full mt-8 rounded-xl" />
-            </div>
-          </div>
-        </div>
-
-        {/* Related Projects Section skeleton */}
-        <div className="mt-16 md:mt-24">
-          <div className="flex items-center justify-between mb-8">
-            <Skeleton className="h-8 w-48" />
-            <Skeleton className="h-10 w-24" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="rounded-xl overflow-hidden border border-muted/50"
-              >
-                <Skeleton className="h-48 w-full" />
-                <div className="p-5">
-                  <Skeleton className="h-4 w-24 mb-2" />
-                  <Skeleton className="h-6 w-full mb-2" />
+              <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border/50 p-8">
+                <Skeleton className="h-8 w-48 mb-8" />
+                <div className="space-y-4 mb-8">
                   <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-3/4 mt-1" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
                 </div>
+                <Skeleton className="h-80 w-full rounded-xl" />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 );
