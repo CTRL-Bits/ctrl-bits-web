@@ -1,166 +1,123 @@
 import { useEffect, useState } from "react";
-import { Sparkles, Zap, Code } from "lucide-react";
 
 interface LoadingScreenProps {
-  companyName: string;
+  companyName?: string;
 }
 
-const LoadingScreen = ({ companyName }: LoadingScreenProps) => {
-  const [progress, setProgress] = useState(0);
-  const [currentIcon, setCurrentIcon] = useState(0);
-  const icons = [<Sparkles />, <Zap />, <Code />];
+const LoadingScreen = ({ companyName = "Ctrl Bits" }: LoadingScreenProps) => {
+  const [breatheScale, setBreatheScale] = useState(1);
+  const [dots, setDots] = useState(0);
 
-  // Progress animation
+  // Gentle breathing animation for the logo
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        // Gradually slow down as we approach 90%
-        if (prev < 90) {
-          return Math.min(90, prev + Math.max(1, 5 * (1 - prev / 100)));
-        }
-        return prev;
+      setBreatheScale(() => {
+        const time = Date.now() / 1000;
+        return 1 + Math.sin(time * 0.8) * 0.05; // Very subtle scale change
       });
-    }, 100);
+    }, 50);
 
-    // Simulate complete loading
-    const finalTimer = setTimeout(() => {
-      setProgress(100);
-    }, 1800);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(finalTimer);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  // Icon rotation animation
+  // Animated dots
   useEffect(() => {
-    const iconInterval = setInterval(() => {
-      setCurrentIcon((prev) => (prev + 1) % icons.length);
-    }, 800);
+    const interval = setInterval(() => {
+      setDots((prev) => (prev + 1) % 4);
+    }, 600);
 
-    return () => clearInterval(iconInterval);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-background to-background/90 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-24 right-24 h-64 w-64 rounded-full bg-secondary/10 blur-3xl" />
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-background to-background/95">
+      {/* Subtle ambient elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gentle floating orbs */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-foreground/3 blur-xl"
+            style={{
+              width: `${60 + i * 20}px`,
+              height: `${60 + i * 20}px`,
+              left: `${20 + ((i * 15) % 70)}%`,
+              top: `${15 + ((i * 25) % 60)}%`,
+              animation: `float-${i} ${8 + i * 2}s ease-in-out infinite`,
+              animationDelay: `${i * 0.5}s`,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Simple particles */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 20 }).map((_, i) => {
-          const size = Math.random() * 3 + 1;
-          const left = `${Math.random() * 100}%`;
-          const top = `${Math.random() * 100}%`;
-          const opacity = Math.random() * 0.4;
+      <div className="relative z-10 text-center">
+        {/* Main logo with breathing effect */}
+        <div className="mb-8">
+          <div
+            className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-background/90 backdrop-blur-sm shadow-2xl border border-border/50 flex items-center justify-center transition-all duration-100 ease-out overflow-hidden"
+            style={{
+              transform: `scale(${breatheScale})`,
+              boxShadow: `0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.05)`,
+            }}
+          >
+            <img src="/logo.png" alt="CtrlBits' Logo" />
 
-          return (
+            {/* Subtle inner glow */}
             <div
-              key={i}
-              className="absolute rounded-full bg-primary/30"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left,
-                top,
-                opacity,
-                animation: `pulse ${
-                  Math.random() * 3 + 2
-                }s infinite ease-in-out`,
-              }}
+              className="absolute inset-2 rounded-2xl bg-foreground/5 transition-opacity duration-1000"
+              style={{ opacity: 0.3 + Math.sin(Date.now() / 2000) * 0.2 }}
             />
-          );
-        })}
-      </div>
-
-      <div className="w-full max-w-md px-8 relative z-10">
-        {/* Logo and icon container */}
-        <div className="mb-10 flex flex-col items-center">
-          <div className="mb-6 relative">
-            <div className="h-20 w-20 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-md shadow-xl ring-1 ring-primary/20">
-              <img src="/logo.png" alt={companyName} className="h-12 w-auto" />
-            </div>
-
-            {/* Rotating orbital icon */}
-            <div
-              className="absolute top-0 left-0 w-full h-full animate-spin-slow"
-              style={{ animationDuration: "8s" }}
-            >
-              <div className="absolute -right-2 top-8 h-8 w-8 flex items-center justify-center rounded-full bg-primary/10 backdrop-blur-md shadow-lg ring-1 ring-primary/20">
-                <div className="text-primary h-4 w-4">{icons[currentIcon]}</div>
-              </div>
-            </div>
           </div>
 
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary">
+          <h1 className="text-2xl font-light text-foreground/90 tracking-wide">
             {companyName}
           </h1>
         </div>
 
-        {/* Progress bar */}
-        <div className="h-1.5 w-full bg-muted/50 rounded-full mb-4 overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-200"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        {/* Status text */}
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <span className="font-medium">Initializing Experience</span>
-          <div className="flex items-center space-x-1">
-            <span>{Math.round(progress)}%</span>
-          </div>
-        </div>
-
-        {/* Animated dots */}
-        <div className="flex justify-center mt-6">
-          <div className="flex space-x-2">
-            <span
-              className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"
-              style={{ animationDelay: "0ms" }}
-            ></span>
-            <span
-              className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"
-              style={{ animationDelay: "150ms" }}
-            ></span>
-            <span
-              className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"
-              style={{ animationDelay: "300ms" }}
-            ></span>
-          </div>
+        {/* Elegant loading indicator */}
+        <div className="flex items-center justify-center space-x-1">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="w-2 h-2 rounded-full bg-foreground/40 transition-all duration-300"
+              style={{
+                opacity: dots > i ? 0.8 : 0.2,
+                transform: dots > i ? "scale(1.2)" : "scale(1)",
+              }}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Keyframe animation for pulse effect */}
       <style>{`
-        @keyframes pulse {
-          0%,
-          100% {
-            transform: scale(1);
-            opacity: 0.3;
-          }
-          50% {
-            transform: scale(1.5);
-            opacity: 0.6;
-          }
+        @keyframes float-0 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+          50% { transform: translateY(-15px) translateX(5px); opacity: 0.8; }
         }
-
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+        @keyframes float-1 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+          33% { transform: translateY(-10px) translateX(-8px); opacity: 0.6; }
+          66% { transform: translateY(5px) translateX(3px); opacity: 0.5; }
         }
-
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
+        @keyframes float-2 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.5; }
+          40% { transform: translateY(-8px) translateX(10px); opacity: 0.7; }
+          80% { transform: translateY(3px) translateX(-5px); opacity: 0.4; }
+        }
+        @keyframes float-3 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+          25% { transform: translateY(-12px) translateX(-3px); opacity: 0.5; }
+          75% { transform: translateY(8px) translateX(7px); opacity: 0.6; }
+        }
+        @keyframes float-4 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+          30% { transform: translateY(-5px) translateX(-12px); opacity: 0.3; }
+          70% { transform: translateY(10px) translateX(4px); opacity: 0.8; }
+        }
+        @keyframes float-5 {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+          45% { transform: translateY(-18px) translateX(6px); opacity: 0.7; }
+          85% { transform: translateY(6px) translateX(-9px); opacity: 0.4; }
         }
       `}</style>
     </div>
