@@ -117,7 +117,7 @@ export default function SolutionsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-28 lg:py-32">
+      <section className="py-24 md:py-32 lg:py-40">
         <div className="mx-auto max-w-5xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

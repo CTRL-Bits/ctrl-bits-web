@@ -160,7 +160,7 @@ export default function ProjectsPage(): React.ReactElement {
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
         <div className="absolute top-1/2 -right-48 h-96 w-96 rounded-full bg-secondary/10 blur-3xl transform-gpu" />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 py-24 md:py-32 lg:py-40">
           <header className="mb-12 md:mb-16">
             <div className="flex items-center space-x-2 mb-6">
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">

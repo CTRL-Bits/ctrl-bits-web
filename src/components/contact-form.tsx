@@ -105,7 +105,7 @@ export default function ITContactSection() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden transition-all duration-700 ease-out">
+    <section className="py-24 md:py-32 lg:py-40 relative overflow-hidden transition-all duration-700 ease-out">
       {/* Background gradients similar to hero section */}
       <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
       <div

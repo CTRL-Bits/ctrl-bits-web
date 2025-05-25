@@ -127,7 +127,7 @@ export default function WorksPage(): React.ReactElement {
         <div className="absolute bottom-40 -right-24 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
       </div>
 
-      <div className="py-40 relative z-10">
+      <div className="py-24 md:py-32 lg:py-40 relative z-10">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

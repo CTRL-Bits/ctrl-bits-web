@@ -94,7 +94,7 @@ export default function ProjectDetailPage(): React.ReactElement {
           <div className="absolute bottom-0 left-1/3 w-48 h-48 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
         </div>
 
-        <div className="relative z-10 flex items-center justify-center min-h-screen p-6">
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-6 py-24 md:py-32 lg:py-40">
           <div className="text-center max-w-md">
             <div className="relative mb-8">
               <div className="w-20 h-20 bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl mx-auto flex items-center justify-center backdrop-blur-sm border border-border/50">

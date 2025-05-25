@@ -11,6 +11,8 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import LoadingProvider from "./components/loading-provide";
 import { Toaster } from "sonner";
+import TermsAndConditions from "./pages/TermsPage";
+import PrivacyPolicy from "./pages/PrivacyPage";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
         <Toaster richColors />
       </LoadingProvider>

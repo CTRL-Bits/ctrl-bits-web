@@ -45,7 +45,7 @@ export default function ContentSection() {
   );
 
   return (
-    <section className="py-16 md:py-32 relative overflow-hidden">
+    <section className=" py-24 md:py-32 lg:py-40 relative overflow-hidden">
       {/* Background gradients */}
       <div
         className="absolute -top-64 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu"
