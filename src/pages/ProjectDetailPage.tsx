@@ -115,7 +115,7 @@ export default function ProjectDetailPage(): React.ReactElement {
               size="lg"
               className="relative overflow-hidden rounded-full px-8 py-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 border-0 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
             >
-              <Link to="/works" className="group">
+              <Link to="/portfolio" className="group">
                 <span className="relative z-10 flex items-center font-medium">
                   Back to Projects
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -184,7 +184,7 @@ export default function ProjectDetailPage(): React.ReactElement {
                   asChild
                   className="rounded-full bg-background/60 backdrop-blur-md border-border/50 hover:bg-background/80 transition-all duration-300 hover:scale-105"
                 >
-                  <Link to="/works" className="flex items-center gap-2">
+                  <Link to="/portfolio" className="flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" />
                     <span>Back to Projects</span>
                   </Link>

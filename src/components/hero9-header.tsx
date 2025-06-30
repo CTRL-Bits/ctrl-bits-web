@@ -9,7 +9,7 @@ import { useTheme } from "./theme-provider";
 const menuItems = [
   { name: "Solutions", to: "/solutions" },
   { name: "About", to: "/about" },
-  { name: "Our Works", to: "/works" },
+  { name: "Our Works", to: "/portfolio" },
   { name: "Contact", to: "/contact" },
 ];
 

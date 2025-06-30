@@ -72,7 +72,7 @@ export default function ContentSection() {
           <div className="variable-font-container transition-all duration-700">
             <h1 className="relative z-10 max-w-xl text-4xl font-medium lg:text-5xl">
               <VariableProximity
-                label="About Ctrl Bits – Empowering Businesses with Technology"
+                label="Meet CtrlBits – A Top Web Development Team from Nepal"
                 fromFontVariationSettings="'wght' 400, 'wdth' 100"
                 toFontVariationSettings="'wght' 700, 'wdth' 120"
                 containerRef={containerRef}

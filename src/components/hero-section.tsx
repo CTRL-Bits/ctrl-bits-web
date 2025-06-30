@@ -152,13 +152,9 @@ export default function HeroSection() {
                 className={`mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-300
                   `}
               >
-                We craft powerful, scalable, and future-ready digital solutions
-                that transform businesses —{" "}
-                <span className="font-medium text-foreground relative">
-                  bit by bit
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 rounded-full"></span>
-                </span>
-                .
+                We are the leading, modern web and IT solution company based in
+                Nepal, delivering custom web applications and automation
+                services.
               </p>
 
               <div

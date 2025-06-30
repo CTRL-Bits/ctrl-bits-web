@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Zap, BarChart3 } from "lucide-react";
+import { Users, Zap, BarChart3, ArrowRight } from "lucide-react";
 import { BlazingSpeed, Dashboard, Fingerprint, WrapAround } from "./SVG";
+import { Link } from "react-router-dom";
 
 // Floating elements component
 const FloatingElement = ({
@@ -114,7 +115,7 @@ export default function FeaturesSection() {
               }`}
               style={{ transitionDelay: "100ms" }}
             >
-              <CardContent className="relative p-8 h-full flex flex-col justify-center">
+              <CardContent className="relative p-8 h-full flex flex-col gap-2 justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 <div className="relative flex h-24 w-full items-center justify-center mb-6">
@@ -125,13 +126,21 @@ export default function FeaturesSection() {
                 </div>
 
                 <h2 className="text-center text-3xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  Customizable
+                  Tailored Web App Development
                 </h2>
 
                 <p className="text-center text-muted-foreground text-sm leading-relaxed">
-                  Tailor every aspect to your unique needs with our flexible
-                  architecture
+                  Custom web application development tailored to your unique
+                  business requirements.. From custom UI/UX to scalable backend
+                  logic, we deliver fully customizable solutions as per your
+                  business needs.
                 </p>
+                <Link
+                  className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
+                  to="/custom-web-design"
+                >
+                  Explore More About Customization <ArrowRight size={14} />
+                </Link>
               </CardContent>
             </Card>
 
@@ -153,12 +162,21 @@ export default function FeaturesSection() {
 
                 <div className="relative z-10 flex-1 flex flex-col justify-center text-center">
                   <h2 className="text-2xl font-bold mb-3  transition-colors">
-                    Secure
+                    Secure Web Development
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Your data, secured with cutting-edge encryption — trust
-                    CtrlBits for peace of mind.
+                    Web applications are built using industry-standard
+                    encryption, SSL protocols, and secure coding practices,
+                    protecting your users and business from online threats in
+                    real time.
                   </p>
+                  <Link
+                    className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
+                    to="/secure-web-development"
+                  >
+                    Learn More About Secure Web Development{" "}
+                    <ArrowRight size={14} />
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -181,12 +199,20 @@ export default function FeaturesSection() {
 
                 <div className="relative z-10 flex-1 flex flex-col justify-center text-center">
                   <h2 className="text-2xl font-bold mb-3 transition-colors">
-                    Lightning Fast
+                    High-Speed Web Development
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Blazing speed, zero compromise — CtrlBits keeps you moving
-                    forward.
+                    Our web applications are high-performance, optimized for
+                    speed, using modern frameworks and CDN-powered delivery to
+                    ensure fast loading, seamless interactions, and low bounce
+                    rates.
                   </p>
+                  <Link
+                    className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
+                    to="/fast-web-app-performance"
+                  >
+                    Learn About Fast Web Performance <ArrowRight size={14} />
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -210,12 +236,20 @@ export default function FeaturesSection() {
 
                   <div className="space-y-3">
                     <h2 className="text-2xl font-bold text-zinc-800 dark:text-white group-hover:text-primary transition-colors">
-                      Dashboard / Analytics
+                      Custom Business Insights Tools
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Real-time insights that drive smarter decisions — powered
-                      by CtrlBits intelligence.
+                      Gain real-time insights with interactive analytics
+                      dashboards designed for businesses. Monitor KPIs, user
+                      behavior, and performance metrics — all in one centralized
+                      system.
                     </p>
+                    <Link
+                      className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
+                      to="/custom-analytics-dashboards"
+                    >
+                      View Real-Time Dashboard Examples <ArrowRight size={14} />
+                    </Link>
                   </div>
                 </div>
 
@@ -252,9 +286,16 @@ export default function FeaturesSection() {
                       Realtime Support
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Instant support, whenever you need it — because your
-                      uptime is our priority.
+                      Instant help whenever you need it — because your uptime is
+                      our priority.
                     </p>
+                    <Link
+                      className="flex mt-4 underline cursor-pointer z-10 items-center text-sm"
+                      to="/realtime-support"
+                    >
+                      Explore how we do it
+                      <ArrowRight size={14} />
+                    </Link>
                   </div>
                 </div>
 
@@ -306,7 +347,7 @@ export default function FeaturesSection() {
                             {person.name}
                           </span>
                         )}
-                        <div className="ring-background size-8 ring-2 ring-primary/20 rounded-full overflow-hidden group-hover:ring-primary/40 transition-all">
+                        <div className=" size-8 ring-2 ring-primary/20 rounded-full overflow-hidden group-hover:ring-primary/40 transition-all">
                           <img
                             className="size-full object-cover"
                             src={person.avatar}

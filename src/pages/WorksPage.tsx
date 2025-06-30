@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Project, ProjectCardProps } from "@/types";
 import { fetchProjects } from "@/services/projectService";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 // Function to map icon string to the appropriate Lucide icon component
 const getIconComponent = (iconName: string | null) => {
@@ -120,329 +121,339 @@ export default function WorksPage(): React.ReactElement {
   }
 
   return (
-    <section className="bg-white dark:bg-black relative">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-40 -left-24 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
-        <div className="absolute bottom-40 -right-24 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
-      </div>
+    <>
+      <Helmet>
+        <title>
+          Our Works – Custom Web Development Projects by CtrlBits in Nepal
+        </title>
+        <meta
+          name="description"
+          content="Explore CtrlBits' portfolio of custom web apps, business platforms, and automation tools crafted for Nepali businesses.
+"
+        />
+      </Helmet>
+      <section className="bg-white dark:bg-black relative">
+        {/* Background elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-40 -left-24 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
+          <div className="absolute bottom-40 -right-24 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
+        </div>
 
-      <div className="py-24 md:py-32 lg:py-40 relative z-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-24 flex flex-col items-center"
-          >
-            <span className="px-4 py-1.5 text-xs font-medium text-primary bg-primary/10 rounded-full mb-6">
-              Our Portfolio
-            </span>
-            <h2 className="font-serif text-6xl font-light tracking-tight mb-6 text-center">
-              Our{" "}
-              <span className="relative inline-block">
-                Work
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
+        <div className="py-24 md:py-32 lg:py-40 relative z-10">
+          <div className="mx-auto max-w-7xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-24 flex flex-col items-center"
+            >
+              <span className="px-4 py-1.5 text-xs font-medium text-primary bg-primary/10 rounded-full mb-6">
+                Our Portfolio
               </span>
-            </h2>
-            <div className="h-px w-12 bg-neutral-200 dark:bg-neutral-800 mb-6"></div>
-            <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl text-center font-light">
-              Selected projects showcasing our approach to creating meaningful
-              digital experiences
-            </p>
-          </motion.div>
+              <h2 className="font-serif text-6xl font-light tracking-tight mb-6 text-center">
+                Our{" "}
+                <span className="relative inline-block">
+                  Works
+                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
+                </span>
+              </h2>
+              <div className="h-px w-12 bg-neutral-200 dark:bg-neutral-800 mb-6"></div>
+              <h1 className="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl text-center font-light">
+                Our Web Development Portfolio for Nepal’s Modern Businesses
+              </h1>
+            </motion.div>
 
-          {/* Search and filter controls */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-12 flex flex-col md:flex-row items-center justify-between gap-4"
-          >
-            <div className="relative w-full md:w-auto">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <Search className="w-4 h-4 text-neutral-500" />
-              </div>
-              <input
-                type="text"
-                className="w-full md:w-64 pl-10 pr-4 py-2 bg-neutral-100 dark:bg-neutral-900 border-0 rounded-full focus:ring-2 focus:ring-primary/30 outline-none"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            <div className="flex items-center gap-4 w-full md:w-auto">
-              <div
-                className="relative flex-grow md:flex-grow-0"
-                ref={filterMenuRef}
-              >
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setFilterMenuOpen(!filterMenuOpen)}
-                  className="rounded-full flex items-center gap-2 border-neutral-200 dark:border-neutral-800"
-                >
-                  <Filter className="size-4" />
-                  <span>Filter</span>
-                </Button>
-
-                <AnimatePresence>
-                  {filterMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute left-0 mt-2 p-2 bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-800 z-50 w-48"
-                    >
-                      {getCategories.map((category) => (
-                        <button
-                          key={category}
-                          onClick={() => {
-                            setActiveFilter(category);
-                            setFilterMenuOpen(false);
-                          }}
-                          className={`block w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
-                            activeFilter === category
-                              ? "bg-primary/10 text-primary font-medium"
-                              : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                          }`}
-                        >
-                          {category}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Search and filter controls */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-12 flex flex-col md:flex-row items-center justify-between gap-4"
+            >
+              <div className="relative w-full md:w-auto">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Search className="w-4 h-4 text-neutral-500" />
+                </div>
+                <input
+                  type="text"
+                  className="w-full md:w-64 pl-10 pr-4 py-2 bg-neutral-100 dark:bg-neutral-900 border-0 rounded-full focus:ring-2 focus:ring-primary/30 outline-none"
+                  placeholder="Search projects..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
 
-              <div className="flex items-center bg-neutral-100 dark:bg-neutral-900 rounded-full p-1">
-                <button
-                  onClick={() => setView("grid")}
-                  className={`p-2 rounded-full ${
-                    view === "grid" ? "bg-white dark:bg-black shadow-sm" : ""
-                  }`}
-                  aria-label="Grid view"
+              <div className="flex items-center gap-4 w-full md:w-auto">
+                <div
+                  className="relative flex-grow md:flex-grow-0"
+                  ref={filterMenuRef}
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setFilterMenuOpen(!filterMenuOpen)}
+                    className="rounded-full flex items-center gap-2 border-neutral-200 dark:border-neutral-800"
                   >
-                    <rect
-                      x="1"
-                      y="1"
-                      width="6"
-                      height="6"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="9"
-                      y="1"
-                      width="6"
-                      height="6"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="1"
-                      y="9"
-                      width="6"
-                      height="6"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="9"
-                      y="9"
-                      width="6"
-                      height="6"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => setView("list")}
-                  className={`p-2 rounded-full ${
-                    view === "list" ? "bg-white dark:bg-black shadow-sm" : ""
-                  }`}
-                  aria-label="List view"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="1"
-                      y="2"
-                      width="14"
-                      height="2"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="1"
-                      y="7"
-                      width="14"
-                      height="2"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="1"
-                      y="12"
-                      width="14"
-                      height="2"
-                      rx="1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </motion.div>
+                    <Filter className="size-4" />
+                    <span>Filter</span>
+                  </Button>
 
-          {/* Active filter indicator */}
-          <AnimatePresence>
-            {activeFilter !== "All" && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="mb-8 flex items-center justify-center"
-              >
-                <div className="flex items-center gap-2 px-6 py-2 bg-neutral-100 dark:bg-neutral-900 rounded-full shadow-sm">
-                  <span className="text-sm font-medium">
-                    Filtering by: {activeFilter}
-                  </span>
+                  <AnimatePresence>
+                    {filterMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 mt-2 p-2 bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-800 z-50 w-48"
+                      >
+                        {getCategories.map((category) => (
+                          <button
+                            key={category}
+                            onClick={() => {
+                              setActiveFilter(category);
+                              setFilterMenuOpen(false);
+                            }}
+                            className={`block w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                              activeFilter === category
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                            }`}
+                          >
+                            {category}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div className="flex items-center bg-neutral-100 dark:bg-neutral-900 rounded-full p-1">
                   <button
-                    onClick={() => setActiveFilter("All")}
-                    className="hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full p-1 transition-colors"
-                    type="button"
-                    aria-label="Clear filter"
+                    onClick={() => setView("grid")}
+                    className={`p-2 rounded-full ${
+                      view === "grid" ? "bg-white dark:bg-black shadow-sm" : ""
+                    }`}
+                    aria-label="Grid view"
                   >
-                    <X className="size-4" />
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="1"
+                        y="1"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="9"
+                        y="1"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="9"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="9"
+                        y="9"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => setView("list")}
+                    className={`p-2 rounded-full ${
+                      view === "list" ? "bg-white dark:bg-black shadow-sm" : ""
+                    }`}
+                    aria-label="List view"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="1"
+                        y="2"
+                        width="14"
+                        height="2"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="7"
+                        width="14"
+                        height="2"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="1"
+                        y="12"
+                        width="14"
+                        height="2"
+                        rx="1"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
                   </button>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* No results message */}
-          {!loading && filteredProjects.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-900 rounded-full flex items-center justify-center mb-4">
-                <Search className="w-8 h-8 text-neutral-400" />
               </div>
-              <h3 className="text-xl font-medium mb-2">No projects found</h3>
-              <p className="text-neutral-500 dark:text-neutral-400 mb-6">
-                Try adjusting your search or filter to find what you're looking
-                for
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setActiveFilter("All");
-                  setSearchTerm("");
-                }}
-              >
-                Clear filters
-              </Button>
-            </div>
-          )}
+            </motion.div>
 
-          {/* Project Grid or List */}
-          <div
-            className={
-              view === "grid"
-                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                : "flex flex-col gap-4"
-            }
-          >
-            {loading
-              ? // Loading skeletons
-                Array.from({ length: 6 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${
-                      view === "grid" ? "flex-col" : "flex-row gap-6"
-                    } h-full`}
-                  >
-                    <Skeleton
-                      className={
-                        view === "grid"
-                          ? "h-80 w-full mb-6"
-                          : "h-40 w-60 flex-shrink-0"
-                      }
-                    />
-                    <div className="flex-grow">
-                      <Skeleton className="h-4 w-20 mb-2" />
-                      <Skeleton className="h-6 w-4/5 mb-2" />
-                      <Skeleton className="h-4 w-full" />
-                    </div>
+            {/* Active filter indicator */}
+            <AnimatePresence>
+              {activeFilter !== "All" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-8 flex items-center justify-center"
+                >
+                  <div className="flex items-center gap-2 px-6 py-2 bg-neutral-100 dark:bg-neutral-900 rounded-full shadow-sm">
+                    <span className="text-sm font-medium">
+                      Filtering by: {activeFilter}
+                    </span>
+                    <button
+                      onClick={() => setActiveFilter("All")}
+                      className="hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full p-1 transition-colors"
+                      type="button"
+                      aria-label="Clear filter"
+                    >
+                      <X className="size-4" />
+                    </button>
                   </div>
-                ))
-              : filteredProjects.map((project) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {view === "grid" ? (
-                      <ProjectCard
-                        project={project}
-                        isHovered={hoveredProject === project.id}
-                        onHover={() => setHoveredProject(project.id)}
-                        onLeave={() => setHoveredProject(null)}
-                      />
-                    ) : (
-                      <ProjectListItem
-                        project={project}
-                        isHovered={hoveredProject === project.id}
-                        onHover={() => setHoveredProject(project.id)}
-                        onLeave={() => setHoveredProject(null)}
-                      />
-                    )}
-                  </motion.div>
-                ))}
-          </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-          {/* Category pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-24 flex flex-wrap justify-center gap-4"
-          >
-            {getCategories.slice(1).map((category, index) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
+            {/* No results message */}
+            {!loading && filteredProjects.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+                  <Search className="w-8 h-8 text-neutral-400" />
+                </div>
+                <h3 className="text-xl font-medium mb-2">No projects found</h3>
+                <p className="text-neutral-500 dark:text-neutral-400 mb-6">
+                  Try adjusting your search or filter to find what you're
+                  looking for
+                </p>
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setActiveFilter(category)}
-                  className={`
+                  variant="outline"
+                  onClick={() => {
+                    setActiveFilter("All");
+                    setSearchTerm("");
+                  }}
+                >
+                  Clear filters
+                </Button>
+              </div>
+            )}
+
+            {/* Project Grid or List */}
+            <div
+              className={
+                view === "grid"
+                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  : "flex flex-col gap-4"
+              }
+            >
+              {loading
+                ? // Loading skeletons
+                  Array.from({ length: 6 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className={`flex ${
+                        view === "grid" ? "flex-col" : "flex-row gap-6"
+                      } h-full`}
+                    >
+                      <Skeleton
+                        className={
+                          view === "grid"
+                            ? "h-80 w-full mb-6"
+                            : "h-40 w-60 flex-shrink-0"
+                        }
+                      />
+                      <div className="flex-grow">
+                        <Skeleton className="h-4 w-20 mb-2" />
+                        <Skeleton className="h-6 w-4/5 mb-2" />
+                        <Skeleton className="h-4 w-full" />
+                      </div>
+                    </div>
+                  ))
+                : filteredProjects.map((project) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {view === "grid" ? (
+                        <ProjectCard
+                          project={project}
+                          isHovered={hoveredProject === project.id}
+                          onHover={() => setHoveredProject(project.id)}
+                          onLeave={() => setHoveredProject(null)}
+                        />
+                      ) : (
+                        <ProjectListItem
+                          project={project}
+                          isHovered={hoveredProject === project.id}
+                          onHover={() => setHoveredProject(project.id)}
+                          onLeave={() => setHoveredProject(null)}
+                        />
+                      )}
+                    </motion.div>
+                  ))}
+            </div>
+
+            {/* Category pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-24 flex flex-wrap justify-center gap-4"
+            >
+              {getCategories.slice(1).map((category, index) => (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setActiveFilter(category)}
+                    className={`
                     rounded-none border-b-2 px-1 shadow-none
                     ${
                       activeFilter === category
@@ -450,33 +461,34 @@ export default function WorksPage(): React.ReactElement {
                         : "border-transparent hover:border-neutral-300 dark:hover:border-neutral-700"
                     }
                   `}
-                >
-                  {category}
-                </Button>
-              </motion.div>
-            ))}
-          </motion.div>
+                  >
+                    {category}
+                  </Button>
+                </motion.div>
+              ))}
+            </motion.div>
 
-          {/* View All Projects */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-24 flex justify-center"
-          >
-            <Link
-              to="/projects"
-              className="group flex items-center gap-2 text-neutral-900 dark:text-neutral-100 hover:gap-3 transition-all duration-300"
+            {/* View All Projects */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-24 flex justify-center"
             >
-              <span className="text-sm font-medium uppercase tracking-widest">
-                View All Projects
-              </span>
-              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+              <Link
+                to="/projects"
+                className="group flex items-center gap-2 text-neutral-900 dark:text-neutral-100 hover:gap-3 transition-all duration-300"
+              >
+                <span className="text-sm font-medium uppercase tracking-widest">
+                  View All Projects
+                </span>
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

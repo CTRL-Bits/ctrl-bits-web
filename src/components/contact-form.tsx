@@ -147,15 +147,9 @@ export default function ITContactSection() {
             </h2>
           </div>
 
-          <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mt-4 transition-all duration-700 delay-300">
-            Our team of IT experts is ready to help you transform your business
-            with
-            <span className="font-medium text-foreground relative ml-1">
-              cutting-edge technology solutions
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 rounded-full"></span>
-            </span>
-            .
-          </p>
+          <h1 className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mt-4 transition-all duration-700 delay-300">
+            Contact CtrlBits – Let’s Build Smarter Together
+          </h1>
         </div>
 
         <Tabs
@@ -203,7 +197,7 @@ export default function ITContactSection() {
                     <div>
                       <h3 className="font-medium">Call Us</h3>
                       <p className="text-slate-700 dark:text-slate-300">
-                        +977-9766584525
+                        +977-9709659012
                       </p>
                       <p className="text-xs text-slate-500">
                         Monday-Friday, 9AM-6PM EST

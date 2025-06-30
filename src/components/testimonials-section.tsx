@@ -104,7 +104,9 @@ const LinkPreview = ({
           className={cn("text-black dark:text-white", className)}
           asChild
         >
-          <a href={url}>{children}</a>
+          <a href={url} rel="nofollow">
+            {children}
+          </a>
         </HoverCardPrimitive.Trigger>
         <HoverCardPrimitive.Content
           className="[transform-origin:var(--radix-hover-card-content-transform-origin)]"
@@ -136,6 +138,7 @@ const LinkPreview = ({
                   href={url}
                   className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
                   style={{ fontSize: 0 }}
+                  rel="nofollow"
                 >
                   <img
                     src={isStatic ? imageSrc : src}
@@ -270,8 +273,9 @@ export default function Testimonials() {
             Trusted by businesses, loved by developers
           </h2>
           <p>
-            Ctrl Bits empowers startups and enterprises with tailored tech
-            solutions, reliable support, and scalable digital infrastructure.
+            At CtrlBits, we help Nepali startups and enterprises build secure,
+            scalable web apps and IT solutions – trusted by businesses across
+            different industries.
           </p>
         </div>
 

@@ -15,7 +15,7 @@ const links = [
   },
   {
     title: "Works",
-    to: "/works",
+    to: "/portfolio",
   },
   {
     title: "Contact",
@@ -309,12 +309,14 @@ export default function FooterSection() {
             <div className="flex space-x-6">
               <Link
                 to="/privacy"
+                rel="nofollow"
                 className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/terms"
+                rel="nofollow"
                 className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 Terms of Service
