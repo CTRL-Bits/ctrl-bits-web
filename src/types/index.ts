@@ -79,6 +79,7 @@ export interface Company {
   name: string;
   logo: string;
   invert: boolean;
+  is_international: boolean;
 }
 
 export interface CompanyResponse {

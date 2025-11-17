@@ -171,7 +171,7 @@ export default function FooterSection() {
             <Link to="/" aria-label="go home" className="block">
               <div className="flex items-center space-x-2">
                 <img
-                  src={Logo}
+                  src="/favicon.png"
                   alt="CtrlBits Logo"
                   className="h-10 w-auto invert dark:invert-0"
                 />
@@ -192,7 +192,7 @@ export default function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="text-muted-foreground hover:text-primary flex items-center justify-center h-9 w-9 rounded-full bg-primary/5 ring-1 ring-primary/10 hover:ring-primary/30 hover:bg-primary/10 transition-all duration-200"
+                  className="cursor-target text-muted-foreground hover:text-primary flex items-center justify-center h-9 w-9 rounded-full bg-primary/5 ring-1 ring-primary/10 hover:ring-primary/30 hover:bg-primary/10 transition-all duration-200"
                 >
                   {link.icon}
                 </Link>
@@ -210,7 +210,7 @@ export default function FooterSection() {
                 <li key={index}>
                   <Link
                     to={link.to}
-                    className="text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
+                    className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
                   >
                     <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
                     <span>{link.title}</span>
@@ -324,6 +324,9 @@ export default function FooterSection() {
             </div>
           </div>
         </div>
+        <h1 className="text-7xl text-center font-bold my-8 text-transparent bg-clip-text bg-gradient-to-t from-black/60 to-white">
+          CTRL THE CODE, BIT BY BIT.
+        </h1>
       </div>
 
       {/* Animation keyframes */}

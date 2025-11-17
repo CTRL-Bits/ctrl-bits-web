@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import FooterSection from "./components/footer";
 import { ThemeProvider } from "./components/theme-provider";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import HeroHeader from "./components/hero9-header";
 import ContactPage from "./pages/ContactPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import WorksPage from "./pages/WorksPage";
@@ -13,26 +11,30 @@ import LoadingProvider from "./components/loading-provide";
 import { Toaster } from "sonner";
 import TermsAndConditions from "./pages/TermsPage";
 import PrivacyPolicy from "./pages/PrivacyPage";
+import TargetCursor from "./components/react-bits/animations/TargetCursor/TargetCursor";
+import Layout from "./components/shared/layout";
+import "@/App.css";
 
 const App = () => {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <LoadingProvider companyName="ctrl bits">
-        <HeroHeader />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/solutions" element={<SolutionsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/portfolio" element={<WorksPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-        </Routes>
-        <Toaster richColors />
+        <Layout>
+          <TargetCursor spinDuration={2} hideDefaultCursor={true} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/portfolio" element={<WorksPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+          </Routes>
+          <Toaster richColors />
+        </Layout>
       </LoadingProvider>
-      <FooterSection />
     </ThemeProvider>
   );
 };
