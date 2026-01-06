@@ -11,16 +11,14 @@ import LoadingProvider from "./components/loading-provide";
 import { Toaster } from "sonner";
 import TermsAndConditions from "./pages/TermsPage";
 import PrivacyPolicy from "./pages/PrivacyPage";
-import TargetCursor from "./components/react-bits/animations/TargetCursor/TargetCursor";
 import Layout from "./components/shared/layout";
 import "@/App.css";
 
 const App = () => {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <LoadingProvider companyName="ctrl bits">
         <Layout>
-          <TargetCursor spinDuration={2} hideDefaultCursor={true} />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/solutions" element={<SolutionsPage />} />

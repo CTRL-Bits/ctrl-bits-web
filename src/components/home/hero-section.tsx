@@ -1,151 +1,262 @@
-import { useEffect, useState } from "react";
+"use client";
+import { useEffect, useState, useRef, memo } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { TeamMember, TeamMemberResponse } from "@/types";
 import axios from "axios";
-import DarkVeil from "@/backgrounds/DarkVeil/DarkVeil";
-import ShinyText from "../react-bits/animations/TextAnimations/ShinyText/ShinyText";
-import { AnimatedTooltip } from "../ui/animated-tooltip";
-import { ContainerTextFlip } from "../ui/container-text-flip";
+
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  avatar: string;
+}
+
+interface TeamMemberResponse {
+  results: TeamMember[];
+}
+
+const MagneticButton = memo(
+  ({
+    to,
+    children,
+    variant = "secondary",
+  }: {
+    to: string;
+    children: string;
+    variant?: "primary" | "secondary";
+  }) => {
+    const ref = useRef<HTMLAnchorElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isPressed, setIsPressed] = useState(false);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = (e.clientX - centerX) * 0.2;
+      const deltaY = (e.clientY - centerY) * 0.2;
+      setPosition({ x: deltaX, y: deltaY });
+    };
+
+    const handleMouseLeave = () => {
+      setPosition({ x: 0, y: 0 });
+    };
+
+    return (
+      <Link
+        ref={ref}
+        to={to}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
+        className={`group relative inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-[15px] font-medium tracking-tight transition-all duration-500 ${
+          variant === "primary"
+            ? "bg-foreground text-background shadow-lg hover:shadow-xl"
+            : "bg-background text-foreground border-2 border-border hover:border-foreground"
+        }`}
+        style={{
+          transform: `translate(${position.x}px, ${position.y}px) scale(${
+            isPressed ? 0.96 : 1
+          })`,
+          transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        }}
+      >
+        <span className="relative z-10">{children}</span>
+      </Link>
+    );
+  }
+);
+
+const TeamAvatar = memo(
+  ({ member, index }: { member: TeamMember; index: number }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+      <div
+        className="relative grayscale hover:grayscale-0 transition-all duration-500"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          animation: `fadeInUp 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) ${
+            index * 80
+          }ms backwards`,
+        }}
+      >
+        <div
+          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-border/30 overflow-hidden bg-muted cursor-pointer transition-all duration-500"
+          style={{
+            transform: `scale(${isHovered ? 1.05 : 1})`,
+            transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          }}
+        >
+          <img
+            src={member.avatar}
+            alt={member.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div
+          className={`absolute -top-16 left-1/2 -translate-x-1/2 px-3.5 py-2 bg-foreground text-background rounded-xl transition-all duration-400 pointer-events-none whitespace-nowrap shadow-lg ${
+            isHovered
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-2 invisible"
+          }`}
+          style={{
+            transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          }}
+        >
+          <p className="text-[12px] font-medium tracking-tight">
+            {member.name}
+          </p>
+          <p className="text-[11px] opacity-70 mt-0.5 font-light">
+            {member.role}
+          </p>
+        </div>
+      </div>
+    );
+  }
+);
 
 export default function HeroSection() {
   const [members, setMembers] = useState<TeamMember[]>([]);
-  const fetchTeamMembers = async () => {
-    try {
-      const response = await axios.get<TeamMemberResponse>(
-        "https://api.ctrlbits.xyz/api/team/"
-      );
-      const sortedMembers = [...response.data.results].sort(
-        (a, b) => a.id - b.id
-      );
-      setMembers(sortedMembers);
-    } catch (error) {
-      console.log(error);
-      setMembers([
-        {
-          id: 1,
-          name: "Abiral Ale",
-          role: "Founder & Lead Developer",
-          avatar: "https://avatars.githubusercontent.com/u/121365480?v=4",
-          socials: [
-            {
-              platform: "LinkedIn",
-              icon: "Linkedin",
-              url: "https://linkedin.com/in/aviralale",
-            },
-            {
-              platform: "GitHub",
-              icon: "Github",
-              url: "https://github.com/aviralale",
-            },
-          ],
-        },
-        {
-          id: 2,
-          name: "Jamie Chen",
-          role: "UX Designer",
-          avatar:
-            "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
-          socials: [
-            { platform: "LinkedIn", icon: "Linkedin", url: "#" },
-            { platform: "Instagram", icon: "Instagram", url: "#" },
-          ],
-        },
-        {
-          id: 3,
-          name: "Taylor Reid",
-          role: "Full Stack Developer",
-          avatar:
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-          socials: [
-            { platform: "GitHub", icon: "Github", url: "#" },
-            { platform: "Portfolio", icon: "GlobeIcon", url: "#" },
-          ],
-        },
-      ]);
-    }
-  };
 
   useEffect(() => {
-    fetchTeamMembers();
+    const fetchMembers = async () => {
+      try {
+        const { data } = await axios.get<TeamMemberResponse>(
+          "https://api.ctrlbits.xyz/api/team/"
+        );
+        setMembers(data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchMembers();
   }, []);
 
   return (
-    <main className="min-h-svh w-full flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 -z-30">
-        <DarkVeil hueShift={25} />
-      </div>
-      <div className="container max-w-7xl flex flex-col gap-6 sm:gap-8 lg:gap-10 justify-center items-center">
-        {/* Badge */}
-        <div
-          className={`flex items-center space-x-2 transition-all duration-700 delay-100`}
-        >
-          <span className="cursor-target inline-flex items-center rounded-full bg-primary/10 px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
-            <Sparkles className="mr-1 sm:mr-1.5 h-3 w-3 sm:h-3.5 sm:w-3.5 animate-pulse" />
-            <ShinyText text="Next-Gen Development" disabled={false} speed={3} />
-          </span>
-        </div>
+    <main className="relative min-h-screen w-full bg-background flex items-center justify-center overflow-hidden">
+      {/* Subtle Grid Background - Exactly like Lumion */}
+      <div
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgb(0,0,0) 1px, transparent 1px),
+            linear-gradient(to bottom, rgb(0,0,0) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+        }}
+      />
 
-        {/* Hero Title and Description */}
-        <div className="flex flex-col justify-center items-center space-y-4 sm:space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 text-center font-bold leading-tight">
-            <span className="flex items-center gap-2">
-              Build{" "}
-              <ContainerTextFlip
-                className="cursor-target text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-                words={["better", "modern", "smarter", "awesome"]}
-                // textSize="3xl sm:4xl md:5xl lg:6xl xl:7xl"
-              />
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20 md:py-32">
+        <div className="flex flex-col items-center text-center space-y-12">
+          {/* Badge */}
+          <div
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-secondary/50 border border-border/50"
+            style={{
+              animation:
+                "fadeInUp 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms backwards",
+            }}
+          >
+            <div className="relative flex items-center justify-center">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-emerald-500/40 animate-ping" />
+            </div>
+            <span className="text-[13px] font-medium text-muted-foreground tracking-wide">
+              Nepal · Web Development
             </span>
-            <span className="flex items-center gap-2">
-              with <ShinyText text="Ctrlbits" />.
+          </div>
+
+          {/* Main Heading - Clean & Bold */}
+          <h1
+            className="text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-[1.1] tracking-[-0.03em] flex flex-col justify-center items-center text-foreground max-w-5xl"
+            style={{
+              animation:
+                "fadeInUp 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms backwards",
+            }}
+          >
+            Elevating Business and{" "}
+            <span className="font-normal text-muted-foreground">
+              Creating Impact
             </span>
           </h1>
-          <p className="text-center text-base sm:text-lg md:text-lg w-full sm:w-5/6 md:w-4/5  max-w-4xl leading-relaxed">
-            We are the leading, modern web and IT solution company based in{" "}
-            <strong>Nepal</strong>, delivering custom web applications and
-            automation services.
+
+          {/* Subheading */}
+          <p
+            className="text-[clamp(1rem,1.8vw,1.25rem)] font-normal leading-relaxed tracking-tight text-muted-foreground max-w-2xl"
+            style={{
+              animation:
+                "fadeInUp 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms backwards",
+            }}
+          >
+            Embark on the journey to build your MVP with leading UI design and
+            intelligent automation solutions.
           </p>
-        </div>
 
-        {/* Team Members Tooltip */}
-        <div className="flex justify-center">
-          <AnimatedTooltip items={members} />
-        </div>
+          {/* CTA Buttons */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-4"
+            style={{
+              animation:
+                "fadeInUp 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 400ms backwards",
+            }}
+          >
+            <MagneticButton to="/contact" variant="primary">
+              Book a Call
+            </MagneticButton>
+            <MagneticButton to="/portfolio" variant="secondary">
+              Our Case Study
+            </MagneticButton>
+          </div>
 
-        {/* CTA Buttons */}
-        <div
-          className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transition-all duration-700 delay-400 w-full sm:w-auto`}
-        >
-          <Button
-            asChild
-            variant="default"
-            size="lg"
-            className="cursor-target h-11 sm:h-12 rounded-full pl-5 pr-4 sm:pl-6 sm:pr-5 text-sm sm:text-base font-medium hover:scale-105 transition-all group overflow-hidden relative w-full sm:w-auto min-w-[200px]"
-          >
-            <Link to="/solutions">
-              <span className="relative z-10 flex items-center justify-center">
-                Explore Our Services
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="cursor-target h-11 sm:h-12 rounded-full px-5 sm:px-6 text-sm sm:text-base font-medium border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-all group w-full sm:w-auto min-w-[140px]"
-          >
-            <Link to="/contact">
-              <span className="relative z-10 flex items-center justify-center">
-                Let's Talk
-              </span>
-            </Link>
-          </Button>
+          {/* Client Logos - Grayscale */}
+          {members.length > 0 && (
+            <div
+              className="pt-8 flex flex-col items-center gap-6"
+              style={{
+                animation:
+                  "fadeInUp 1100ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 500ms backwards",
+              }}
+            >
+              <div className="flex items-center -space-x-2">
+                {members.map((member, index) => (
+                  <TeamAvatar key={member.id} member={member} index={index} />
+                ))}
+              </div>
+              <p className="text-[13px] font-normal text-muted-foreground/60 tracking-wide">
+                Backed by forward-thinking team
+              </p>
+            </div>
+          )}
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }

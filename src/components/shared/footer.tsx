@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Logo from "@/assets/images/logo(2).png";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Send, MapPin, Phone, Mail, Heart } from "lucide-react";
 import axios from "axios";
@@ -62,7 +61,7 @@ const socialLinks = [
   },
   {
     name: "Threads",
-    to: "https://threads.com/ctrl_bits",
+    to: "https://threads.com/ctrl.bits",
     icon: (
       <svg
         className="size-5"
@@ -114,7 +113,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hello@ctrlbits.xyz",
+    text: "hello@ctrlbits.com",
   },
 ];
 

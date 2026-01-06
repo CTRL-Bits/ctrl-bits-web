@@ -1,7 +1,16 @@
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
-import { TechData } from "@/types";
+
+interface Tech {
+  name: string;
+  icon: string;
+}
+
+interface TechData {
+  frontend: Tech[];
+  backend: Tech[];
+  devops: Tech[];
+  tools: Tech[];
+}
 
 const techData: TechData = {
   frontend: [
@@ -45,88 +54,124 @@ const techData: TechData = {
   ],
 };
 
-// Define props for our component
-interface TechStackProps {
-  className?: string;
+const categories = [
+  { key: "frontend", label: "Frontend" },
+  { key: "backend", label: "Backend" },
+  { key: "devops", label: "DevOps" },
+  { key: "tools", label: "Tools" },
+];
+
+interface TechCardProps {
+  tech: Tech;
+  index: number;
 }
 
-export default function TechStack({ className = "" }: TechStackProps) {
-  // Using a type-safe approach to state
-  type CategoryKey = keyof typeof techData;
+const TechCard = ({ tech, index }: TechCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        animation: `fadeIn 400ms ease-out ${index * 40}ms backwards`,
+      }}
+    >
+      <div
+        className="w-16 h-16 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center transition-all duration-300 cursor-pointer"
+        style={{
+          transform: isHovered ? "translateY(-4px)" : "translateY(0)",
+          borderColor: isHovered ? "#3b82f6" : undefined,
+          boxShadow: isHovered
+            ? "0 8px 24px rgba(59, 130, 246, 0.15)"
+            : "0 2px 8px rgba(0, 0, 0, 0.04)",
+        }}
+      >
+        <img
+          src={tech.icon}
+          alt={tech.name}
+          className="w-10 h-10 transition-transform duration-300"
+          style={{
+            transform: isHovered ? "scale(1.1)" : "scale(1)",
+          }}
+        />
+      </div>
+
+      {/* Tooltip */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2.5 py-1 bg-gray-900 dark:bg-gray-800 text-white text-xs rounded-md whitespace-nowrap pointer-events-none"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          transform: isHovered
+            ? "translateX(-50%) translateY(0)"
+            : "translateX(-50%) translateY(4px)",
+          transition: "opacity 200ms, transform 200ms",
+        }}
+      >
+        {tech.name}
+      </div>
+    </div>
+  );
+};
+
+export default function TechStack({ className = "" }: { className?: string }) {
   const [activeCategory, setActiveCategory] = useState<string>("frontend");
 
   return (
-    <div className={`w-full py-6 max-w-3xl mx-auto ${className}`}>
-      <div className="text-center mb-4">
-        <h3 className="text-xl font-bold">Our Tech Stack</h3>
-      </div>
-
-      <Tabs
-        defaultValue="frontend"
-        value={activeCategory}
-        onValueChange={(value: string) => setActiveCategory(value)}
-        className="w-full"
-      >
-        <div className="flex justify-center mb-6">
-          <TabsList className="rounded-full p-1">
-            <TabsTrigger
-              value="frontend"
-              className="rounded-full text-xs px-4 py-2 data-[state=active]:bg-slate-900 data-[state=active]:text-white"
-            >
-              Frontend
-            </TabsTrigger>
-            <TabsTrigger
-              value="backend"
-              className="rounded-full text-xs px-4 py-2 data-[state=active]:bg-slate-900 data-[state=active]:text-white"
-            >
-              Backend
-            </TabsTrigger>
-            <TabsTrigger
-              value="devops"
-              className="rounded-full text-xs px-4 py-2 data-[state=active]:bg-slate-900 data-[state=active]:text-white"
-            >
-              DevOps
-            </TabsTrigger>
-            <TabsTrigger
-              value="tools"
-              className="rounded-full text-xs px-4 py-2 data-[state=active]:bg-slate-900 data-[state=active]:text-white"
-            >
-              Tools
-            </TabsTrigger>
-          </TabsList>
+    <section className={`w-full bg-white dark:bg-black py-16 ${className}`}>
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Category Tabs */}
+        <div className="flex justify-center gap-2 mb-10">
+          {categories.map((category) => {
+            const isActive = activeCategory === category.key;
+            return (
+              <button
+                key={category.key}
+                onClick={() => setActiveCategory(category.key)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900"
+                }`}
+              >
+                {category.label}
+              </button>
+            );
+          })}
         </div>
 
-        {(Object.keys(techData) as CategoryKey[]).map((category) => (
-          <TabsContent
-            key={category}
-            value={category as string}
-            className="mt-0"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {techData[category].map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex flex-col items-center"
-                >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-transform hover:scale-110 cursor-pointer">
-                    <img
-                      src={tech.icon}
-                      alt={tech.name}
-                      width={48}
-                      height={48}
-                      title={tech.name}
-                    />
-                  </div>
-                  <span className="sr-only">{tech.name}</span>
-                </motion.div>
-              ))}
+        {/* Tech Grid */}
+        <div className="">
+          {categories.map((category) => (
+            <div
+              key={category.key}
+              className={`${
+                activeCategory === category.key ? "block" : "hidden"
+              }`}
+            >
+              <div className="flex flex-wrap justify-center gap-4">
+                {techData[category.key as keyof TechData].map((tech, index) => (
+                  <TechCard key={tech.name} tech={tech} index={index} />
+                ))}
+              </div>
             </div>
-          </TabsContent>
-        ))}
-      </Tabs>
-    </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </section>
   );
 }

@@ -6,14 +6,14 @@ import TechStack from "@/components/tech-stack";
 
 export default function TechStackSection() {
   return (
-    <section className="py-16 md:py-24 ">
+    <section>
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center"
         >
           <h2 className="text-3xl font-semibold mb-4">
             Technologies We Master
@@ -25,7 +25,7 @@ export default function TechStackSection() {
 
         <TechStack />
 
-        <div className="mt-16 flex flex-col md:flex-row gap-6 justify-center items-center">
+        <div className="mt-4 flex flex-col md:flex-row gap-6 justify-center items-center">
           <Button
             asChild
             size="lg"

@@ -69,7 +69,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     <motion.div
       ref={ref}
       // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-      className={cn("sticky inset-x-0 top-20 z-40 w-full", className)}
+      className={cn("sticky inset-x-0 top-40 z-40 w-full", className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -135,7 +135,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-[#007dff]"
+              className="absolute inset-0 h-full w-full rounded-full bg-black/20 dark:bg-white/20"
             />
           )}
           <span className="relative z-20">{item.name}</span>
@@ -235,14 +235,19 @@ export const NavbarLogo = () => {
       to="/"
       className="cursor-target relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img src="/favicon.png" alt="logo" width={30} height={30} />
+      <img
+        src="/favicon.png"
+        alt="logo"
+        className="invert"
+        width={30}
+        height={30}
+      />
     </Link>
   );
 };
 
 export const NavbarButton = ({
   href,
-  as: Tag = "a",
   children,
   className,
   variant = "primary",
@@ -258,7 +263,7 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<"button">
 )) => {
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-medium  relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
@@ -270,12 +275,12 @@ export const NavbarButton = ({
   };
 
   return (
-    <Tag
-      href={href || undefined}
+    <Link
+      to={href || undefined}
       className={cn(baseStyles, variantStyles[variant], className)}
       {...props}
     >
       {children}
-    </Tag>
+    </Link>
   );
 };
