@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 // Icon Components
 const ZapIcon = () => (
   <svg
@@ -89,12 +87,6 @@ const FeatureItem = ({ icon: Icon, title, description }: FeatureItemProps) => (
 );
 
 export default function ContentSection() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
     <section className="py-20 md:py-32 bg-white dark:bg-black">
       <div className="mx-auto max-w-6xl px-6">

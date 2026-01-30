@@ -3,8 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Download, Mail, Globe } from "lucide-react";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const TermsAndConditions: React.FC = () => {
+  usePageMetadata({
+    title: "Terms & Conditions",
+    description:
+      "Read the terms and conditions of CtrlBits services and website usage.",
+    keywords: "terms and conditions, legal, service agreement",
+    ogTitle: "Terms & Conditions | CtrlBits",
+    ogDescription: "Terms and conditions for CtrlBits services.",
+  });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation
     const printWindow = window.open("", "_blank");
@@ -55,7 +64,7 @@ const TermsAndConditions: React.FC = () => {
           <h1>Terms and Conditions</h1>
           <p class="updated-date"><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
           
-          <p>Welcome to <strong>ctrlbits.xyz</strong> ("Website"). These Terms and Conditions ("Terms") govern your access to and use of this Website and any related services provided by <strong>Ctrl Bits</strong> ("Company", "we", "our", or "us").</p>
+          <p>Welcome to <strong>ctrlbits.com</strong> ("Website"). These Terms and Conditions ("Terms") govern your access to and use of this Website and any related services provided by <strong>Ctrl Bits</strong> ("Company", "we", "our", or "us").</p>
           
           <p>By accessing or using this Website, you agree to comply with and be bound by these Terms. If you do not agree, please do not use our Website or services.</p>
           
@@ -107,8 +116,8 @@ const TermsAndConditions: React.FC = () => {
           <div class="contact-info">
             <h2>Contact</h2>
             <p>If you have any questions about these Terms, please contact us at:</p>
-            <p><strong>📧 Email:</strong> hello@ctrlbits.xyz</p>
-            <p><strong>🌐 Website:</strong> https://ctrlbits.xyz</p>
+            <p><strong>📧 Email:</strong> hi@ctrlbits.com</p>
+            <p><strong>🌐 Website:</strong> https://ctrlbits.com</p>
           </div>
         </body>
         </html>
@@ -144,7 +153,7 @@ const TermsAndConditions: React.FC = () => {
             <div className="mb-6">
               <p className=" leading-relaxed mb-4">
                 Welcome to{" "}
-                <strong className="text-blue-600">ctrlbits.xyz</strong>{" "}
+                <strong className="text-blue-600">ctrlbits.com</strong>{" "}
                 ("Website"). These Terms and Conditions ("Terms") govern your
                 access to and use of this Website and any related services
                 provided by <strong className="text-blue-600">Ctrl Bits</strong>{" "}
@@ -339,15 +348,13 @@ const TermsAndConditions: React.FC = () => {
                   <div className="flex items-center ">
                     <Mail className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Email:</span>
-                    <span className="ml-2 text-blue-600">
-                      hello@ctrlbits.xyz
-                    </span>
+                    <span className="ml-2 text-blue-600">hi@ctrlbits.com</span>
                   </div>
                   <div className="flex items-center ">
                     <Globe className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Website:</span>
                     <span className="ml-2 text-blue-600">
-                      https://ctrlbits.xyz
+                      https://ctrlbits.com
                     </span>
                   </div>
                 </div>

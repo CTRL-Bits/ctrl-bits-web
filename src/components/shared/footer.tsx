@@ -84,7 +84,7 @@ const socialLinks = [
   },
   {
     name: "Instagram",
-    to: "https://instagram.com/ctrl_bits",
+    to: "https://instagram.com/ctrl.bits",
     icon: (
       <svg
         className="size-5"
@@ -113,7 +113,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hello@ctrlbits.com",
+    text: "hi@ctrlbits.com",
   },
 ];
 

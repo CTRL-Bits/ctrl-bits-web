@@ -1,17 +1,21 @@
 import ContentSection from "@/components/about-us-content-section";
 import TeamSection from "@/components/team-section";
-import { Helmet } from "react-helmet-async";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const AboutPage = () => {
+  usePageMetadata({
+    title: "About Us",
+    description:
+      "Discover more about CtrlBits, Nepal's best next-generation software development Company, delivering powerful digital solutions.",
+    keywords:
+      "about us, software development company, Nepal, digital solutions, custom development",
+    ogTitle: "About Us | Web App Development With CtrlBits",
+    ogDescription:
+      "Learn about CtrlBits, Nepal's leading software development company.",
+  });
+
   return (
     <>
-      <Helmet>
-        <title>About Us | Web App Development With CtrlBits</title>
-        <meta
-          name="description"
-          content="Discover more about CtrlBits, Nepal's best next-generation software development Company, delivering powerful digital solutions for Nepal and beyond."
-        />
-      </Helmet>
       <ContentSection />
       <TeamSection />
     </>

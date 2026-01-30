@@ -27,11 +27,23 @@ import { cn } from "@/lib/utils";
 import { Project } from "@/types";
 import { fetchProjects } from "@/services/projectService";
 import VariableProximity from "../components/variable-proximity-text";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 type ViewMode = "grid" | "list";
 type CategoryType = string;
 
 export default function ProjectsPage(): React.ReactElement {
+  usePageMetadata({
+    title: "Projects",
+    description:
+      "Explore our portfolio of custom web development projects and solutions built for clients worldwide.",
+    keywords:
+      "projects, portfolio, web development, case studies, custom solutions",
+    ogTitle: "Our Projects | CtrlBits",
+    ogDescription:
+      "View our portfolio of successful web development and IT projects.",
+  });
+
   const [searchQuery, setSearchQuery] = React.useState<string>("");
   const [activeCategory, setActiveCategory] =
     React.useState<CategoryType>("All");
@@ -114,7 +126,7 @@ export default function ProjectsPage(): React.ReactElement {
         project.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (project.tags &&
           project.tags.some((tag) =>
-            String(tag).toLowerCase().includes(searchQuery.toLowerCase())
+            String(tag).toLowerCase().includes(searchQuery.toLowerCase()),
           ));
 
       const matchesCategory =
@@ -341,7 +353,7 @@ export default function ProjectsPage(): React.ReactElement {
                           "cursor-pointer transition-all px-4 py-1.5 text-xs rounded-full",
                           activeCategory === category
                             ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground",
                         )}
                         onClick={() => setActiveCategory(category)}
                       >
@@ -367,7 +379,7 @@ export default function ProjectsPage(): React.ReactElement {
                       "p-2 rounded-lg transition-colors",
                       viewMode === "grid"
                         ? "bg-primary/10 text-primary ring-1 ring-primary/20"
-                        : "text-muted-foreground hover:text-foreground"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                     aria-label="Grid view"
                     aria-pressed={viewMode === "grid"}
@@ -380,7 +392,7 @@ export default function ProjectsPage(): React.ReactElement {
                       "p-2 rounded-lg transition-colors",
                       viewMode === "list"
                         ? "bg-primary/10 text-primary ring-1 ring-primary/20"
-                        : "text-muted-foreground hover:text-foreground"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                     aria-label="List view"
                     aria-pressed={viewMode === "list"}
@@ -404,7 +416,7 @@ export default function ProjectsPage(): React.ReactElement {
                 className={cn(
                   viewMode === "grid"
                     ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    : "flex flex-col gap-6"
+                    : "flex flex-col gap-6",
                 )}
               >
                 {featuredProjects.length > 0 ? (
@@ -421,7 +433,7 @@ export default function ProjectsPage(): React.ReactElement {
                         project={project}
                         getIconComponent={getIconComponent}
                       />
-                    )
+                    ),
                   )
                 ) : (
                   <div className="col-span-3 text-center py-8">
@@ -446,7 +458,7 @@ export default function ProjectsPage(): React.ReactElement {
                 className={cn(
                   viewMode === "grid"
                     ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    : "flex flex-col gap-6"
+                    : "flex flex-col gap-6",
                 )}
               >
                 {recentProjects.map((project) =>
@@ -462,7 +474,7 @@ export default function ProjectsPage(): React.ReactElement {
                       project={project}
                       getIconComponent={getIconComponent}
                     />
-                  )
+                  ),
                 )}
               </div>
             </TabsContent>
@@ -475,7 +487,7 @@ export default function ProjectsPage(): React.ReactElement {
             className={cn(
               viewMode === "grid"
                 ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                : "flex flex-col gap-6"
+                : "flex flex-col gap-6",
             )}
           >
             {filteredProjects.map((project) =>
@@ -491,7 +503,7 @@ export default function ProjectsPage(): React.ReactElement {
                   project={project}
                   getIconComponent={getIconComponent}
                 />
-              )
+              ),
             )}
           </div>
         ) : (
@@ -541,7 +553,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
         <div
           className={cn(
             "relative overflow-hidden h-56 w-full",
-            project.thumbnailClass || "bg-muted/30"
+            project.thumbnailClass || "bg-muted/30",
           )}
         >
           {/* Project thumbnail */}
@@ -556,7 +568,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
               <div
                 className={cn(
                   "transition-all duration-500",
-                  isHovered ? "scale-110 opacity-30" : "scale-100 opacity-50"
+                  isHovered ? "scale-110 opacity-30" : "scale-100 opacity-50",
                 )}
               >
                 <div className="size-16 bg-primary/10 p-4 rounded-full ring-1 ring-primary/20">
@@ -571,7 +583,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
             className={cn(
               "absolute inset-0 flex items-center justify-center bg-gradient-to-t from-background/90 via-background/60 to-transparent",
               "transition-all duration-300",
-              isHovered ? "opacity-100" : "opacity-0"
+              isHovered ? "opacity-100" : "opacity-0",
             )}
           >
             <Link
@@ -638,7 +650,7 @@ const ProjectGridItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 ProjectGridItem.displayName = "ProjectGridItem";
@@ -666,7 +678,7 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
             <div
               className={cn(
                 "flex-shrink-0 size-16 md:size-20 flex items-center justify-center rounded-lg bg-muted/30 ring-1 ring-muted/50 transition-all duration-300 group-hover:bg-primary/10 group-hover:ring-primary/20",
-                project.thumbnailClass
+                project.thumbnailClass,
               )}
             >
               <div className="p-4 transition-all duration-300 group-hover:scale-110">
@@ -754,7 +766,7 @@ const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectItemProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 ProjectListItem.displayName = "ProjectListItem";

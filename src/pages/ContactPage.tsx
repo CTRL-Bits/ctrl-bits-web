@@ -1,16 +1,20 @@
 import ContactSection from "@/components/contact-form";
-import { Helmet } from "react-helmet-async";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const ContactPage = () => {
+  usePageMetadata({
+    title: "Contact",
+    description:
+      "Have a project in mind? Contact CtrlBits and start building today with our Kathmandu-based development team.",
+    keywords:
+      "contact us, web development, Nepal, get in touch, project inquiry",
+    ogTitle: "Contact CtrlBits – Web Development Company in Nepal",
+    ogDescription:
+      "Get in touch with CtrlBits for your next web development project.",
+  });
+
   return (
     <>
-      <Helmet>
-        <title>Contact CtrlBits – Web Development Company in Nepal</title>
-        <meta
-          name="description"
-          content="Have a project in mind? Contact CtrlBits and start building today with our Kathmandu-based development team."
-        />
-      </Helmet>
       <ContactSection />
     </>
   );

@@ -3,6 +3,6 @@ deployment:
   tasks:
     - npm install
     - npm run build
-    - rm -rf ~/ctrlbits.xyz/*
-    - cp -r dist/* ~/ctrlbits.xyz/
-    - echo "✅ Deployment to ctrlbits.xyz complete!"
+    - rm -rf ~/ctrlbits.com/*
+    - cp -r dist/* ~/ctrlbits.com/
+    - echo "✅ Deployment to ctrlbits.com complete!"

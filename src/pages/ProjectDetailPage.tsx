@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon Components
 const ArrowLeftIcon = () => (
@@ -145,6 +146,20 @@ export default function ProjectDetailPage() {
     getProjectDetails();
     window.scrollTo(0, 0);
   }, [slug]);
+
+  // Update page metadata when project loads
+  useEffect(() => {
+    if (project) {
+      usePageMetadata({
+        title: project.title,
+        description: project.description || project.full_description || "Project details",
+        keywords: project.tags?.map((t: Tag) => t.name).join(", ") || "",
+        ogTitle: `${project.title} | CtrlBits`,
+        ogDescription: project.description || project.full_description,
+        ogImage: project.thumbnail,
+      });
+    }
+  }, [project]);
 
   if (error || (!loading && !project)) {
     return (

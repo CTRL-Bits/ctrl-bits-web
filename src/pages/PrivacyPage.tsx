@@ -3,8 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Download, Mail, Globe, Shield, Cookie } from "lucide-react";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const PrivacyPolicy: React.FC = () => {
+  usePageMetadata({
+    title: "Privacy Policy",
+    description:
+      "Learn how CtrlBits protects your privacy and handles your personal data.",
+    keywords: "privacy policy, data protection, personal information",
+    ogTitle: "Privacy Policy | CtrlBits",
+    ogDescription: "Privacy policy for CtrlBits services and website.",
+  });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation
     const printWindow = window.open("", "_blank");
@@ -61,7 +70,7 @@ const PrivacyPolicy: React.FC = () => {
           <h1>Privacy Policy</h1>
           <p class="updated-date"><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
           
-          <p>At <strong>Ctrl Bits</strong> ("we", "our", "us"), accessible from <strong>https://ctrlbits.xyz</strong>, your privacy is one of our top priorities. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website or services.</p>
+          <p>At <strong>Ctrl Bits</strong> ("we", "our", "us"), accessible from <strong>https://ctrlbits.com</strong>, your privacy is one of our top priorities. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website or services.</p>
           
           <h2>1. Information We Collect</h2>
           <p>We collect personal information that you voluntarily provide to us when you:</p>
@@ -107,7 +116,7 @@ const PrivacyPolicy: React.FC = () => {
             <li>Request deletion of your personal data</li>
             <li>Withdraw consent to processing (where applicable)</li>
           </ul>
-          <p>To exercise these rights, contact us at <strong>hello@ctrlbits.xyz</strong>.</p>
+          <p>To exercise these rights, contact us at <strong>support@ctrlbits.com</strong>.</p>
           
           <h2>7. Third-Party Links</h2>
           <p>Our website may contain links to other websites. We are not responsible for the privacy practices or content of those third-party sites.</p>
@@ -137,8 +146,8 @@ const PrivacyPolicy: React.FC = () => {
           <div class="contact-info">
             <h2>Contact Us</h2>
             <p>If you have any questions about this Privacy Policy or how we handle your data, please contact us at:</p>
-            <p><strong>📧 Email:</strong> hello@ctrlbits.xyz</p>
-            <p><strong>🌐 Website:</strong> https://ctrlbits.xyz</p>
+            <p><strong>📧 Email:</strong> support@ctrlbits.com</p>
+            <p><strong>🌐 Website:</strong> https://ctrlbits.com</p>
           </div>
         </body>
         </html>
@@ -178,7 +187,7 @@ const PrivacyPolicy: React.FC = () => {
               <p className="leading-relaxed mb-4">
                 At <strong className="text-blue-600">Ctrl Bits</strong> ("we",
                 "our", "us"), accessible from{" "}
-                <strong className="text-blue-600">https://ctrlbits.xyz</strong>,
+                <strong className="text-blue-600">https://ctrlbits.com</strong>,
                 your privacy is one of our top priorities. This Privacy Policy
                 outlines how we collect, use, and protect your personal
                 information when you use our website or services.
@@ -329,7 +338,7 @@ const PrivacyPolicy: React.FC = () => {
               </ul>
               <p className="leading-relaxed">
                 To exercise these rights, contact us at{" "}
-                <strong className="text-blue-600">hello@ctrlbits.xyz</strong>.
+                <strong className="text-blue-600">support@ctrlbits.com</strong>.
               </p>
             </section>
 
@@ -456,14 +465,14 @@ const PrivacyPolicy: React.FC = () => {
                     <Mail className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Email:</span>
                     <span className="ml-2 text-blue-600">
-                      hello@ctrlbits.xyz
+                      support@ctrlbits.com
                     </span>
                   </div>
                   <div className="flex items-center">
                     <Globe className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Website:</span>
                     <span className="ml-2 text-blue-600">
-                      https://ctrlbits.xyz
+                      https://ctrlbits.com
                     </span>
                   </div>
                 </div>

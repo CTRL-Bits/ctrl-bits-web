@@ -1,0 +1,180 @@
+# Ctrl Bits - Web Development & IT Solutions Company in Nepal
+
+## Company Information
+- Name: Ctrl Bits
+- Location: Kathmandu, Nepal
+- Industry: Web Development, Software Engineering, IT Solutions
+- Website: https://www.ctrlbits.com
+- Contact: https://www.ctrlbits.com/contact
+- Coordinates: 27.7172, 85.3240
+
+## About
+Ctrl Bits is Nepal's leading web development and IT solutions company, specializing in custom software development, business automation, cloud infrastructure, and digital transformation. We craft powerful, scalable, and future-ready digital solutions that transform businesses bit by bit.
+
+## Core Services
+
+### 1. Digital Products & Design
+- UI/UX Design
+- Motion Design
+- Design Systems
+- User Research & Testing
+- Enterprise product design
+- Consumer product design
+
+### 2. Website Development
+- Content Strategy
+- Web Design
+- Interactive Experiences
+- Responsive & Mobile-First Design
+- Performance Optimization
+- SEO-optimized websites
+
+### 3. Full-Stack Development
+- Web Application Development (React, Next.js, TypeScript)
+- Backend Development (Django, Node.js)
+- Mobile App Development
+- AI/ML Integration
+- Custom Applications
+- E-commerce Platforms
+- Progressive Web Apps (PWA)
+- API Development
+
+### 4. Business Automation & Intelligence
+- Workflow Automation Systems
+- Business Process Automation (BPA)
+- Robotic Process Automation (RPA)
+- AI-Assisted Decision Platforms
+- Form Automation
+- Integration with Existing Tools
+- Productivity Enhancement Solutions
+- Data Analytics Dashboards
+- Real-time Analytics & Insights
+
+### 5. Cloud Infrastructure & DevOps
+- AWS, Google Cloud, DigitalOcean Setup
+- Cloud Architecture & Strategy
+- Secure Cloud Hosting
+- Data Backup & Disaster Recovery
+- Load Balancing & Scaling
+- CI/CD Pipeline Setup
+- Container Orchestration (Docker, Kubernetes)
+- Infrastructure Monitoring
+- Security & Compliance Solutions
+
+### 6. Continuous Innovation & Support
+- Future-Ready Digital Strategy
+- Performance Optimization
+- Security Audits
+- Ongoing Maintenance & Support
+
+## Technology Stack
+### Frontend
+- React 19.1.0
+- TypeScript 5.7.2
+- Vite 6.3.1
+- Tailwind CSS 4.1.4
+- Framer Motion 12.9.2
+- React Router DOM 7.5.3
+
+### Animation & 3D
+- GSAP 3.13.0
+- Three.js 0.167.1
+- React Three Fiber
+
+### UI Libraries
+- Radix UI (accessible components)
+- Lucide React (icons)
+- React Helmet Async (SEO)
+
+### Backend & Cloud
+- Django
+- Node.js
+- AWS
+- Google Cloud
+- DigitalOcean
+
+## Target Keywords
+- Web development company Nepal
+- Software development Kathmandu
+- IT solutions Nepal
+- Custom web development Nepal
+- React development Nepal
+- Business automation Nepal
+- Cloud infrastructure Nepal
+- Best web development company Nepal
+- Web design Nepal
+- Software company Kathmandu
+
+## Key Pages
+- Home: https://www.ctrlbits.com/ (Homepage with services overview)
+- Solutions: https://www.ctrlbits.com/solutions (Complete IT solutions & services)
+- About Us: https://www.ctrlbits.com/about (Company story and team)
+- Portfolio: https://www.ctrlbits.com/portfolio (Showcase of past projects)
+- Projects: https://www.ctrlbits.com/projects (Individual project listings)
+- Contact: https://www.ctrlbits.com/contact (Contact form and information)
+- Terms: https://www.ctrlbits.com/terms (Terms and conditions)
+- Privacy: https://www.ctrlbits.com/privacy (Privacy policy)
+
+## Social Media
+- Twitter/X: https://x.com/ctrl_bits
+- Facebook: https://www.facebook.com/ctrlbits
+- LinkedIn: https://www.linkedin.com/company/ctrlbits
+- Instagram: https://www.instagram.com/ctrl.bits/
+
+## SEO Information
+- Sitemap: https://www.ctrlbits.com/sitemap.xml
+- Robots: https://www.ctrlbits.com/robots.txt
+- Schema Markup: LocalBusiness, Organization, Service
+- Mobile-First: Yes
+- Performance: Optimized (WebP images, code splitting)
+- Accessibility: WCAG 2.1 compliant
+
+## Unique Value Propositions
+- Nepal-based with international quality standards
+- Full-stack development expertise (Frontend to Backend)
+- Custom solutions tailored to business needs
+- Scalable and future-proof architecture
+- Fast, SEO-optimized deliverables
+- Business automation & workflow optimization specialists
+- Cloud-native infrastructure experts
+- AI/ML integration capabilities
+- Design-first approach with user-centric solutions
+- Modern technology stack (React, TypeScript, Django, AWS)
+
+## Industries Served
+- E-commerce
+- Corporate/Enterprise
+- Startups
+- Small and Medium Businesses
+- Education
+- Healthcare
+- Finance
+- Tourism with iterative development
+- Mobile-first responsive design
+- Performance optimization (WebP images, code splitting, lazy loading)
+- Security-first development approach
+- Clean, maintainable, well-documented code
+- Comprehensive project documentation
+- Ongoing support and maintenance contracts
+- Regular code reviews and testing
+- SEO best practices from day one
+- Accessibility compliance (WCAG 2.1)
+- Clean, maintainable code
+- Comprehensive documentation
+- Ongoing support and maintenance
+
+## Contact Information
+For inquiries, collaboration, or project discussions:
+- Website Contact Form: https://www.ctrlbits.com/contact
+- Location: Kathmandu, Nepal
+- Service Area: Nepal and International
+
+## API Information
+- Company API: https://api.ctrlbits.xyz/api/companies/
+- Subscriber API: http28://api.ctrlbits.xyz/api/subscribers/
+
+## Copyright
+© 2026 Ctrl Bits. All rights reserved.
+
+---
+Last Updated: January 6, 2026

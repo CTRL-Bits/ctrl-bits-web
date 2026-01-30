@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon components
 const ShoppingCartIcon = () => (
@@ -339,7 +340,7 @@ export default function WorksPage() {
         setError(null);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "Failed to load projects"
+          err instanceof Error ? err.message : "Failed to load projects",
         );
       } finally {
         setLoading(false);
@@ -360,7 +361,7 @@ export default function WorksPage() {
       activeFilter === "All"
         ? projects.filter((project) => project.featured)
         : projects.filter(
-            (project) => project.category === activeFilter && project.featured
+            (project) => project.category === activeFilter && project.featured,
           );
 
     if (searchTerm.trim() === "") return filtered;
@@ -369,7 +370,7 @@ export default function WorksPage() {
       (project) =>
         project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.category.toLowerCase().includes(searchTerm.toLowerCase())
+        project.category.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [projects, activeFilter, searchTerm]);
 
