@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon components
 const ShoppingCartIcon = () => (
