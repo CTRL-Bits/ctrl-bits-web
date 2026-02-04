@@ -20,6 +20,10 @@ const links = [
     title: "Contact",
     to: "/contact",
   },
+  {
+    title: "Blog",
+    to: "https://blog.ctrlbits.com",
+  },
 ];
 
 const socialLinks = [
@@ -207,14 +211,27 @@ export default function FooterSection() {
             <ul className="space-y-4">
               {links.map((link, index) => (
                 <li key={index}>
-                  <Link
-                    to={link.to}
-                    className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
-                  >
-                    <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
-                    <span>{link.title}</span>
-                    <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                  </Link>
+                  {link.to.startsWith("http") ? (
+                    <a
+                      href={link.to}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
+                    >
+                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
+                      <span>{link.title}</span>
+                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.to}
+                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
+                    >
+                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
+                      <span>{link.title}</span>
+                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

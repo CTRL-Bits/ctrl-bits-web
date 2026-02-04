@@ -27,6 +27,10 @@ export default function NavbarSection() {
       name: "Portfolio",
       link: "/portfolio",
     },
+    {
+      name: "Blog",
+      link: "https://blog.ctrlbits.com",
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -64,16 +68,29 @@ export default function NavbarSection() {
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           >
-            {navItems.map((item, idx) => (
-              <Link
-                key={`mobile-link-${idx}`}
-                to={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
-              >
-                <span className="block">{item.name}</span>
-              </Link>
-            ))}
+            {navItems.map((item, idx) =>
+              item.link.startsWith("http") ? (
+                <a
+                  key={`mobile-link-${idx}`}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative text-neutral-600 dark:text-neutral-300"
+                >
+                  <span className="block">{item.name}</span>
+                </a>
+              ) : (
+                <Link
+                  key={`mobile-link-${idx}`}
+                  to={item.link}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative text-neutral-600 dark:text-neutral-300"
+                >
+                  <span className="block">{item.name}</span>
+                </Link>
+              ),
+            )}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
                 onClick={() => handleBookCallButtonPress()}

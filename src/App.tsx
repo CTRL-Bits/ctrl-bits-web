@@ -36,7 +36,7 @@ const App = () => {
         />
       </Helmet>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-        <LoadingProvider companyName="ctrl bits">
+        <LoadingProvider companyName="Ctrl Bits">
           <Layout>
             <Routes>
               <Route path="/" element={<HomePage />} />
