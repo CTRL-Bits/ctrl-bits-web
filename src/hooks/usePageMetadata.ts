@@ -9,20 +9,34 @@ interface PageMetadata {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  indexable?: boolean; // defaults to true
 }
 
 /**
  * Hook to manage page metadata and title
- * Usage: usePageMetadata({ title: "Home", description: "Welcome to CTRL Bits" })
+ * Usage: usePageMetadata({ title: "Home", description: "Welcome to Ctrl Bits" })
  */
 export const usePageMetadata = (metadata: PageMetadata) => {
   const location = useLocation();
+  const indexable = metadata.indexable !== false; // default to true
 
   useEffect(() => {
     // Update document title
     document.title = metadata.title
-      ? `${metadata.title} | CTRL Bits`
-      : "CTRL Bits";
+      ? `${metadata.title} | Ctrl Bits`
+      : "Ctrl Bits";
+
+    // Update meta robots directive for indexing
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement("meta");
+      robotsMeta.setAttribute("name", "robots");
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute(
+      "content",
+      indexable ? "index, follow" : "noindex, nofollow"
+    );
 
     // Update meta description
     if (metadata.description) {
@@ -88,5 +102,5 @@ export const usePageMetadata = (metadata: PageMetadata) => {
       }
       ogUrl.setAttribute("content", metadata.ogUrl);
     }
-  }, [metadata, location]);
+  }, [metadata, location, indexable]);
 };

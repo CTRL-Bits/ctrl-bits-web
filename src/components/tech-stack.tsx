@@ -90,7 +90,7 @@ const TechCard = ({ tech, index }: TechCardProps) => {
       >
         <img
           src={tech.icon}
-          alt={tech.name}
+          alt={`${tech.name} - Web development and IT solutions technology used by Ctrl Bits Nepal`}
           className="w-10 h-10 transition-transform duration-300"
           style={{
             transform: isHovered ? "scale(1.1)" : "scale(1)",

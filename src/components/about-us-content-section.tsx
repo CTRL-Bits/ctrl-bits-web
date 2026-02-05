@@ -181,13 +181,13 @@ export default function ContentSection() {
               <img
                 src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db"
                 className="h-full w-full object-cover object-center hidden dark:block"
-                alt="tech solutions illustration dark"
+                alt="Web development team collaboration - Ctrl Bits Nepal IT solutions company"
                 loading="lazy"
               />
               <img
                 src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64"
                 className="h-full w-full object-cover object-center block dark:hidden"
-                alt="tech solutions illustration light"
+                alt="Custom software development and IT solutions - Ctrl Bits Kathmandu Nepal"
                 loading="lazy"
               />
 

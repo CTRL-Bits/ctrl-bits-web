@@ -222,7 +222,7 @@ const MemberCard = ({ member, index, onOpenSocials }: MemberCardProps) => {
         <img
           className="h-full w-full object-cover object-top transition-all duration-500"
           src={member.avatar}
-          alt={member.name}
+          alt={`${member.name} - Web development professional at Ctrl Bits Nepal IT solutions company`}
           loading="lazy"
           style={{
             filter: isHovered ? "grayscale(0%)" : "grayscale(100%)",

@@ -92,7 +92,7 @@ const TeamAvatar = memo(
         >
           <img
             src={member.avatar}
-            alt={member.name}
+            alt={`${member.name} - Software developer at Ctrl Bits web development company Nepal`}
             className="w-full h-full object-cover"
             loading="lazy"
           />

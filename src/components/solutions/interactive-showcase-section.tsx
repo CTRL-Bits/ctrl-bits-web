@@ -163,7 +163,7 @@ export default function InteractiveShowcaseSection() {
                   <img
                     src={currentService.image}
                     className="size-full object-cover object-center dark:mix-blend-lighten hover:scale-105 transition-transform duration-700"
-                    alt={currentService.alt}
+                    alt={`${currentService.alt || 'Service'} - Web development and IT solutions by Ctrl Bits Nepal`}
                     width={1207}
                     height={929}
                     loading="lazy"

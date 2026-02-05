@@ -237,7 +237,7 @@ export const NavbarLogo = () => {
     >
       <img
         src="/favicon.png"
-        alt="logo"
+        alt="Ctrl Bits - Web development company Nepal logo"
         className="invert"
         width={30}
         height={30}
@@ -251,17 +251,13 @@ export const NavbarButton = ({
   children,
   className,
   variant = "primary",
-  ...props
 }: {
   href?: string;
   as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+} & React.ComponentPropsWithoutRef<"a">) => {
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-medium  relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -276,9 +272,8 @@ export const NavbarButton = ({
 
   return (
     <Link
-      to={href || undefined}
+      to={href || "/"}
       className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
     >
       {children}
     </Link>

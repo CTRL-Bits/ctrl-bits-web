@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Logo from "@/assets/images/logo(2).webp";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Send, MapPin, Phone, Mail, Heart } from "lucide-react";
 import axios from "axios";
@@ -20,16 +21,12 @@ const links = [
     title: "Contact",
     to: "/contact",
   },
-  {
-    title: "Blog",
-    to: "https://blog.ctrlbits.com",
-  },
 ];
 
 const socialLinks = [
   {
     name: "X/Twitter",
-    to: "https://x.com/ctrlbits",
+    to: "https://x.com/ctrl_bits",
     icon: (
       <svg
         className="size-5"
@@ -47,7 +44,7 @@ const socialLinks = [
   },
   {
     name: "Facebook",
-    to: "https://facebook.com/ctrlbits",
+    to: "https://www.facebook.com/ctrlbits",
     icon: (
       <svg
         className="size-5"
@@ -64,8 +61,8 @@ const socialLinks = [
     ),
   },
   {
-    name: "Threads",
-    to: "https://threads.com/ctrl.bits",
+    name: "LinkedIn",
+    to: "https://www.linkedin.com/company/ctrlbits",
     icon: (
       <svg
         className="size-5"
@@ -75,20 +72,15 @@ const socialLinks = [
         viewBox="0 0 24 24"
       >
         <path
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          d="M19.25 8.505c-1.577-5.867-7-5.5-7-5.5s-7.5-.5-7.5 8.995s7.5 8.996 7.5 8.996s4.458.296 6.5-3.918c.667-1.858.5-5.573-6-5.573c0 0-3 0-3 2.5c0 .976 1 2 2.5 2s3.171-1.027 3.5-3c1-6-4.5-6.5-6-4"
-          color="currentColor"
+          fill="currentColor"
+          d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
         ></path>
       </svg>
     ),
   },
   {
     name: "Instagram",
-    to: "https://instagram.com/ctrl.bits",
+    to: "https://www.instagram.com/ctrl.bits/",
     icon: (
       <svg
         className="size-5"
@@ -117,7 +109,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hi@ctrlbits.com",
+    text: "hello@ctrlbits.xyz",
   },
 ];
 
@@ -174,8 +166,10 @@ export default function FooterSection() {
             <Link to="/" aria-label="go home" className="block">
               <div className="flex items-center space-x-2">
                 <img
-                  src="/favicon.png"
-                  alt="Ctrl Bits - Web development company and IT solutions provider in Nepal"
+                  src={Logo}
+                  alt="Ctrl Bits - Web development company Nepal | IT solutions Kathmandu | Custom software development"
+                  width="40"
+                  height="40"
                   className="h-10 w-auto invert dark:invert-0"
                 />
               </div>
@@ -195,7 +189,7 @@ export default function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="cursor-target text-muted-foreground hover:text-primary flex items-center justify-center h-9 w-9 rounded-full bg-primary/5 ring-1 ring-primary/10 hover:ring-primary/30 hover:bg-primary/10 transition-all duration-200"
+                  className="text-muted-foreground hover:text-primary flex items-center justify-center h-9 w-9 rounded-full bg-primary/5 ring-1 ring-primary/10 hover:ring-primary/30 hover:bg-primary/10 transition-all duration-200"
                 >
                   {link.icon}
                 </Link>
@@ -211,27 +205,14 @@ export default function FooterSection() {
             <ul className="space-y-4">
               {links.map((link, index) => (
                 <li key={index}>
-                  {link.to.startsWith("http") ? (
-                    <a
-                      href={link.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
-                    >
-                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
-                      <span>{link.title}</span>
-                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.to}
-                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
-                    >
-                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
-                      <span>{link.title}</span>
-                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                    </Link>
-                  )}
+                  <Link
+                    to={link.to}
+                    className="text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
+                  >
+                    <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
+                    <span>{link.title}</span>
+                    <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -277,6 +258,7 @@ export default function FooterSection() {
               />
               <button
                 type="submit"
+                aria-label="Subscribe to newsletter"
                 className="absolute inset-y-0 right-0 flex items-center justify-center px-3 text-primary disabled:text-muted-foreground/50"
                 disabled={isSubmitting || isSubscribed}
               >
@@ -340,9 +322,6 @@ export default function FooterSection() {
             </div>
           </div>
         </div>
-        <h1 className="text-7xl text-center font-bold my-8 text-transparent bg-clip-text bg-gradient-to-t from-black/60 to-white">
-          CTRL THE CODE, BIT BY BIT.
-        </h1>
       </div>
 
       {/* Animation keyframes */}
