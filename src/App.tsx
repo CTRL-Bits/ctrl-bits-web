@@ -20,6 +20,11 @@ const App = () => {
   return (
     <>
       <Helmet>
+        {/* Global SEO directives for all pages */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        
+        {/* Google Analytics */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-B3Z5X0ZL4B"

@@ -130,7 +130,7 @@ const VideoShowcase = () => {
         {/* Your browser does not support the video tag. */}
         {/* </video> */}
 
-        <img src="/bitman.png" className="w-full h-full object-cover" alt="" />
+        <img src="/bitman.png" className="w-full h-full object-cover" alt="Custom software development and web solutions - Ctrl Bits Nepal IT services company" />
 
         {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 pointer-events-none" />

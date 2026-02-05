@@ -175,7 +175,7 @@ export default function FooterSection() {
               <div className="flex items-center space-x-2">
                 <img
                   src="/favicon.png"
-                  alt="CtrlBits Logo"
+                  alt="Ctrl Bits - Web development company and IT solutions provider in Nepal"
                   className="h-10 w-auto invert dark:invert-0"
                 />
               </div>
