@@ -154,7 +154,7 @@ export default function ProjectDetailPage() {
         title: project.title,
         description: project.description || project.full_description || "Project details",
         keywords: project.tags?.map((t: Tag) => t.name).join(", ") || "",
-        ogTitle: `${project.title} | CtrlBits`,
+        ogTitle: `${project.title} | Ctrl Bits`,
         ogDescription: project.description || project.full_description,
         ogImage: project.thumbnail,
       });

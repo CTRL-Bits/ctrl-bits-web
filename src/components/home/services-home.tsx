@@ -9,31 +9,31 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Digital Products",
+    title: "Digital Marketing",
     description:
-      "We create memorable enterprise and consumer products as well as provide comprehensive design systems for effortless product iteration.",
+      "SEO, paid campaigns, and social media marketing tailored to Nepal and global audiences to drive qualified leads and growth.",
     tags: [
-      "UI Design",
-      "Motion Design",
-      "Design Systems",
-      "User Research & Testing",
+      "SEO",
+      "Paid Ads",
+      "Social Media",
+      "Content Strategy",
     ],
   },
   {
-    title: "Websites",
+    title: "Design, Graphics & Motion",
     description:
-      "A website is the most important channel to showcase your brand to customers. Our portfolio features award-winning websites designed to give users the best experience possible while also meeting business goals.",
-    tags: ["Content Strategy", "Web Design", "Interactive Experiences"],
+      "Branding, graphics, motion design, and video editing that elevate your online presence and campaign performance.",
+    tags: ["Graphic Design", "Motion Graphics", "Video Editing"],
   },
   {
-    title: "Development",
+    title: "Web & Software Development",
     description:
-      "Full-stack development services from front-end to back-end, mobile apps, and AI/ML integration. We build scalable, performant solutions.",
+      "Custom web development and software solutions, from MVPs to enterprise platforms with automation and integrations.",
     tags: [
       "Web Development",
-      "App Development",
-      "AI/ML",
-      "Custom Applications",
+      "Custom Software",
+      "Automation",
+      "Integrations",
     ],
   },
 ];
@@ -130,7 +130,11 @@ const VideoShowcase = () => {
         {/* Your browser does not support the video tag. */}
         {/* </video> */}
 
-        <img src="/bitman.png" className="w-full h-full object-cover" alt="Custom software development and web solutions - Ctrl Bits Nepal IT services company" />
+        <img
+          src="/bitman.png"
+          className="w-full h-full object-cover"
+          alt="Custom software development by Ctrl Bits, web development company in Nepal"
+        />
 
         {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 pointer-events-none" />
@@ -174,10 +178,10 @@ export default function ServicesHome() {
           }}
         >
           <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">
-            Design & Strategy
+            Services Built for Growth
           </h2>
           <p className="text-xl md:text-2xl text-foreground">
-            Excellence on Both Ends.
+            Web development, marketing, and creative production in one team.
           </p>
         </div>
 

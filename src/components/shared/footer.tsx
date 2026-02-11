@@ -5,7 +5,7 @@ import axios from "axios";
 
 const links = [
   {
-    title: "Solutions",
+    title: "Our Services",
     to: "/solutions",
   },
   {
@@ -29,7 +29,7 @@ const links = [
 const socialLinks = [
   {
     name: "X/Twitter",
-    to: "https://x.com/ctrlbits",
+    to: "https://x.com/ctrl_bits",
     icon: (
       <svg
         className="size-5"

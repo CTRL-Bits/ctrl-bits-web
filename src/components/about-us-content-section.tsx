@@ -103,7 +103,7 @@ export default function ContentSection() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100 mb-4 max-w-3xl mx-auto">
-            Meet CtrlBits – A Top Web Development Team from Nepal
+            Meet Ctrl Bits – A Top Web Development Team from Nepal
           </h2>
         </div>
 
@@ -117,19 +117,15 @@ export default function ContentSection() {
             }}
           >
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              At Ctrl Bits, we strive to build more than just software.{" "}
-              <span className="font-medium text-gray-900 dark:text-gray-100">
-                We empower businesses
-              </span>{" "}
-              with cutting-edge solutions, offering tools to innovate, optimize,
-              and scale operations.
+              At Ctrl Bits, we build more than software. We empower businesses
+              with web development, custom software, automation, digital
+              marketing, and creative production including motion graphics and
+              video editing.
             </p>
 
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-              We believe in creating an entire ecosystem that supports
-              businesses — from seamless integrations to the tools and platforms
-              developers need to push boundaries and stay ahead in the digital
-              world.
+              We deliver the full stack of growth services, from strategy and
+              design to development, analytics, and ongoing optimization.
             </p>
 
             {/* Feature Grid */}
@@ -181,13 +177,13 @@ export default function ContentSection() {
               <img
                 src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db"
                 className="h-full w-full object-cover object-center hidden dark:block"
-                alt="Web development team collaboration - Ctrl Bits Nepal IT solutions company"
+                alt="Web development company in Nepal team collaboration at Ctrl Bits"
                 loading="lazy"
               />
               <img
                 src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64"
                 className="h-full w-full object-cover object-center block dark:hidden"
-                alt="Custom software development and IT solutions - Ctrl Bits Kathmandu Nepal"
+                alt="Custom software development by Ctrl Bits in Nepal"
                 loading="lazy"
               />
 

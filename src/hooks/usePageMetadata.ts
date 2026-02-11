@@ -22,9 +22,13 @@ export const usePageMetadata = (metadata: PageMetadata) => {
 
   useEffect(() => {
     // Update document title
-    document.title = metadata.title
-      ? `${metadata.title} | Ctrl Bits`
-      : "Ctrl Bits";
+    if (metadata.title) {
+      document.title = metadata.title === "Ctrl Bits"
+        ? "Ctrl Bits"
+        : `${metadata.title} | Ctrl Bits`;
+    } else {
+      document.title = "Ctrl Bits";
+    }
 
     // Update meta robots directive for indexing
     let robotsMeta = document.querySelector('meta[name="robots"]');

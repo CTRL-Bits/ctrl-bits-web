@@ -167,7 +167,7 @@ export default function HeroSection() {
               <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-emerald-500/40 animate-ping" />
             </div>
             <span className="text-[13px] font-medium text-muted-foreground tracking-wide">
-              Nepal · Web Development
+              Nepal · Web Development & Digital Marketing
             </span>
           </div>
 
@@ -179,9 +179,9 @@ export default function HeroSection() {
                 "fadeInUp 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms backwards",
             }}
           >
-            Elevating Business and{" "}
+            Web Development, Digital Marketing{" "}
             <span className="font-normal text-muted-foreground">
-              Creating Impact
+              & Growth
             </span>
           </h1>
 
@@ -193,8 +193,9 @@ export default function HeroSection() {
                 "fadeInUp 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms backwards",
             }}
           >
-            Embark on the journey to build your MVP with leading UI design and
-            intelligent automation solutions.
+            Build and scale with a web development company in Nepal delivering
+            custom software, automation, digital marketing, and motion graphics
+            with video editing that drives measurable results.
           </p>
 
           {/* CTA Buttons */}

@@ -8,14 +8,14 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const HomePage = () => {
   usePageMetadata({
-    title: "Home",
+    title: "Ctrl Bits",
     description:
-      "Ctrl Bits offers next-generation web development and automation services tailored to your business needs in Nepal.",
+      "Ctrl Bits offers web development, digital marketing, and development services in Nepal and internationally.",
     keywords:
-      "web development, IT solutions, automation, custom software, Nepal",
-    ogTitle: "Ctrl Bits - Custom Web and IT Solutions in Nepal",
+      "web development company in Nepal, web development, digital marketing, software development, Nepal",
+    ogTitle: "Ctrl Bits - Web Development Company in Nepal",
     ogDescription:
-      "Next-generation web development and automation services tailored to your business needs.",
+      "Ctrl Bits offers web development, digital marketing, and development services in Nepal and internationally.",
   });
 
   return (

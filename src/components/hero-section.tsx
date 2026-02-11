@@ -132,7 +132,7 @@ export default function HeroSection() {
               >
                 <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
                   <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
-                  Next-Gen Development
+                  Web Development & Digital Marketing
                 </span>
               </div>
 
@@ -156,7 +156,7 @@ export default function HeroSection() {
                 className={`mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-300
                   `}
               >
-                Professional web development company in Kathmandu, Nepal, specializing in custom software development, business automation solutions, and innovative IT services. Transform your business with our expert development team.
+                Professional web development company in Kathmandu, Nepal, specializing in custom software development, business automation, digital marketing, and creative production including motion graphics and video editing.
               </p>
 
               <div
@@ -227,7 +227,7 @@ export default function HeroSection() {
                   <div className="h-full w-full overflow-hidden rounded-xl">
                     <img
                       src="/logo.webp"
-                      alt="Ctrl Bits - Web development company Nepal | Custom IT solutions | Software development Kathmandu"
+                      alt="Ctrl Bits logo - web development company in Nepal"
                       width={600}
                       height={600}
                       loading="eager"

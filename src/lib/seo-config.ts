@@ -7,12 +7,12 @@ export const seoConfig = {
   // Base configuration
   siteName: "Ctrl Bits",
   siteUrl: "https://www.ctrlbits.com",
-  defaultTitle: "Ctrl Bits - Leading Web Development Company in Nepal | Custom IT Solutions",
-  defaultDescription: "Ctrl Bits is Nepal's premier web development company offering custom software development, automation services, and IT solutions in Kathmandu.",
+  defaultTitle: "Ctrl Bits - Web Development Company in Nepal",
+  defaultDescription: "Ctrl Bits offers web development, digital marketing, and development services in Nepal and internationally.",
   
   // Social media handles
   social: {
-    twitter: "@ctrlbits",
+    twitter: "https://x.com/ctrl_bits",
     facebook: "https://www.facebook.com/ctrlbits",
     linkedin: "https://www.linkedin.com/company/ctrlbits",
     instagram: "https://www.instagram.com/ctrl.bits/"

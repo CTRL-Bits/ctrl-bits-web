@@ -278,8 +278,8 @@ export default function ProjectsPage(): React.ReactElement {
               </div>
 
               <p className="text-muted-foreground text-lg max-w-xl transition-all duration-700 delay-300">
-                A showcase of our work across various industries and
-                technologies —{" "}
+                A showcase of our web development, automation, digital
+                marketing, and creative production across industries —{" "}
                 <span className="font-medium text-foreground relative">
                   bit by bit
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 rounded-full"></span>

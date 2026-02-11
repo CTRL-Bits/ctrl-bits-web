@@ -43,7 +43,7 @@ export const SchemaMarkup = ({
     "hasPart": [
       {
         "@type": "WebPage",
-        "name": "Services",
+        "name": "Our Services",
         "url": "https://www.ctrlbits.com/solutions"
       },
       {
@@ -113,7 +113,7 @@ export const SchemaMarkup = ({
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Web Development Services",
+      "name": "Our Services",
       "itemListElement": [
         {
           "@type": "Offer",

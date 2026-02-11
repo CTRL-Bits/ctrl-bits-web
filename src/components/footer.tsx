@@ -6,7 +6,7 @@ import axios from "axios";
 
 const links = [
   {
-    title: "Solutions",
+    title: "Our Services",
     to: "/solutions",
   },
   {
@@ -163,11 +163,11 @@ export default function FooterSection() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" aria-label="go home" className="block">
+            <Link to="/" aria-label="Ctrl Bits home" className="block">
               <div className="flex items-center space-x-2">
                 <img
                   src={Logo}
-                  alt="Ctrl Bits - Web development company Nepal | IT solutions Kathmandu | Custom software development"
+                  alt="Ctrl Bits"
                   width="40"
                   height="40"
                   className="h-10 w-auto invert dark:invert-0"

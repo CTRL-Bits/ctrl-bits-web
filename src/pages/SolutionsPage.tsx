@@ -6,12 +6,12 @@ import TechStackSection from "@/components/solutions/tech-stack-section";
 
 export default function SolutionsPage() {
   usePageMetadata({
-    title: "Solutions",
+    title: "Our Services",
     description:
-      "CtrlBits is a performance-driven custom web development company in Nepal. We build scalable websites, automate workflows, and secure your infrastructure for growth.",
+      "Ctrl Bits is a performance-driven custom web development company in Nepal. We build scalable websites, automate workflows, and secure your infrastructure for growth.",
     keywords:
       "web solutions, custom development, automation, infrastructure, Nepal",
-    ogTitle: "Smart Web & IT Solutions in Nepal | CtrlBits",
+    ogTitle: "Our Services | Ctrl Bits",
     ogDescription:
       "Performance-driven custom web development and IT solutions tailored to your business.",
   });

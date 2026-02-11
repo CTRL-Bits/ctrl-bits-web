@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon components
 const ShoppingCartIcon = () => (
@@ -322,6 +323,17 @@ const SkeletonCard = () => (
 );
 
 export default function WorksPage() {
+  usePageMetadata({
+    title: "Portfolio",
+    description:
+      "Explore the Ctrl Bits portfolio of custom web development, automation, and digital marketing projects for Nepal and global clients.",
+    keywords:
+      "web development company in Nepal, portfolio, custom web development, automation, digital marketing, case studies",
+    ogTitle: "Portfolio | Ctrl Bits",
+    ogDescription:
+      "Explore the Ctrl Bits portfolio of custom web development, automation, and digital marketing projects.",
+  });
+
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -411,7 +423,8 @@ export default function WorksPage() {
             Our Works
           </h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Crafting digital experiences that matter
+            Portfolio of web development, digital marketing, and creative
+            projects delivered in Nepal and internationally.
           </p>
         </div>
 

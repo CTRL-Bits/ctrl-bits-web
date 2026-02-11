@@ -9,10 +9,10 @@ const TermsAndConditions: React.FC = () => {
   usePageMetadata({
     title: "Terms & Conditions",
     description:
-      "Read the terms and conditions of CtrlBits services and website usage.",
+      "Read the terms and conditions of Ctrl Bits services and website usage.",
     keywords: "terms and conditions, legal, service agreement",
-    ogTitle: "Terms & Conditions | CtrlBits",
-    ogDescription: "Terms and conditions for CtrlBits services.",
+    ogTitle: "Terms & Conditions | Ctrl Bits",
+    ogDescription: "Terms and conditions for Ctrl Bits services.",
   });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation

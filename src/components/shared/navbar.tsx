@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function NavbarSection() {
   const navItems = [
     {
-      name: "Solutions",
+      name: "Our Services",
       link: "/solutions",
     },
     {

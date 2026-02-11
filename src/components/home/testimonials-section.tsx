@@ -132,7 +132,7 @@ export function TestimonialsSection() {
               {currentTestimonial.avatar ? (
                 <img
                   src={currentTestimonial.avatar}
-                  alt={currentTestimonial.name + " - Client testimonial for Ctrl Bits web development company Nepal"}
+                  alt={currentTestimonial.name + " - Client testimonial for Ctrl Bits, web development company in Nepal"}
                   width={48}
                   height={48}
                   className="bg-foreground/10 h-12 w-12 rounded-full border object-cover"

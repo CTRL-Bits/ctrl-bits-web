@@ -64,7 +64,7 @@ const ClientLogo = ({
       >
         <img
           src={item.logo}
-          alt={`${item.name} - Client of Ctrl Bits web development company Nepal | IT solutions company Kathmandu`}
+          alt={`${item.name} - Client of Ctrl Bits, web development company in Nepal`}
           className={`max-w-12 max-h-12 md:max-w-14 md:max-h-14 object-contain ${
             item.invert ? "invert" : ""
           }`}

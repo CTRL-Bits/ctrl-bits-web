@@ -1,19 +1,32 @@
-# Ctrl Bits - Web Development & IT Solutions Company in Nepal
+# Ctrl Bits - Web Development, Digital Marketing & Creative Studio in Nepal
 
 ## Company Information
 - Name: Ctrl Bits
 - Location: Kathmandu, Nepal
-- Industry: Web Development, Software Engineering, IT Solutions
+- Industry: Web Development, Software Engineering, Digital Marketing, Creative Production
 - Website: https://www.ctrlbits.com
 - Contact: https://www.ctrlbits.com/contact
 - Coordinates: 27.7172, 85.3240
 
 ## About
-Ctrl Bits is Nepal's leading web development and IT solutions company, specializing in custom software development, business automation, cloud infrastructure, and digital transformation. We craft powerful, scalable, and future-ready digital solutions that transform businesses bit by bit.
+Ctrl Bits is a web development company in Nepal specializing in custom software development, automation, cloud infrastructure, digital marketing, and creative production. We deliver scalable digital solutions and growth-focused campaigns for clients in Nepal and internationally.
 
 ## Core Services
 
-### 1. Digital Products & Design
+### 1. Digital Marketing
+- SEO (on-page, technical, local)
+- Paid Advertising (Google Ads, Meta)
+- Social Media Marketing
+- Content Strategy & Copywriting
+- Conversion Optimization
+
+### 2. Creative Production
+- Graphic Design
+- Motion Graphics
+- Video Editing
+- Brand Identity & Visual Systems
+
+### 3. Digital Products & Design
 - UI/UX Design
 - Motion Design
 - Design Systems
@@ -21,7 +34,7 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Enterprise product design
 - Consumer product design
 
-### 2. Website Development
+### 4. Website Development
 - Content Strategy
 - Web Design
 - Interactive Experiences
@@ -29,7 +42,7 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Performance Optimization
 - SEO-optimized websites
 
-### 3. Full-Stack Development
+### 5. Full-Stack Development
 - Web Application Development (React, Next.js, TypeScript)
 - Backend Development (Django, Node.js)
 - Mobile App Development
@@ -39,7 +52,7 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Progressive Web Apps (PWA)
 - API Development
 
-### 4. Business Automation & Intelligence
+### 6. Business Automation & Intelligence
 - Workflow Automation Systems
 - Business Process Automation (BPA)
 - Robotic Process Automation (RPA)
@@ -50,7 +63,7 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Data Analytics Dashboards
 - Real-time Analytics & Insights
 
-### 5. Cloud Infrastructure & DevOps
+### 7. Cloud Infrastructure & DevOps
 - AWS, Google Cloud, DigitalOcean Setup
 - Cloud Architecture & Strategy
 - Secure Cloud Hosting
@@ -61,7 +74,7 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Infrastructure Monitoring
 - Security & Compliance Solutions
 
-### 6. Continuous Innovation & Support
+### 8. Continuous Innovation & Support
 - Future-Ready Digital Strategy
 - Performance Optimization
 - Security Audits
@@ -94,16 +107,16 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - DigitalOcean
 
 ## Target Keywords
-- Web development company Nepal
-- Software development Kathmandu
+- Web development company in Nepal
+- Web development in Nepal
+- Digital marketing Nepal
+- Custom software development
 - IT solutions Nepal
-- Custom web development Nepal
-- React development Nepal
-- Business automation Nepal
-- Cloud infrastructure Nepal
-- Best web development company Nepal
+- Automation services Nepal
+- Graphic design Nepal
+- Motion graphics Nepal
+- Video editing Nepal
 - Web design Nepal
-- Software company Kathmandu
 
 ## Key Pages
 - Home: https://www.ctrlbits.com/ (Homepage with services overview)
@@ -139,6 +152,8 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Cloud-native infrastructure experts
 - AI/ML integration capabilities
 - Design-first approach with user-centric solutions
+- Digital marketing and analytics for measurable growth
+- Creative production (graphics, motion, video) in-house
 - Modern technology stack (React, TypeScript, Django, AWS)
 
 ## Industries Served
@@ -149,7 +164,9 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Education
 - Healthcare
 - Finance
-- Tourism with iterative development
+- Tourism
+
+## Delivery Standards
 - Mobile-first responsive design
 - Performance optimization (WebP images, code splitting, lazy loading)
 - Security-first development approach
@@ -159,9 +176,6 @@ Ctrl Bits is Nepal's leading web development and IT solutions company, specializ
 - Regular code reviews and testing
 - SEO best practices from day one
 - Accessibility compliance (WCAG 2.1)
-- Clean, maintainable code
-- Comprehensive documentation
-- Ongoing support and maintenance
 
 ## Contact Information
 For inquiries, collaboration, or project discussions:
@@ -171,10 +185,10 @@ For inquiries, collaboration, or project discussions:
 
 ## API Information
 - Company API: https://api.ctrlbits.xyz/api/companies/
-- Subscriber API: http28://api.ctrlbits.xyz/api/subscribers/
+- Subscriber API: https://api.ctrlbits.xyz/api/subscribers/
 
 ## Copyright
 © 2026 Ctrl Bits. All rights reserved.
 
 ---
-Last Updated: January 6, 2026
+Last Updated: February 11, 2026
