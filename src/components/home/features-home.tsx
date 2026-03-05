@@ -206,11 +206,12 @@ export default function FeaturesHomeSection() {
                 "fadeInUp 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms backwards",
             }}
           >
-            We turn your groundbreaking ideas into functional,{" "}
+            We deliver web development, custom software, and digital marketing
+            that turn ideas into{" "}
             <span className="font-medium">market-ready MVPs.</span>{" "}
             <span className="text-muted-foreground font-normal">
-              Focusing on innovation and quality, our adaptable,
-              customer-centric approach ensures responsive experiences.
+              From automation to graphics, motion, and video editing, we build
+              responsive experiences that convert.
             </span>
           </h2>
 

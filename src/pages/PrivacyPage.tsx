@@ -9,10 +9,14 @@ const PrivacyPolicy: React.FC = () => {
   usePageMetadata({
     title: "Privacy Policy",
     description:
-      "Learn how CtrlBits protects your privacy and handles your personal data.",
+      "Learn how Ctrl Bits protects your privacy and handles your personal data.",
     keywords: "privacy policy, data protection, personal information",
-    ogTitle: "Privacy Policy | CtrlBits",
-    ogDescription: "Privacy policy for CtrlBits services and website.",
+    ogTitle: "Privacy Policy | Ctrl Bits",
+    ogDescription: "Privacy policy for Ctrl Bits services and website.",
+    ogUrl: "https://www.ctrlbits.com/privacy",
+    canonical: "https://www.ctrlbits.com/privacy",
+    twitterCard: "summary",
+    indexable: false,
   });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation

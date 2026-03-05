@@ -9,10 +9,14 @@ const TermsAndConditions: React.FC = () => {
   usePageMetadata({
     title: "Terms & Conditions",
     description:
-      "Read the terms and conditions of CtrlBits services and website usage.",
+      "Read the terms and conditions of Ctrl Bits services and website usage.",
     keywords: "terms and conditions, legal, service agreement",
-    ogTitle: "Terms & Conditions | CtrlBits",
-    ogDescription: "Terms and conditions for CtrlBits services.",
+    ogTitle: "Terms & Conditions | Ctrl Bits",
+    ogDescription: "Terms and conditions for Ctrl Bits services.",
+    ogUrl: "https://www.ctrlbits.com/terms",
+    canonical: "https://www.ctrlbits.com/terms",
+    twitterCard: "summary",
+    indexable: false,
   });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation
@@ -79,13 +83,14 @@ const TermsAndConditions: React.FC = () => {
           <p>All content on this Website, including but not limited to logos, graphics, software, text, and design, is the property of Ctrl Bits or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works from any content without explicit written permission.</p>
           
           <h2>3. Services</h2>
-          <p>Ctrl Bits provides IT solutions including (but not limited to):</p>
+          <p>Ctrl Bits provides agency services including (but not limited to):</p>
           <ul>
             <li>Web Development</li>
-            <li>Software Development</li>
-            <li>IT Consultation</li>
-            <li>UI/UX Design</li>
-            <li>System Integration</li>
+            <li>Digital Marketing</li>
+            <li>SEO Services</li>
+            <li>Video Editing & Motion Graphics</li>
+            <li>Graphic Design & Branding</li>
+            <li>Custom Software Development</li>
           </ul>
           <p>We reserve the right to modify or discontinue any service at any time without notice.</p>
           
@@ -116,7 +121,7 @@ const TermsAndConditions: React.FC = () => {
           <div class="contact-info">
             <h2>Contact</h2>
             <p>If you have any questions about these Terms, please contact us at:</p>
-            <p><strong>📧 Email:</strong> hi@ctrlbits.com</p>
+            <p><strong>📧 Email:</strong> info@ctrlbits.com</p>
             <p><strong>🌐 Website:</strong> https://ctrlbits.com</p>
           </div>
         </body>
@@ -208,7 +213,8 @@ const TermsAndConditions: React.FC = () => {
             <section className="mb-6">
               <h2 className="text-2xl font-semibold  mb-3">3. Services</h2>
               <p className=" leading-relaxed mb-3">
-                Ctrl Bits provides IT solutions including (but not limited to):
+                Ctrl Bits provides agency services including (but not limited
+                to):
               </p>
               <ul className="space-y-2  mb-3">
                 <li className="flex items-start">
@@ -217,19 +223,23 @@ const TermsAndConditions: React.FC = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  Software Development
+                  Digital Marketing
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  IT Consultation
+                  SEO Services
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  UI/UX Design
+                  Video Editing & Motion Graphics
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  System Integration
+                  Graphic Design & Branding
+                </li>
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  Custom Software Development
                 </li>
               </ul>
               <p className=" leading-relaxed">
@@ -348,7 +358,7 @@ const TermsAndConditions: React.FC = () => {
                   <div className="flex items-center ">
                     <Mail className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Email:</span>
-                    <span className="ml-2 text-blue-600">hi@ctrlbits.com</span>
+                    <span className="ml-2 text-blue-600">info@ctrlbits.com</span>
                   </div>
                   <div className="flex items-center ">
                     <Globe className="w-5 h-5 mr-3 text-blue-600" />

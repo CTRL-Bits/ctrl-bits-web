@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 interface SchemaMarkupProps {
-  type?: "organization" | "localBusiness" | "service" | "breadcrumb" | "webpage";
+  type?: "organization" | "localBusiness" | "service" | "breadcrumb" | "webpage" | "website";
   customSchema?: Record<string, any>;
   pageName?: string;
   pageUrl?: string;
@@ -18,20 +18,31 @@ export const SchemaMarkup = ({
   const organizationSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://www.ctrlbits.com/#organization",
     "name": "Ctrl Bits",
-    "alternateName": "Ctrl Bits",
+    "alternateName": ["Ctrl Bits", "ctrl bits"],
     "url": "https://www.ctrlbits.com",
     "logo": "https://www.ctrlbits.com/logo.webp",
-    "description": "Leading web development and IT solutions company in Nepal, specializing in custom software development, automation, and digital transformation services.",
+    "description": "Ctrl Bits is a Kathmandu-based digital agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development services.",
+    "knowsAbout": [
+      "Web Development",
+      "Digital Marketing",
+      "SEO",
+      "Video Editing",
+      "Graphic Design",
+      "Software Development"
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Kathmandu",
-      "addressCountry": "NP"
+      "addressCountry": "Nepal"
     },
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
-      "areaServed": "NP",
+      "telephone": "+977-9709659012",
+      "email": "info@ctrlbits.com",
+      "areaServed": ["Kathmandu", "Nepal"],
       "availableLanguage": ["English", "Nepali"]
     },
     "sameAs": [
@@ -43,7 +54,7 @@ export const SchemaMarkup = ({
     "hasPart": [
       {
         "@type": "WebPage",
-        "name": "Services",
+        "name": "Our Services",
         "url": "https://www.ctrlbits.com/solutions"
       },
       {
@@ -59,14 +70,91 @@ export const SchemaMarkup = ({
     ]
   };
 
+  const websiteSchema: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.ctrlbits.com/#website",
+    "url": "https://www.ctrlbits.com/",
+    "name": "Ctrl Bits",
+    "alternateName": ["ctrl bits"],
+    "description": "Ctrl Bits is a Kathmandu-based digital agency for web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+    "inLanguage": "en",
+    "publisher": {
+      "@id": "https://www.ctrlbits.com/#organization"
+    }
+  };
+
   // Local Business Schema - for homepage and about page
   const localBusinessSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://www.ctrlbits.com",
+    "@id": "https://www.ctrlbits.com/#localbusiness",
     "name": "Ctrl Bits",
+    "alternateName": ["ctrl bits"],
     "image": "https://www.ctrlbits.com/logo.webp",
-    "description": "Nepal's leading web development and IT solutions company offering custom software development, automation services, and digital transformation solutions for businesses.",
+    "description": "Kathmandu-based digital agency offering web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+    "url": "https://www.ctrlbits.com/",
+    "parentOrganization": {
+      "@id": "https://www.ctrlbits.com/#organization"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Kathmandu"
+      },
+      {
+        "@type": "Country",
+        "name": "Nepal"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Ctrl Bits Service Catalog",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Digital Marketing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SEO Services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Video Editing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Graphic Design"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Software Development"
+          }
+        }
+      ]
+    },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Kathmandu",
@@ -78,65 +166,80 @@ export const SchemaMarkup = ({
       "latitude": "27.7172",
       "longitude": "85.3240"
     },
-    "url": "https://www.ctrlbits.com",
     "telephone": "+977-9709659012",
-    "email": "hi@ctrlbits.com",
-    "priceRange": "$$",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "47"
-    }
+    "email": "info@ctrlbits.com",
+    "priceRange": "$$"
   };
 
   // Service Schema - for solutions page
   const serviceSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Web Development & IT Solutions",
+    "@id": "https://www.ctrlbits.com/#service",
+    "serviceType": "Web Development, Digital Marketing & Creative Services",
     "provider": {
-      "@type": "Organization",
-      "name": "Ctrl Bits",
-      "url": "https://www.ctrlbits.com"
+      "@id": "https://www.ctrlbits.com/#organization"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Nepal"
-    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Kathmandu"
+      },
+      {
+        "@type": "Country",
+        "name": "Nepal"
+      }
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Web Development Services",
+      "name": "Our Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Custom Web Development",
-            "description": "Tailored web applications built with modern technologies"
+            "name": "Web Development",
+            "description": "Responsive websites, web apps, e-commerce development, and CMS implementation."
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Business Automation",
-            "description": "Streamline operations with intelligent automation solutions"
+            "name": "Digital Marketing",
+            "description": "Paid campaigns, social media marketing, and conversion-focused growth strategies."
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Cloud Infrastructure",
-            "description": "Scalable and secure cloud solutions for modern businesses"
+            "name": "SEO Services",
+            "description": "Technical SEO, on-page optimization, local SEO, and content SEO strategy."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Video Editing & Motion Graphics",
+            "description": "Editing for ads, product demos, social reels, and brand storytelling content."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Graphic Design & Branding",
+            "description": "Brand identity, marketing creatives, and UI graphics for digital channels."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Software Development",
+            "description": "Tailored software systems, API integration, and workflow automation solutions."
           }
         }
       ]
@@ -167,29 +270,42 @@ export const SchemaMarkup = ({
   const webPageSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": pageName || "Ctrl Bits - Web Development Company Nepal",
+    "@id": `${pageUrl || "https://www.ctrlbits.com"}#webpage`,
+    "name": pageName || "Ctrl Bits - Kathmandu Web Development & Digital Marketing Agency",
     "url": pageUrl || "https://www.ctrlbits.com",
-    "description": "Professional web development and IT solutions in Nepal",
+    "description": "Kathmandu-based agency offering web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://www.ctrlbits.com/#website"
+    },
+    "about": {
+      "@id": "https://www.ctrlbits.com/#organization"
+    },
     "publisher": {
-      "@type": "Organization",
-      "name": "Ctrl Bits"
+      "@id": "https://www.ctrlbits.com/#organization"
     }
   };
 
-  let schemaToRender: Record<string, any> = organizationSchema;
+  let schemaToRender: Record<string, any> | Record<string, any>[] = organizationSchema;
 
   if (customSchema) {
     schemaToRender = customSchema;
   } else if (type === "localBusiness") {
-    schemaToRender = localBusinessSchema;
+    schemaToRender = [organizationSchema, websiteSchema, localBusinessSchema];
   } else if (type === "service") {
-    schemaToRender = serviceSchema;
+    schemaToRender = [organizationSchema, websiteSchema, serviceSchema];
+  } else if (type === "website") {
+    schemaToRender = [organizationSchema, websiteSchema];
   } else if (type === "webpage") {
-    schemaToRender = webPageSchema;
+    schemaToRender = [organizationSchema, websiteSchema, webPageSchema];
+  } else if (type === "breadcrumb" && breadcrumbSchema) {
+    schemaToRender = breadcrumbSchema;
   }
 
   // Combine multiple schemas if needed
-  const schemas: Record<string, any>[] = [schemaToRender];
+  const schemas: Record<string, any>[] = Array.isArray(schemaToRender)
+    ? [...schemaToRender]
+    : [schemaToRender];
   if (breadcrumbSchema && type !== "breadcrumb") {
     schemas.push(breadcrumbSchema);
   }

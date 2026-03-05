@@ -6,7 +6,7 @@ import axios from "axios";
 
 const links = [
   {
-    title: "Solutions",
+    title: "Our Services",
     to: "/solutions",
   },
   {
@@ -14,8 +14,12 @@ const links = [
     to: "/about",
   },
   {
-    title: "Works",
+    title: "Portfolio",
     to: "/portfolio",
+  },
+  {
+    title: "Projects",
+    to: "/projects",
   },
   {
     title: "Contact",
@@ -109,7 +113,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hello@ctrlbits.xyz",
+    text: "info@ctrlbits.com",
   },
 ];
 
@@ -163,11 +167,11 @@ export default function FooterSection() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" aria-label="go home" className="block">
+            <Link to="/" aria-label="Ctrl Bits home" className="block">
               <div className="flex items-center space-x-2">
                 <img
                   src={Logo}
-                  alt="Ctrl Bits - Web development company Nepal | IT solutions Kathmandu | Custom software development"
+                  alt="Ctrl Bits"
                   width="40"
                   height="40"
                   className="h-10 w-auto invert dark:invert-0"
@@ -176,8 +180,8 @@ export default function FooterSection() {
             </Link>
 
             <p className="text-sm text-muted-foreground max-w-xs">
-              Crafting powerful, scalable, and future-ready digital solutions
-              that transform businesses bit by bit.
+              Kathmandu-based agency for web development, digital marketing,
+              SEO, creative production, and custom software solutions.
             </p>
 
             {/* Social Links - Desktop */}

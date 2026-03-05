@@ -145,7 +145,7 @@ const LinkPreview = ({
                     width={width}
                     height={height}
                     className="rounded-lg"
-                    alt="Client testimonial preview - Ctrl Bits web development company Nepal"
+                    alt="Client testimonial preview for Ctrl Bits, Kathmandu web development and digital growth agency"
                   />
                 </a>
               </motion.div>
@@ -216,7 +216,7 @@ export default function Testimonials() {
       company: "NepBay",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       content:
-        "Ctrl Bits has been instrumental in streamlining our backend systems and optimizing performance across our e-commerce platform. Their technical insight and hands-on support are top-notch.",
+        "Ctrl Bits upgraded our web development stack and automation, and the site performance gains were immediate. Their team delivers fast, reliable results.",
     },
     {
       id: "placeholder-2",
@@ -225,7 +225,7 @@ export default function Testimonials() {
       company: "SwiftFin",
       avatar: "https://randomuser.me/api/portraits/men/75.jpg",
       content:
-        "The Ctrl Bits team was proactive, communicative, and fast. They built and launched our internal dashboard in record time — exactly what we needed.",
+        "The Ctrl Bits team handled custom software development and analytics with speed and clarity. We shipped our product on time and with confidence.",
     },
     {
       id: "placeholder-3",
@@ -234,7 +234,7 @@ export default function Testimonials() {
       company: "AgroTech Nepal",
       avatar: "https://randomuser.me/api/portraits/women/65.jpg",
       content:
-        "Our collaboration with Ctrl Bits was seamless. They handled everything from API integration to frontend polishing — always delivering quality results.",
+        "Our collaboration with Ctrl Bits was seamless. From API integration to digital marketing assets and motion graphics, they delivered quality results.",
     },
     {
       id: "placeholder-4",
@@ -243,7 +243,7 @@ export default function Testimonials() {
       company: "BizSuite Tech",
       avatar: "https://randomuser.me/api/portraits/men/21.jpg",
       content:
-        "What impressed us most was Ctrl Bits' ability to understand our business logic and translate it into a scalable software solution. Highly recommended!",
+        "Ctrl Bits understood our business goals and delivered a scalable platform plus video editing and creative support for launches. Highly recommended!",
     },
   ];
 
@@ -274,7 +274,7 @@ export default function Testimonials() {
           </h2>
           <p>
             At Ctrl Bits, we help Nepali startups and enterprises build secure,
-            scalable web apps and IT solutions – trusted by businesses across
+            scalable web apps and digital agency solutions – trusted by businesses across
             different industries.
           </p>
         </div>

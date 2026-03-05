@@ -7,12 +7,14 @@ export const seoConfig = {
   // Base configuration
   siteName: "Ctrl Bits",
   siteUrl: "https://www.ctrlbits.com",
-  defaultTitle: "Ctrl Bits - Leading Web Development Company in Nepal | Custom IT Solutions",
-  defaultDescription: "Ctrl Bits is Nepal's premier web development company offering custom software development, automation services, and IT solutions in Kathmandu.",
+  defaultTitle:
+    "Ctrl Bits — Web Development & Digital Marketing Agency in Kathmandu, Nepal",
+  defaultDescription:
+    "Ctrl Bits is a Kathmandu-based agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development services for Nepal and global clients.",
   
   // Social media handles
   social: {
-    twitter: "@ctrlbits",
+    twitter: "https://x.com/ctrl_bits",
     facebook: "https://www.facebook.com/ctrlbits",
     linkedin: "https://www.linkedin.com/company/ctrlbits",
     instagram: "https://www.instagram.com/ctrl.bits/"
@@ -29,8 +31,8 @@ export const seoConfig = {
       countryCode: "NP"
     },
     contact: {
-      email: "hello@ctrlbits.xyz",
-      phone: "+977-XXX-XXXXXX"
+      email: "info@ctrlbits.com",
+      phone: "+977-9709659012"
     },
     coordinates: {
       latitude: "27.7172",
@@ -41,29 +43,30 @@ export const seoConfig = {
   // Primary keywords for different services
   keywords: {
     primary: [
-      "web development company Nepal",
-      "IT solutions Nepal",
-      "software development company Nepal",
-      "custom web development Kathmandu",
-      "automation services Nepal"
+      "web development agency Kathmandu",
+      "digital marketing agency Kathmandu",
+      "SEO agency Kathmandu",
+      "video editing services Kathmandu",
+      "graphic design agency Kathmandu"
     ],
     secondary: [
+      "web development agency Nepal",
       "web app development Nepal",
-      "IT company Kathmandu",
-      "digital transformation Nepal",
-      "business automation Nepal",
-      "cloud solutions Nepal",
-      "Nepal tech company"
+      "custom software development Nepal",
+      "digital agency Kathmandu",
+      "social media marketing Nepal",
+      "branding and creative services Nepal",
+      "motion graphics Nepal"
     ],
     services: [
-      "custom software development",
+      "web development",
+      "digital marketing",
+      "search engine optimization",
+      "video editing",
+      "graphic design",
+      "software development",
       "web application development",
-      "mobile app development",
-      "business process automation",
-      "cloud infrastructure",
-      "UI/UX design",
-      "data analytics",
-      "API development"
+      "API integration"
     ]
   },
   

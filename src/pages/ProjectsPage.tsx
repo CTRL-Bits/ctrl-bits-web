@@ -27,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { Project } from "@/types";
 import { fetchProjects } from "@/services/projectService";
 import VariableProximity from "../components/variable-proximity-text";
+import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 type ViewMode = "grid" | "list";
@@ -36,12 +37,15 @@ export default function ProjectsPage(): React.ReactElement {
   usePageMetadata({
     title: "Projects",
     description:
-      "Explore our portfolio of custom web development projects and solutions built for clients worldwide.",
+      "Explore Ctrl Bits project work in web development, digital marketing, SEO, video editing, graphic design, and software development for Kathmandu and global clients.",
     keywords:
-      "projects, portfolio, web development, case studies, custom solutions",
-    ogTitle: "Our Projects | CtrlBits",
+      "Kathmandu web development projects, digital marketing case studies Nepal, SEO project portfolio, software development projects",
+    ogTitle: "Projects & Case Studies | Ctrl Bits Kathmandu",
     ogDescription:
-      "View our portfolio of successful web development and IT projects.",
+      "View case studies across web development, digital marketing, SEO, creative production, and software delivery.",
+    ogUrl: "https://www.ctrlbits.com/projects",
+    canonical: "https://www.ctrlbits.com/projects",
+    twitterCard: "summary_large_image",
   });
 
   const [searchQuery, setSearchQuery] = React.useState<string>("");
@@ -167,6 +171,11 @@ export default function ProjectsPage(): React.ReactElement {
   if (loading) {
     return (
       <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+        <SchemaMarkup
+          type="webpage"
+          pageName="Projects"
+          pageUrl="https://www.ctrlbits.com/projects"
+        />
         {/* Background gradients */}
         <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
@@ -199,6 +208,11 @@ export default function ProjectsPage(): React.ReactElement {
   if (error) {
     return (
       <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+        <SchemaMarkup
+          type="webpage"
+          pageName="Projects"
+          pageUrl="https://www.ctrlbits.com/projects"
+        />
         {/* Background gradients */}
         <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl transform-gpu" />
@@ -236,6 +250,11 @@ export default function ProjectsPage(): React.ReactElement {
 
   return (
     <div className="bg-background min-h-screen relative overflow-hidden transition-all duration-700 ease-out">
+      <SchemaMarkup
+        type="webpage"
+        pageName="Projects"
+        pageUrl="https://www.ctrlbits.com/projects"
+      />
       {/* Background gradients */}
       <div className="absolute inset-0 bg-mesh-gradient pointer-events-none" />
       <div
@@ -278,8 +297,8 @@ export default function ProjectsPage(): React.ReactElement {
               </div>
 
               <p className="text-muted-foreground text-lg max-w-xl transition-all duration-700 delay-300">
-                A showcase of our work across various industries and
-                technologies —{" "}
+                A showcase of our web development, automation, digital
+                marketing, and creative production across industries —{" "}
                 <span className="font-medium text-foreground relative">
                   bit by bit
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 rounded-full"></span>

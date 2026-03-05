@@ -3,21 +3,30 @@ import SolutionsHero from "@/components/solutions/hero-section";
 import InteractiveShowcaseSection from "@/components/solutions/interactive-showcase-section";
 import SolutionCardSection from "@/components/solutions/solution-card-section";
 import TechStackSection from "@/components/solutions/tech-stack-section";
+import SchemaMarkup from "@/components/schema-markup";
 
 export default function SolutionsPage() {
   usePageMetadata({
-    title: "Solutions",
+    title: "Our Services in Kathmandu, Nepal",
     description:
-      "CtrlBits is a performance-driven custom web development company in Nepal. We build scalable websites, automate workflows, and secure your infrastructure for growth.",
+      "Explore Ctrl Bits services in Kathmandu: web development, digital marketing, SEO, video editing, graphic design, and custom software development for growth-focused brands.",
     keywords:
-      "web solutions, custom development, automation, infrastructure, Nepal",
-    ogTitle: "Smart Web & IT Solutions in Nepal | CtrlBits",
+      "web development services Kathmandu, digital marketing services Kathmandu, SEO services Kathmandu, video editing Kathmandu, graphic design Kathmandu, custom software development Kathmandu",
+    ogTitle: "Our Services in Kathmandu | Ctrl Bits",
     ogDescription:
-      "Performance-driven custom web development and IT solutions tailored to your business.",
+      "Web development, digital marketing, SEO, video editing, graphic design, and custom software services tailored to Kathmandu and global businesses.",
+    ogUrl: "https://www.ctrlbits.com/solutions",
+    canonical: "https://www.ctrlbits.com/solutions",
+    twitterCard: "summary_large_image",
   });
 
   return (
     <>
+      <SchemaMarkup
+        type="service"
+        pageName="Solutions"
+        pageUrl="https://www.ctrlbits.com/solutions"
+      />
       <main className="relative flex flex-col justify-center items-center overflow-hidden bg-background transition-all duration-700 ease-out">
         <SolutionsHero />
         {/* Interactive Showcase */}

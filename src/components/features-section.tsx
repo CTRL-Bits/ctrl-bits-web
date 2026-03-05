@@ -91,7 +91,7 @@ export default function FeaturesSection() {
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-foreground to-secondary mb-6">
-            Why Choose Our IT Solutions
+            Why Choose Our Agency Services
           </h1>
 
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -350,7 +350,7 @@ export default function FeaturesSection() {
                           <img
                             className="size-full object-cover"
                             src={person.avatar}
-                            alt={`${person.name} - Developer at Ctrl Bits web development company Nepal`}
+                            alt={`${person.name} - Developer at Ctrl Bits Kathmandu web development and digital growth agency`}
                           />
                         </div>
                         {person.side === "left" && (

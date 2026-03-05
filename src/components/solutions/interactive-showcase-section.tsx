@@ -40,7 +40,7 @@ export default function InteractiveShowcaseSection() {
         "At Ctrl Bits, we specialize in custom web development in Nepal — crafting fast, SEO-optimized, and mobile-responsive websites that drive real business results. From corporate portals and e-commerce platforms to full-scale web applications built with React, Django, or Next.js, we deliver performance, scalability, and design precision that align with your brand’s digital vision.",
       icon: Code,
       image: WebDev,
-      alt: "Custom Web Development in Nepal by Ctrl Bits showcasing responsive design",
+      alt: "Custom web development in Nepal by Ctrl Bits",
     },
     {
       id: "item-2",
@@ -49,7 +49,7 @@ export default function InteractiveShowcaseSection() {
         "Ctrl Bits provides business process automation (BPA) in Nepal to streamline repetitive tasks, minimize human error, and increase productivity. We build intelligent workflow systems, form automation, and AI-assisted decision platforms that integrate with your existing tools — helping businesses save time, reduce costs, and focus on growth. Our automation tools are designed for scalability and real-world efficiency.",
       icon: Cpu,
       image: Automation,
-      alt: "Business process automation and AI integration by Ctrl Bits in Nepal",
+      alt: "Automation services Nepal by Ctrl Bits",
     },
     {
       id: "item-3",
@@ -58,25 +58,25 @@ export default function InteractiveShowcaseSection() {
         "We design and manage secure, scalable cloud infrastructures tailored for Nepalese businesses. From cloud hosting setup and data backups to DevOps pipelines and load balancing, Ctrl Bits ensures your digital foundation is reliable, fast, and future-proof. Our infrastructure solutions are powered by AWS, Google Cloud, or DigitalOcean — optimized for uptime, security, and compliance.",
       icon: ShieldCheck,
       image: Infrastructure,
-      alt: "Cloud infrastructure and DevOps security setup by Ctrl Bits",
+      alt: "Secure cloud infrastructure and DevOps services in Nepal by Ctrl Bits agency",
     },
     {
       id: "item-4",
-      title: "Analytics & Performance Monitoring",
+      title: "Digital Marketing & Analytics",
       description:
-        "Our analytics and performance monitoring solutions help you make informed decisions backed by real-time data. Ctrl Bits builds tailored dashboards, integrates advanced analytics tools, and sets up performance monitoring for your websites and apps. We track KPIs, conversion metrics, and uptime to ensure your business stays data-driven, efficient, and user-focused.",
+        "Grow visibility with SEO, paid ads, and conversion-focused campaigns. Ctrl Bits combines analytics dashboards and performance tracking to improve rankings, leads, and ROI.",
       icon: BarChart3,
       image: Analytics,
-      alt: "Custom analytics dashboard showing performance metrics and KPIs",
+      alt: "Digital marketing and analytics services in Nepal by Ctrl Bits",
     },
     {
       id: "item-5",
       title: "Graphic Design & Video Editing",
       description:
-        "Ctrl Bits’ creative team provides professional graphic design and video editing services in Nepal — helping your brand stand out visually. From logo and brand identity design to social media visuals, motion graphics, and promotional videos, we craft engaging content that strengthens your digital presence. Our designs are tailored for clarity, emotion, and storytelling.",
+        "Ctrl Bits provides graphic design, motion graphics, and video editing in Nepal. From brand identity to social media visuals and promotional videos, we craft content that strengthens your digital presence.",
       icon: Palette,
       image: Design,
-      alt: "Creative design and video editing work by Ctrl Bits Nepal",
+      alt: "Creative design supporting digital marketing Nepal by Ctrl Bits",
     },
   ];
 
@@ -102,9 +102,9 @@ export default function InteractiveShowcaseSection() {
         </h2>
 
         <p className="max-w-3xl mx-auto text-center text-muted-foreground mb-12">
-          Ctrl Bits delivers technology-driven solutions that empower Nepali
-          businesses to grow, automate, and perform better in the digital
-          economy. Explore our key areas of expertise below.
+          Ctrl Bits delivers web development, digital marketing, SEO, video
+          editing, graphic design, automation, and software solutions to help
+          businesses grow faster in Kathmandu and beyond.
         </p>
 
         <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
@@ -163,7 +163,7 @@ export default function InteractiveShowcaseSection() {
                   <img
                     src={currentService.image}
                     className="size-full object-cover object-center dark:mix-blend-lighten hover:scale-105 transition-transform duration-700"
-                    alt={`${currentService.alt || 'Service'} - Web development and IT solutions by Ctrl Bits Nepal`}
+                    alt={`${currentService.alt || 'Service'} - Web development, marketing, and software services by Ctrl Bits agency in Kathmandu`}
                     width={1207}
                     height={929}
                     loading="lazy"

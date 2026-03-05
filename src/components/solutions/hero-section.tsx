@@ -25,7 +25,7 @@ export default function SolutionsHero() {
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
-            Solutions That{" "}
+            Services That{" "}
             <ContainerTextFlip
               className="cursor-target"
               words={[
@@ -42,8 +42,9 @@ export default function SolutionsHero() {
             Your <ShinyText text="Growth" hasSVG />.
           </h1>
           <p className="text-lg max-w-2xl mx-auto">
-            At Ctrl Bits, we blend code, creativity, and cutting-edge tools,
-            helping businesses thrive in the digital era— bit by{" "}
+            At Ctrl Bits, we provide web development, digital marketing, SEO,
+            video editing, graphic design, and custom software development,
+            helping businesses in Kathmandu and beyond thrive in the digital era — bit by{" "}
             <span className="font-medium text-foreground relative">
               bit
               <span className="absolute bottom-0 left-0 w-full h-0.5 rounded-full"></span>

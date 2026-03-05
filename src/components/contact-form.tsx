@@ -177,7 +177,7 @@ export default function ContactSection() {
         icon: <PhoneIcon />,
         label: "Call Us",
         value: "+977-9709659012",
-        subtitle: "Monday-Friday, 9AM-6PM EST",
+        subtitle: "Monday-Friday, 9AM-6PM NPT",
       },
     ],
     support: [
@@ -210,8 +210,8 @@ export default function ContactSection() {
       {
         icon: <PhoneIcon />,
         label: "Sales Team",
-        value: "+977-9862478661",
-        subtitle: "Monday-Friday, 8AM-7PM EST",
+        value: "+977-9709659012",
+        subtitle: "Monday-Friday, 8AM-7PM NPT",
       },
       {
         icon: <GlobeIcon />,
@@ -239,7 +239,7 @@ export default function ContactSection() {
             Get in Touch
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Contact CtrlBits – Let's Build Smarter Together
+            Contact Ctrl Bits — Let's Build Smarter Together
           </p>
         </div>
 
@@ -335,7 +335,7 @@ export default function ContactSection() {
                   Thank You!
                 </h3>
                 <p className="text-center text-gray-600 dark:text-gray-400 max-w-md">
-                  Your message has been received. One of our IT specialists will
+                  Your message has been received. One of our agency specialists will
                   get back to you within 24 hours.
                 </p>
                 <button

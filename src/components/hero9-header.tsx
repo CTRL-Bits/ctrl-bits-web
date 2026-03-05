@@ -58,7 +58,7 @@ const HeroHeader = () => {
                   {theme === "dark" ? (
                     <img
                       src="/LogoWhiteNav.webp"
-                      alt="Ctrl Bits - Web development company Nepal | Software development Kathmandu | Custom IT solutions"
+                      alt="Ctrl Bits - Kathmandu web development and digital marketing agency | SEO, creative production, and software services"
                       width="101"
                       height="56"
                       className="h-8 w-auto transition-all duration-200 group-hover:brightness-110"
@@ -66,7 +66,7 @@ const HeroHeader = () => {
                   ) : (
                     <img
                       src="/LogoBlackNav.webp"
-                      alt="Ctrl Bits - Web development company Nepal | Software development Kathmandu | Custom IT solutions"
+                      alt="Ctrl Bits - Kathmandu web development and digital marketing agency | SEO, creative production, and software services"
                       width="101"
                       height="56"
                       className="h-8 w-auto transition-all duration-200 group-hover:brightness-90"

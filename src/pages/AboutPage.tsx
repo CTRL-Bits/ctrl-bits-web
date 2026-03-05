@@ -1,21 +1,30 @@
 import ContentSection from "@/components/about-us-content-section";
 import TeamSection from "@/components/team-section";
+import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const AboutPage = () => {
   usePageMetadata({
     title: "About Us",
     description:
-      "Discover more about CtrlBits, Nepal's best next-generation software development Company, delivering powerful digital solutions.",
+      "Learn about Ctrl Bits, a Kathmandu-based digital team delivering web development, digital marketing, SEO, video editing, graphic design, and custom software solutions.",
     keywords:
-      "about us, software development company, Nepal, digital solutions, custom development",
-    ogTitle: "About Us | Web App Development With CtrlBits",
+      "about Ctrl Bits agency, Kathmandu digital agency, web development Kathmandu, digital marketing Kathmandu, SEO Kathmandu",
+    ogTitle: "About Ctrl Bits | Kathmandu Digital Team",
     ogDescription:
-      "Learn about CtrlBits, Nepal's leading software development company.",
+      "Meet the Kathmandu team behind web development, digital marketing, SEO, video editing, graphic design, and custom software delivery.",
+    ogUrl: "https://www.ctrlbits.com/about",
+    canonical: "https://www.ctrlbits.com/about",
+    twitterCard: "summary_large_image",
   });
 
   return (
     <>
+      <SchemaMarkup
+        type="webpage"
+        pageName="About"
+        pageUrl="https://www.ctrlbits.com/about"
+      />
       <ContentSection />
       <TeamSection />
     </>

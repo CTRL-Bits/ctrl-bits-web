@@ -6,9 +6,9 @@
 export const seoKeywords = {
   // Primary Keywords (High Volume, High Competition)
   primary: [
-    "web development company Nepal",
-    "IT solutions Nepal",
-    "software development company Nepal",
+    "web development agency Nepal",
+    "digital agency services Nepal",
+    "software development agency Nepal",
     "custom web development Kathmandu",
     "automation services Nepal"
   ],
@@ -25,14 +25,14 @@ export const seoKeywords = {
 
   // Long-tail Keywords (Low Competition, High Intent)
   longTail: [
-    "best web development company in Kathmandu Nepal",
+    "best web development agency in Kathmandu Nepal",
     "affordable custom software development Nepal",
     "business process automation solutions Kathmandu",
     "professional web development services Nepal",
-    "enterprise IT solutions provider Nepal",
+    "enterprise software and marketing services Nepal",
     "custom web application development Kathmandu",
     "cloud infrastructure services Nepal",
-    "mobile app development company Kathmandu",
+    "mobile app development agency Kathmandu",
     "e-commerce website development Nepal",
     "startup web development services Nepal",
     "API development and integration Nepal",
@@ -80,8 +80,8 @@ export const seoKeywords = {
   // Location-Based Keywords
   location: [
     "Kathmandu web development",
-    "Nepal software company",
-    "Bagmati IT solutions",
+    "Nepal software agency",
+    "Bagmati digital agency services",
     "web developers in Kathmandu valley"
   ],
 
@@ -137,17 +137,17 @@ export const seoImplementation = {
  * Alt Text Templates for Images
  */
 export const altTextTemplates = {
-  hero: "Professional web development team in Kathmandu Nepal working on custom software projects",
+  hero: "Professional web development agency team in Kathmandu Nepal working on custom software projects",
   services: {
     webDev: "Custom web development services Nepal - modern responsive websites and applications",
     automation: "Business process automation solutions for Nepal companies - workflow optimization",
-    cloud: "Cloud infrastructure and AWS services Nepal - scalable hosting solutions",
+    cloud: "Cloud infrastructure and AWS services Nepal - scalable hosting and DevOps solutions",
     analytics: "Data analytics and business intelligence dashboards Nepal",
     design: "UI UX design services Nepal - user-centered interface design"
   },
   team: "Expert software development team at Ctrl Bits Kathmandu Nepal",
   portfolio: "Web development portfolio - successful projects delivered in Nepal",
-  contact: "Contact Ctrl Bits web development company Kathmandu Nepal office"
+  contact: "Contact Ctrl Bits web development agency Kathmandu Nepal office"
 };
 
 export default {
