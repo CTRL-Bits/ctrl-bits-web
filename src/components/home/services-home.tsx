@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Service {
   title: string;
@@ -9,31 +10,49 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Digital Marketing",
+    title: "Web Development",
     description:
-      "SEO, paid campaigns, and social media marketing tailored to Nepal and global audiences to drive qualified leads and growth.",
+      "Responsive websites, high-performance web apps, and e-commerce development built for speed, security, and conversions.",
     tags: [
-      "SEO",
-      "Paid Ads",
-      "Social Media",
-      "Content Strategy",
+      "Website Development",
+      "Web Apps",
+      "E-commerce",
+      "CMS",
     ],
   },
   {
-    title: "Design, Graphics & Motion",
+    title: "Digital Marketing",
     description:
-      "Branding, graphics, motion design, and video editing that elevate your online presence and campaign performance.",
-    tags: ["Graphic Design", "Motion Graphics", "Video Editing"],
+      "Targeted paid campaigns, social media management, and funnel optimization to generate qualified leads and measurable growth.",
+    tags: ["Paid Ads", "Social Media", "Lead Generation", "Analytics"],
   },
   {
-    title: "Web & Software Development",
+    title: "SEO Services",
     description:
-      "Custom web development and software solutions, from MVPs to enterprise platforms with automation and integrations.",
+      "Technical SEO, on-page optimization, local SEO, and content strategy to improve rankings and organic traffic.",
+    tags: ["Technical SEO", "On-Page SEO", "Local SEO", "Content SEO"],
+  },
+  {
+    title: "Video Editing & Motion Graphics",
+    description:
+      "Professional video editing for ads, product demos, reels, and brand content designed for performance across platforms.",
+    tags: ["Video Editing", "Motion Graphics", "Ad Creatives", "Short-form Content"],
+  },
+  {
+    title: "Graphic Design & Branding",
+    description:
+      "Brand identity systems, social creatives, marketing assets, and UI graphics that keep your visual communication consistent.",
+    tags: ["Brand Identity", "Graphic Design", "Social Creatives", "UI Assets"],
+  },
+  {
+    title: "Custom Software Development",
+    description:
+      "Tailored software solutions, API integrations, and workflow automation for startups, SMEs, and enterprise teams.",
     tags: [
-      "Web Development",
       "Custom Software",
+      "API Integration",
       "Automation",
-      "Integrations",
+      "Scalable Architecture",
     ],
   },
 ];
@@ -133,7 +152,7 @@ const VideoShowcase = () => {
         <img
           src="/bitman.png"
           className="w-full h-full object-cover"
-          alt="Custom software development by Ctrl Bits, web development company in Nepal"
+          alt="Custom software development by Ctrl Bits, a Kathmandu web development and digital growth agency"
         />
 
         {/* Subtle overlay on hover */}
@@ -181,7 +200,7 @@ export default function ServicesHome() {
             Services Built for Growth
           </h2>
           <p className="text-xl md:text-2xl text-foreground">
-            Web development, marketing, and creative production in one team.
+            Web development, digital marketing, SEO, video editing, graphic design, and custom software development in one team.
           </p>
         </div>
 
@@ -192,6 +211,20 @@ export default function ServicesHome() {
             {services.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                to="/solutions"
+                className="inline-flex items-center rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                View Full Service Details
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Book a Discovery Call
+              </Link>
+            </div>
           </div>
 
           {/* Right: Video Showcase - Sticky on scroll */}

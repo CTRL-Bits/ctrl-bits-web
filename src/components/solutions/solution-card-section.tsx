@@ -19,34 +19,34 @@ interface Solution {
 const solutions: Solution[] = [
   {
     icon: Code,
-    title: "Modern Technology Stack",
-    description: "Fast, scalable, and future-ready web applications",
+    title: "Web Development",
+    description: "Responsive websites, web apps, e-commerce builds, and CMS implementation.",
   },
   {
     icon: ShieldCheck,
-    title: "Enterprise-Grade Security",
-    description: "SSL, encryption, secure coding standards",
+    title: "SEO Services",
+    description: "Technical SEO, on-page optimization, local SEO, and content strategy.",
   },
   {
     icon: Cpu,
-    title: "Intelligent Automation",
-    description: "Smarter systems with intelligent workflows",
+    title: "Digital Marketing",
+    description: "Paid ads, social media campaigns, and conversion-focused funnel optimization.",
     featured: true,
   },
   {
     icon: BarChart3,
-    title: "Data-Driven Insights",
-    description: "Real-time analytics and dashboard development",
+    title: "Video Editing & Motion Graphics",
+    description: "Ad creatives, reels, product demos, and branded visual storytelling.",
   },
   {
     icon: Palette,
-    title: "Engaging Design",
-    description: "Stunning visuals, intuitive UI/UX",
+    title: "Graphic Design & Branding",
+    description: "Brand identity, campaign visuals, and design systems for digital channels.",
   },
   {
     icon: Sparkles,
-    title: "Continuous Innovation",
-    description: "Future-ready digital strategy",
+    title: "Custom Software Development",
+    description: "API integrations, workflow automation, and scalable custom software systems.",
   },
 ];
 
@@ -203,8 +203,8 @@ export default function SolutionCardSection() {
             How We <span className="font-medium">Power Your Success</span>
           </h2>
           <span className="text-muted-foreground font-normal w-1/2 block">
-            Our comprehensive approach ensures that every aspect of your digital
-            presence is optimized for growth and performance.
+            Our Kathmandu team delivers end-to-end services, from strategy and design
+            to development, marketing, and long-term optimization.
           </span>
         </div>
 

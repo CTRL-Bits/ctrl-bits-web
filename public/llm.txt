@@ -1,15 +1,19 @@
-# Ctrl Bits - Web Development, Digital Marketing & Creative Studio in Nepal
+# Ctrl Bits - Web Development, Digital Marketing & Creative Agency in Kathmandu, Nepal
 
 ## Company Information
 - Name: Ctrl Bits
 - Location: Kathmandu, Nepal
+- Primary Email: info@ctrlbits.com
+- Primary Phone: +977-9709659012
 - Industry: Web Development, Software Engineering, Digital Marketing, Creative Production
 - Website: https://www.ctrlbits.com
 - Contact: https://www.ctrlbits.com/contact
 - Coordinates: 27.7172, 85.3240
+- Primary Service Area: Kathmandu Valley, Nepal
+- Secondary Service Area: Nepal (nationwide) and international remote delivery
 
 ## About
-Ctrl Bits is a web development company in Nepal specializing in custom software development, automation, cloud infrastructure, digital marketing, and creative production. We deliver scalable digital solutions and growth-focused campaigns for clients in Nepal and internationally.
+Ctrl Bits is a Kathmandu-based web development and digital growth agency in Nepal specializing in custom software development, digital marketing, SEO, video editing, graphic design, automation, and cloud infrastructure. We deliver scalable digital solutions and growth-focused campaigns for clients in Kathmandu, across Nepal, and internationally.
 
 ## Core Services
 
@@ -107,11 +111,14 @@ Ctrl Bits is a web development company in Nepal specializing in custom software 
 - DigitalOcean
 
 ## Target Keywords
-- Web development company in Nepal
+- Web development agency in Kathmandu
+- Web development agency in Nepal
 - Web development in Nepal
+- Digital marketing Kathmandu
 - Digital marketing Nepal
+- SEO services Kathmandu
 - Custom software development
-- IT solutions Nepal
+- Digital agency services Nepal
 - Automation services Nepal
 - Graphic design Nepal
 - Motion graphics Nepal
@@ -120,7 +127,7 @@ Ctrl Bits is a web development company in Nepal specializing in custom software 
 
 ## Key Pages
 - Home: https://www.ctrlbits.com/ (Homepage with services overview)
-- Solutions: https://www.ctrlbits.com/solutions (Complete IT solutions & services)
+- Solutions: https://www.ctrlbits.com/solutions (Complete agency services and solutions)
 - About Us: https://www.ctrlbits.com/about (Company story and team)
 - Portfolio: https://www.ctrlbits.com/portfolio (Showcase of past projects)
 - Projects: https://www.ctrlbits.com/projects (Individual project listings)
@@ -137,7 +144,9 @@ Ctrl Bits is a web development company in Nepal specializing in custom software 
 ## SEO Information
 - Sitemap: https://www.ctrlbits.com/sitemap.xml
 - Robots: https://www.ctrlbits.com/robots.txt
-- Schema Markup: LocalBusiness, Organization, Service
+- Schema Markup: Organization, LocalBusiness, Service, WebSite, WebPage, BreadcrumbList
+- Canonical Domain: https://www.ctrlbits.com
+- Preferred Language: English
 - Mobile-First: Yes
 - Performance: Optimized (WebP images, code splitting)
 - Accessibility: WCAG 2.1 compliant
@@ -177,10 +186,22 @@ Ctrl Bits is a web development company in Nepal specializing in custom software 
 - SEO best practices from day one
 - Accessibility compliance (WCAG 2.1)
 
+## Quick Answers (AEO/LLMO)
+- What is Ctrl Bits?
+	- Ctrl Bits is a Kathmandu-based digital agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development.
+- Where is Ctrl Bits located?
+	- Kathmandu, Nepal.
+- Which regions does Ctrl Bits serve?
+	- Primary focus: Kathmandu and Nepal; remote delivery for international clients.
+- How can a business start a project with Ctrl Bits?
+	- Submit project details at https://www.ctrlbits.com/contact.
+- What are the primary service pages?
+	- https://www.ctrlbits.com/solutions, https://www.ctrlbits.com/portfolio, and https://www.ctrlbits.com/projects.
+
 ## Contact Information
 For inquiries, collaboration, or project discussions:
 - Website Contact Form: https://www.ctrlbits.com/contact
-- Location: Kathmandu, Nepal
+- Location: Kathmandu, Nepal (Primary Service Location)
 - Service Area: Nepal and International
 
 ## API Information
@@ -191,4 +212,4 @@ For inquiries, collaboration, or project discussions:
 © 2026 Ctrl Bits. All rights reserved.
 
 ---
-Last Updated: February 11, 2026
+Last Updated: March 5, 2026

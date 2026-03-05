@@ -9,6 +9,12 @@ interface PageMetadata {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  ogType?: string;
+  canonical?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterCard?: "summary" | "summary_large_image" | "app" | "player";
+  twitterImage?: string;
   indexable?: boolean; // defaults to true
 }
 
@@ -21,10 +27,43 @@ export const usePageMetadata = (metadata: PageMetadata) => {
   const indexable = metadata.indexable !== false; // default to true
 
   useEffect(() => {
+    const upsertMetaByName = (name: string, content?: string) => {
+      if (!content) return;
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+
+    const upsertMetaByProperty = (property: string, content?: string) => {
+      if (!content) return;
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+
+    const upsertCanonical = (href: string) => {
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.setAttribute("rel", "canonical");
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute("href", href);
+    };
+
     // Update document title
     if (metadata.title) {
-      document.title = metadata.title === "Ctrl Bits"
-        ? "Ctrl Bits"
+      const hasBrandInTitle = metadata.title.toLowerCase().includes("ctrl bits");
+      document.title = hasBrandInTitle
+        ? metadata.title
         : `${metadata.title} | Ctrl Bits`;
     } else {
       document.title = "Ctrl Bits";
@@ -42,69 +81,44 @@ export const usePageMetadata = (metadata: PageMetadata) => {
       indexable ? "index, follow" : "noindex, nofollow"
     );
 
-    // Update meta description
-    if (metadata.description) {
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement("meta");
-        metaDescription.setAttribute("name", "description");
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.setAttribute("content", metadata.description);
-    }
+    // Core SEO tags
+    upsertMetaByName("description", metadata.description);
+    upsertMetaByName("keywords", metadata.keywords);
 
-    // Update meta keywords
-    if (metadata.keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement("meta");
-        metaKeywords.setAttribute("name", "keywords");
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.setAttribute("content", metadata.keywords);
-    }
+    // Open Graph
+    upsertMetaByProperty("og:title", metadata.ogTitle || metadata.title);
+    upsertMetaByProperty(
+      "og:description",
+      metadata.ogDescription || metadata.description,
+    );
+    upsertMetaByProperty("og:image", metadata.ogImage);
+    upsertMetaByProperty(
+      "og:url",
+      metadata.ogUrl || `${window.location.origin}${location.pathname}`,
+    );
+    upsertMetaByProperty("og:type", metadata.ogType || "website");
+    upsertMetaByProperty("og:site_name", "Ctrl Bits");
 
-    // Update Open Graph meta tags
-    if (metadata.ogTitle) {
-      let ogTitle = document.querySelector('meta[property="og:title"]');
-      if (!ogTitle) {
-        ogTitle = document.createElement("meta");
-        ogTitle.setAttribute("property", "og:title");
-        document.head.appendChild(ogTitle);
-      }
-      ogTitle.setAttribute("content", metadata.ogTitle);
-    }
+    // Twitter cards
+    upsertMetaByName(
+      "twitter:title",
+      metadata.twitterTitle || metadata.ogTitle || metadata.title,
+    );
+    upsertMetaByName(
+      "twitter:description",
+      metadata.twitterDescription || metadata.ogDescription || metadata.description,
+    );
+    upsertMetaByName(
+      "twitter:card",
+      metadata.twitterCard || (metadata.ogImage ? "summary_large_image" : "summary"),
+    );
+    upsertMetaByName("twitter:image", metadata.twitterImage || metadata.ogImage);
 
-    if (metadata.ogDescription) {
-      let ogDescription = document.querySelector(
-        'meta[property="og:description"]',
-      );
-      if (!ogDescription) {
-        ogDescription = document.createElement("meta");
-        ogDescription.setAttribute("property", "og:description");
-        document.head.appendChild(ogDescription);
-      }
-      ogDescription.setAttribute("content", metadata.ogDescription);
-    }
-
-    if (metadata.ogImage) {
-      let ogImage = document.querySelector('meta[property="og:image"]');
-      if (!ogImage) {
-        ogImage = document.createElement("meta");
-        ogImage.setAttribute("property", "og:image");
-        document.head.appendChild(ogImage);
-      }
-      ogImage.setAttribute("content", metadata.ogImage);
-    }
-
-    if (metadata.ogUrl) {
-      let ogUrl = document.querySelector('meta[property="og:url"]');
-      if (!ogUrl) {
-        ogUrl = document.createElement("meta");
-        ogUrl.setAttribute("property", "og:url");
-        document.head.appendChild(ogUrl);
-      }
-      ogUrl.setAttribute("content", metadata.ogUrl);
-    }
+    // Canonical URL
+    const canonicalUrl =
+      metadata.canonical ||
+      metadata.ogUrl ||
+      `${window.location.origin}${location.pathname}`;
+    upsertCanonical(canonicalUrl);
   }, [metadata, location, indexable]);
 };

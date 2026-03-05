@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon components
@@ -326,12 +327,15 @@ export default function WorksPage() {
   usePageMetadata({
     title: "Portfolio",
     description:
-      "Explore the Ctrl Bits portfolio of custom web development, automation, and digital marketing projects for Nepal and global clients.",
+      "Explore Ctrl Bits portfolio work from Kathmandu across web development, digital marketing, SEO, video editing, graphic design, and software development.",
     keywords:
-      "web development company in Nepal, portfolio, custom web development, automation, digital marketing, case studies",
-    ogTitle: "Portfolio | Ctrl Bits",
+      "Kathmandu web development portfolio, digital marketing portfolio Nepal, SEO case studies Kathmandu, software projects Nepal",
+    ogTitle: "Portfolio | Ctrl Bits Kathmandu",
     ogDescription:
-      "Explore the Ctrl Bits portfolio of custom web development, automation, and digital marketing projects.",
+      "Portfolio of website builds, marketing campaigns, SEO growth work, creative production, and software projects.",
+    ogUrl: "https://www.ctrlbits.com/portfolio",
+    canonical: "https://www.ctrlbits.com/portfolio",
+    twitterCard: "summary_large_image",
   });
 
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -388,6 +392,11 @@ export default function WorksPage() {
   if (error) {
     return (
       <section className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
+        <SchemaMarkup
+          type="webpage"
+          pageName="Portfolio"
+          pageUrl="https://www.ctrlbits.com/portfolio"
+        />
         <div className="text-center px-6">
           <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-2">
             Failed to load projects
@@ -406,6 +415,11 @@ export default function WorksPage() {
 
   return (
     <section className="min-h-screen bg-white dark:bg-black">
+      <SchemaMarkup
+        type="webpage"
+        pageName="Portfolio"
+        pageUrl="https://www.ctrlbits.com/portfolio"
+      />
       <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
         {/* Header */}
         <div

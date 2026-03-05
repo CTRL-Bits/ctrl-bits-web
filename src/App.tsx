@@ -23,6 +23,12 @@ const App = () => {
         {/* Global SEO directives for all pages */}
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
+        <meta name="geo.region" content="NP-BA" />
+        <meta name="geo.placename" content="Kathmandu" />
+        <meta name="geo.position" content="27.7172;85.3240" />
+        <meta name="ICBM" content="27.7172, 85.3240" />
+        <meta name="author" content="Ctrl Bits" />
+        <meta name="publisher" content="Ctrl Bits" />
         
         {/* Google Analytics */}
         <script

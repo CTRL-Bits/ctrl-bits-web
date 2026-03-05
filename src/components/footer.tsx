@@ -14,8 +14,12 @@ const links = [
     to: "/about",
   },
   {
-    title: "Works",
+    title: "Portfolio",
     to: "/portfolio",
+  },
+  {
+    title: "Projects",
+    to: "/projects",
   },
   {
     title: "Contact",
@@ -109,7 +113,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hello@ctrlbits.xyz",
+    text: "info@ctrlbits.com",
   },
 ];
 
@@ -176,8 +180,8 @@ export default function FooterSection() {
             </Link>
 
             <p className="text-sm text-muted-foreground max-w-xs">
-              Crafting powerful, scalable, and future-ready digital solutions
-              that transform businesses bit by bit.
+              Kathmandu-based agency for web development, digital marketing,
+              SEO, creative production, and custom software solutions.
             </p>
 
             {/* Social Links - Desktop */}

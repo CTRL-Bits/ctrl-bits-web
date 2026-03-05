@@ -58,7 +58,7 @@ export default function InteractiveShowcaseSection() {
         "We design and manage secure, scalable cloud infrastructures tailored for Nepalese businesses. From cloud hosting setup and data backups to DevOps pipelines and load balancing, Ctrl Bits ensures your digital foundation is reliable, fast, and future-proof. Our infrastructure solutions are powered by AWS, Google Cloud, or DigitalOcean — optimized for uptime, security, and compliance.",
       icon: ShieldCheck,
       image: Infrastructure,
-      alt: "IT solutions Nepal with secure cloud infrastructure by Ctrl Bits",
+      alt: "Secure cloud infrastructure and DevOps services in Nepal by Ctrl Bits agency",
     },
     {
       id: "item-4",
@@ -102,9 +102,9 @@ export default function InteractiveShowcaseSection() {
         </h2>
 
         <p className="max-w-3xl mx-auto text-center text-muted-foreground mb-12">
-          Ctrl Bits delivers web development, automation, digital marketing, and
-          creative production to help Nepali businesses grow faster and compete
-          globally.
+          Ctrl Bits delivers web development, digital marketing, SEO, video
+          editing, graphic design, automation, and software solutions to help
+          businesses grow faster in Kathmandu and beyond.
         </p>
 
         <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
@@ -163,7 +163,7 @@ export default function InteractiveShowcaseSection() {
                   <img
                     src={currentService.image}
                     className="size-full object-cover object-center dark:mix-blend-lighten hover:scale-105 transition-transform duration-700"
-                    alt={`${currentService.alt || 'Service'} - Web development and IT solutions by Ctrl Bits Nepal`}
+                    alt={`${currentService.alt || 'Service'} - Web development, marketing, and software services by Ctrl Bits agency in Kathmandu`}
                     width={1207}
                     height={929}
                     loading="lazy"

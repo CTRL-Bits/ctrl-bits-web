@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 // Icon Components
@@ -105,6 +106,27 @@ export default function ProjectDetailPage() {
   const [error, setError] = useState<string | null>(null);
 
   const { slug } = useParams();
+  const navigate = useNavigate();
+
+  const projectDescription =
+    project?.description ||
+    project?.full_description ||
+    "Project case study from Ctrl Bits, Kathmandu.";
+  const projectKeywords =
+    project?.tags?.map((t: Tag) => t.name).join(", ") ||
+    "web development project, Kathmandu, Nepal";
+
+  usePageMetadata({
+    title: project?.title || "Project Details",
+    description: projectDescription,
+    keywords: projectKeywords,
+    ogTitle: project?.title ? `${project.title} | Ctrl Bits` : "Project Details | Ctrl Bits",
+    ogDescription: projectDescription,
+    ogImage: project?.thumbnail,
+    ogUrl: slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects",
+    canonical: slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects",
+    twitterCard: project?.thumbnail ? "summary_large_image" : "summary",
+  });
 
   const API_URL = "https://api.ctrlbits.xyz/api";
 
@@ -147,23 +169,14 @@ export default function ProjectDetailPage() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  // Update page metadata when project loads
-  useEffect(() => {
-    if (project) {
-      usePageMetadata({
-        title: project.title,
-        description: project.description || project.full_description || "Project details",
-        keywords: project.tags?.map((t: Tag) => t.name).join(", ") || "",
-        ogTitle: `${project.title} | Ctrl Bits`,
-        ogDescription: project.description || project.full_description,
-        ogImage: project.thumbnail,
-      });
-    }
-  }, [project]);
-
   if (error || (!loading && !project)) {
     return (
       <section className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
+        <SchemaMarkup
+          type="webpage"
+          pageName={project?.title || "Project Details"}
+          pageUrl={slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects"}
+        />
         <div className="text-center px-6">
           <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-2">
             {error ? "Failed to load project" : "Project not found"}
@@ -172,7 +185,7 @@ export default function ProjectDetailPage() {
             {error || "The project you're looking for doesn't exist."}
           </p>
           <button
-            onClick={() => (window.location.href = "/portfolio")}
+            onClick={() => navigate("/portfolio")}
             className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600 transition-colors"
           >
             <ArrowLeftIcon />
@@ -185,6 +198,11 @@ export default function ProjectDetailPage() {
 
   return (
     <section className="min-h-screen bg-white dark:bg-black">
+      <SchemaMarkup
+        type="webpage"
+        pageName={project?.title || "Project Details"}
+        pageUrl={slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects"}
+      />
       <div className="max-w-4xl mx-auto px-6 py-20 md:py-32">
         {/* Back Button */}
         <div

@@ -132,7 +132,7 @@ export default function HeroSection() {
               >
                 <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary ring-1 ring-primary/20 backdrop-blur-sm">
                   <Sparkles className="mr-1.5 h-3.5 w-3.5 animate-pulse" />
-                  Web Development & Digital Marketing
+                  Web Development, SEO & Digital Marketing
                 </span>
               </div>
 
@@ -141,7 +141,7 @@ export default function HeroSection() {
               >
                 <h1 className="mt-6 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-12 xl:text-7xl">
                   <VariableProximity
-                    label="Leading Web Development Company in Nepal"
+                    label="Leading Web Development & Digital Growth Agency in Kathmandu"
                     fromFontVariationSettings="'wght' 400, 'wdth' 100"
                     toFontVariationSettings="'wght' 800, 'wdth' 125"
                     containerRef={containerRef}
@@ -156,7 +156,7 @@ export default function HeroSection() {
                 className={`mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-300
                   `}
               >
-                Professional web development company in Kathmandu, Nepal, specializing in custom software development, business automation, digital marketing, and creative production including motion graphics and video editing.
+                Kathmandu-based web development and digital growth agency specializing in custom software development, SEO, digital marketing, video editing, graphic design, automation, and creative production.
               </p>
 
               <div
@@ -227,7 +227,7 @@ export default function HeroSection() {
                   <div className="h-full w-full overflow-hidden rounded-xl">
                     <img
                       src="/logo.webp"
-                      alt="Ctrl Bits logo - web development company in Nepal"
+                      alt="Ctrl Bits logo - Kathmandu web development and digital growth agency"
                       width={600}
                       height={600}
                       loading="eager"
@@ -291,7 +291,7 @@ export default function HeroSection() {
                         company.invert ? "invert dark:invert-0" : ""
                       }`}
                       src={company.logo}
-                      alt={`${company.name} - Client of Ctrl Bits web development company Nepal | IT solutions company`}
+                      alt={`${company.name} - Client of Ctrl Bits Kathmandu web development and digital growth agency`}
                       height="28"
                       width="auto"
                     />

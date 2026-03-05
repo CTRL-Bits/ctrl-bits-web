@@ -145,7 +145,7 @@ const LinkPreview = ({
                     width={width}
                     height={height}
                     className="rounded-lg"
-                    alt="Client testimonial preview for Ctrl Bits, IT solutions Nepal"
+                    alt="Client testimonial preview for Ctrl Bits, Kathmandu web development and digital growth agency"
                   />
                 </a>
               </motion.div>
@@ -274,7 +274,7 @@ export default function Testimonials() {
           </h2>
           <p>
             At Ctrl Bits, we help Nepali startups and enterprises build secure,
-            scalable web apps and IT solutions – trusted by businesses across
+            scalable web apps and digital agency solutions – trusted by businesses across
             different industries.
           </p>
         </div>

@@ -11,7 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavbarSection() {
   const navItems = [
@@ -28,14 +28,20 @@ export default function NavbarSection() {
       link: "/portfolio",
     },
     {
+      name: "Projects",
+      link: "/projects",
+    },
+    {
       name: "Blog",
       link: "https://blog.ctrlbits.com",
     },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
   const handleBookCallButtonPress = () => {
-    document.location = "/contact";
+    navigate("/contact");
     setIsMobileMenuOpen(false);
   };
   return (
@@ -47,7 +53,7 @@ export default function NavbarSection() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton
-              onClick={() => (document.location = "/contact")}
+              onClick={() => navigate("/contact")}
               className="cursor-target rounded-full"
               variant="primary"
             >

@@ -13,8 +13,12 @@ const links = [
     to: "/about",
   },
   {
-    title: "Works",
+    title: "Portfolio",
     to: "/portfolio",
+  },
+  {
+    title: "Projects",
+    to: "/projects",
   },
   {
     title: "Contact",
@@ -117,7 +121,7 @@ const contactInfo = [
   },
   {
     icon: <Mail className="h-4 w-4" />,
-    text: "hi@ctrlbits.com",
+    text: "info@ctrlbits.com",
   },
 ];
 
@@ -175,15 +179,16 @@ export default function FooterSection() {
               <div className="flex items-center space-x-2">
                 <img
                   src="/favicon.png"
-                  alt="Ctrl Bits - Web development company and IT solutions provider in Nepal"
+                  alt="Ctrl Bits - Kathmandu web development and digital growth agency"
                   className="h-10 w-auto invert dark:invert-0"
                 />
               </div>
             </Link>
 
             <p className="text-sm text-muted-foreground max-w-xs">
-              Crafting powerful, scalable, and future-ready digital solutions
-              that transform businesses bit by bit.
+              Kathmandu-based agency for web development, digital marketing,
+              SEO, video editing, graphic design, and custom software
+              solutions.
             </p>
 
             {/* Social Links - Desktop */}
@@ -341,7 +346,7 @@ export default function FooterSection() {
           </div>
         </div>
         <h1 className="text-7xl text-center font-bold my-8 text-transparent bg-clip-text bg-gradient-to-t from-black/60 to-white">
-          CTRL THE CODE, BIT BY BIT.
+          Ctrl the code, bit by bit.
         </h1>
       </div>
 

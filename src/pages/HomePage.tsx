@@ -4,22 +4,28 @@ import HeroSection from "@/components/home/hero-section";
 import ServicesHome from "@/components/home/services-home";
 // import Testimonials from "@/components/home/testimonials-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
+import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const HomePage = () => {
   usePageMetadata({
-    title: "Ctrl Bits",
+    title: "Ctrl Bits — Web Development & Digital Marketing Agency in Kathmandu, Nepal",
     description:
-      "Ctrl Bits offers web development, digital marketing, and development services in Nepal and internationally.",
+      "Ctrl Bits is a Kathmandu-based agency offering web development, digital marketing, SEO, video editing, graphic design, and custom software development services for Nepal and international clients.",
     keywords:
-      "web development company in Nepal, web development, digital marketing, software development, Nepal",
-    ogTitle: "Ctrl Bits - Web Development Company in Nepal",
+      "Ctrl Bits, ctrl bits, Ctrl Bits Nepal, web development agency Kathmandu, digital marketing agency Kathmandu, SEO services Kathmandu, video editing Kathmandu, graphic design Kathmandu, software development Kathmandu",
+    ogTitle:
+      "Kathmandu Web Development & Digital Marketing Agency | Ctrl Bits",
     ogDescription:
-      "Ctrl Bits offers web development, digital marketing, and development services in Nepal and internationally.",
+      "Kathmandu-based services in web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+    ogUrl: "https://www.ctrlbits.com/",
+    canonical: "https://www.ctrlbits.com/",
+    twitterCard: "summary_large_image",
   });
 
   return (
     <>
+      <SchemaMarkup type="localBusiness" />
       <HeroSection />
       <HeroClientsShowcase />
       <div className="w-full flex flex-col gap-16">

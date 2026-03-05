@@ -92,7 +92,7 @@ const TeamAvatar = memo(
         >
           <img
             src={member.avatar}
-            alt={`${member.name} - Software developer at Ctrl Bits web development company Nepal`}
+            alt={`${member.name} - Software developer at Ctrl Bits Kathmandu web development agency`}
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -167,7 +167,7 @@ export default function HeroSection() {
               <div className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-emerald-500/40 animate-ping" />
             </div>
             <span className="text-[13px] font-medium text-muted-foreground tracking-wide">
-              Nepal · Web Development & Digital Marketing
+              Nepal · Web Development & Digital Growth Agency
             </span>
           </div>
 
@@ -179,7 +179,7 @@ export default function HeroSection() {
                 "fadeInUp 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms backwards",
             }}
           >
-            Web Development, Digital Marketing{" "}
+            Ctrl Bits — Web Development, Digital Marketing{" "}
             <span className="font-normal text-muted-foreground">
               & Growth
             </span>
@@ -193,9 +193,9 @@ export default function HeroSection() {
                 "fadeInUp 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms backwards",
             }}
           >
-            Build and scale with a web development company in Nepal delivering
-            custom software, automation, digital marketing, and motion graphics
-            with video editing that drives measurable results.
+            Build and scale with Ctrl Bits, a Kathmandu-based agency delivering web
+            development, SEO, digital marketing, custom software, graphic
+            design, and video editing that drives measurable results.
           </p>
 
           {/* CTA Buttons */}

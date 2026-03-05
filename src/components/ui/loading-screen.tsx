@@ -60,7 +60,7 @@ const LoadingScreen = ({ companyName = "Ctrl Bits" }: LoadingScreenProps) => {
               boxShadow: `0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.05)`,
             }}
           >
-            <img src="/logo-blue-black.png" alt="CtrlBits' Logo" />
+            <img src="/logo-blue-black.png" alt="Ctrl Bits logo" />
 
             {/* Subtle inner glow */}
             <div
