@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# The following directive is not part of the robots.txt standard and can
+# cause validators/crawlers to report an error. If you need to keep this
+# signal for internal use, keep it commented out; otherwise remove it
+# from any place that injects it into the served robots.txt.
+# Content-Signal: search=yes,ai-train=no
+
 Sitemap: https://www.ctrlbits.com/sitemap.xml
