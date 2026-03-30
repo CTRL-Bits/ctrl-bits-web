@@ -206,13 +206,10 @@ export default function FeaturesHomeSection() {
                 "fadeInUp 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms backwards",
             }}
           >
-            We deliver web development, custom software, and digital marketing
-            that turn ideas into{" "}
-            <span className="font-medium">market-ready MVPs.</span>{" "}
-            <span className="text-muted-foreground font-normal">
-              From automation to graphics, motion, and video editing, we build
-              responsive experiences that convert.
-            </span>
+            We build market-ready web & custom software (
+            <span className="font-medium">MVPs</span>
+            ) and grow businesses with digital marketing, automation, UX, and
+            video/graphic production.
           </h2>
 
           <div

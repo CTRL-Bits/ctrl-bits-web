@@ -136,7 +136,7 @@ export default function FeaturesSection() {
                 </p>
                 <Link
                   className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
-                  to="/custom-web-design"
+                  to="/solutions"
                 >
                   Explore More About Customization <ArrowRight size={14} />
                 </Link>
@@ -171,7 +171,7 @@ export default function FeaturesSection() {
                   </p>
                   <Link
                     className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
-                    to="/secure-web-development"
+                    to="/solutions"
                   >
                     Learn More About Secure Web Development{" "}
                     <ArrowRight size={14} />
@@ -208,7 +208,7 @@ export default function FeaturesSection() {
                   </p>
                   <Link
                     className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
-                    to="/fast-web-app-performance"
+                    to="/solutions"
                   >
                     Learn About Fast Web Performance <ArrowRight size={14} />
                   </Link>
@@ -245,7 +245,7 @@ export default function FeaturesSection() {
                     </p>
                     <Link
                       className="flex justify-center mt-4 underline cursor-pointer z-10 items-center text-sm"
-                      to="/custom-analytics-dashboards"
+                      to="/solutions"
                     >
                       View Real-Time Dashboard Examples <ArrowRight size={14} />
                     </Link>
@@ -290,7 +290,7 @@ export default function FeaturesSection() {
                     </p>
                     <Link
                       className="flex mt-4 underline cursor-pointer z-10 items-center text-sm"
-                      to="/realtime-support"
+                      to="/contact"
                     >
                       Explore how we do it
                       <ArrowRight size={14} />
