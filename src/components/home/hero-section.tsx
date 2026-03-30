@@ -65,7 +65,7 @@ const MagneticButton = memo(
         <span className="relative z-10">{children}</span>
       </Link>
     );
-  }
+  },
 );
 
 const TeamAvatar = memo(
@@ -117,7 +117,7 @@ const TeamAvatar = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default function HeroSection() {
@@ -127,7 +127,7 @@ export default function HeroSection() {
     const fetchMembers = async () => {
       try {
         const { data } = await axios.get<TeamMemberResponse>(
-          "https://api.ctrlbits.xyz/api/team/"
+          "https://api.ctrlbits.xyz/api/team/",
         );
         setMembers(data.results);
       } catch (error) {
@@ -179,8 +179,8 @@ export default function HeroSection() {
                 "fadeInUp 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms backwards",
             }}
           >
-            Ctrl Bits — Web Development, Digital Marketing{" "}
-            <span className="font-normal text-muted-foreground">
+            Web Development, Digital Marketing{" "}
+            <span className="font-normal text-muted-foreground italic">
               & Growth
             </span>
           </h1>
@@ -193,8 +193,8 @@ export default function HeroSection() {
                 "fadeInUp 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms backwards",
             }}
           >
-            Build and scale with Ctrl Bits, a Kathmandu-based agency delivering web
-            development, SEO, digital marketing, custom software, graphic
+            Build and scale with Ctrl Bits, a Kathmandu-based agency delivering
+            web development, SEO, digital marketing, custom software, graphic
             design, and video editing that drives measurable results.
           </p>
 

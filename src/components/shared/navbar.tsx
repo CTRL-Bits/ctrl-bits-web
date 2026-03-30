@@ -28,10 +28,6 @@ export default function NavbarSection() {
       link: "/portfolio",
     },
     {
-      name: "Projects",
-      link: "/projects",
-    },
-    {
       name: "Blog",
       link: "https://blog.ctrlbits.com",
     },
