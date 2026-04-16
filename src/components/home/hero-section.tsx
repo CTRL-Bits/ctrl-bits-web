@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState, useRef, memo } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 interface TeamMember {
   id: number;
@@ -13,6 +12,24 @@ interface TeamMember {
 interface TeamMemberResponse {
   results: TeamMember[];
 }
+
+const API_URL = "https://api.ctrlbits.xyz/api";
+
+const fetchTeamMembers = async (): Promise<TeamMember[]> => {
+  try {
+    const response = await fetch(`${API_URL}/team/`);
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const data: TeamMemberResponse = await response.json();
+    return data.results.sort((a, b) => a.id - b.id);
+  } catch (error) {
+    console.error("Failed to fetch team members:", error);
+    throw error;
+  }
+};
 
 const MagneticButton = memo(
   ({
@@ -124,17 +141,16 @@ export default function HeroSection() {
   const [members, setMembers] = useState<TeamMember[]>([]);
 
   useEffect(() => {
-    const fetchMembers = async () => {
+    const getTeamMembers = async () => {
       try {
-        const { data } = await axios.get<TeamMemberResponse>(
-          "https://api.ctrlbits.xyz/api/team/",
-        );
-        setMembers(data.results);
+        const data = await fetchTeamMembers();
+        setMembers(data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchMembers();
+
+    getTeamMembers();
   }, []);
 
   return (
