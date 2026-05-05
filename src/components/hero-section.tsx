@@ -58,7 +58,7 @@ export default function HeroSection() {
   const fetchCompanies = async () => {
     try {
       const response = await axios.get<CompanyResponse>(
-        "https://api.ctrlbits.xyz/api/companies"
+        "https://api.ctrlbits.com/api/companies",
       );
       setCompanies(response.data.results);
     } catch (error) {
@@ -86,7 +86,13 @@ export default function HeroSection() {
           invert: false,
           is_international: false,
         },
-        { id: 4, name: "WebNest", logo: "/logos/web-nest.svg", invert: false, is_international: false },
+        {
+          id: 4,
+          name: "WebNest",
+          logo: "/logos/web-nest.svg",
+          invert: false,
+          is_international: false,
+        },
         {
           id: 5,
           name: "CodeMasters",
@@ -156,7 +162,10 @@ export default function HeroSection() {
                 className={`mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-300
                   `}
               >
-                Kathmandu-based web development and digital growth agency specializing in custom software development, SEO, digital marketing, video editing, graphic design, automation, and creative production.
+                Kathmandu-based web development and digital growth agency
+                specializing in custom software development, SEO, digital
+                marketing, video editing, graphic design, automation, and
+                creative production.
               </p>
 
               <div

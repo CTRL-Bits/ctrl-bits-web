@@ -205,8 +205,8 @@ For inquiries, collaboration, or project discussions:
 - Service Area: Nepal and International
 
 ## API Information
-- Company API: https://api.ctrlbits.xyz/api/companies/
-- Subscriber API: https://api.ctrlbits.xyz/api/subscribers/
+- Company API: https://api.ctrlbits.com/api/companies/
+- Subscriber API: https://api.ctrlbits.com/api/subscribers/
 
 ## Copyright
 © 2026 Ctrl Bits. All rights reserved.

@@ -140,7 +140,7 @@ export default function FooterSection() {
 
     setIsSubmitting(true);
     try {
-      await axios.post(`https://api.ctrlbits.xyz/api/subscribers/`, { email });
+      await axios.post(`https://api.ctrlbits.com/api/subscribers/`, { email });
       setIsSubscribed(true);
       setEmail("");
     } catch (error) {

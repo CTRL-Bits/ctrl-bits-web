@@ -148,7 +148,7 @@ export default function FooterSection() {
 
     setIsSubmitting(true);
     try {
-      await axios.post(`https://api.ctrlbits.xyz/api/subscribers/`, { email });
+      await axios.post(`https://api.ctrlbits.com/api/subscribers/`, { email });
       setIsSubscribed(true);
       setEmail("");
     } catch (error) {
@@ -187,8 +187,7 @@ export default function FooterSection() {
 
             <p className="text-sm text-muted-foreground max-w-xs">
               Kathmandu-based agency for web development, digital marketing,
-              SEO, video editing, graphic design, and custom software
-              solutions.
+              SEO, video editing, graphic design, and custom software solutions.
             </p>
 
             {/* Social Links - Desktop */}

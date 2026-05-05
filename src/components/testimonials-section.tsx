@@ -190,7 +190,7 @@ export default function Testimonials() {
     async function fetchTestimonials() {
       try {
         const response = await axios.get(
-          "https://api.ctrlbits.xyz/api/testimonials"
+          "https://api.ctrlbits.com/api/testimonials",
         );
         if (!response) {
           throw new Error("Failed to fetch testimonials");
@@ -274,8 +274,8 @@ export default function Testimonials() {
           </h2>
           <p>
             At Ctrl Bits, we help Nepali startups and enterprises build secure,
-            scalable web apps and digital agency solutions – trusted by businesses across
-            different industries.
+            scalable web apps and digital agency solutions – trusted by
+            businesses across different industries.
           </p>
         </div>
 

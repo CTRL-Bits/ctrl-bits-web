@@ -120,15 +120,21 @@ export default function ProjectDetailPage() {
     title: project?.title || "Project Details",
     description: projectDescription,
     keywords: projectKeywords,
-    ogTitle: project?.title ? `${project.title} | Ctrl Bits` : "Project Details | Ctrl Bits",
+    ogTitle: project?.title
+      ? `${project.title} | Ctrl Bits`
+      : "Project Details | Ctrl Bits",
     ogDescription: projectDescription,
     ogImage: project?.thumbnail,
-    ogUrl: slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects",
-    canonical: slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects",
+    ogUrl: slug
+      ? `https://www.ctrlbits.com/projects/${slug}`
+      : "https://www.ctrlbits.com/projects",
+    canonical: slug
+      ? `https://www.ctrlbits.com/projects/${slug}`
+      : "https://www.ctrlbits.com/projects",
     twitterCard: project?.thumbnail ? "summary_large_image" : "summary",
   });
 
-  const API_URL = "https://api.ctrlbits.xyz/api";
+  const API_URL = "https://api.ctrlbits.com/api";
 
   const fetchProjectBySlug = async (slug: string): Promise<Project> => {
     try {
@@ -175,7 +181,11 @@ export default function ProjectDetailPage() {
         <SchemaMarkup
           type="webpage"
           pageName={project?.title || "Project Details"}
-          pageUrl={slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects"}
+          pageUrl={
+            slug
+              ? `https://www.ctrlbits.com/projects/${slug}`
+              : "https://www.ctrlbits.com/projects"
+          }
         />
         <div className="text-center px-6">
           <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-2">
@@ -201,7 +211,11 @@ export default function ProjectDetailPage() {
       <SchemaMarkup
         type="webpage"
         pageName={project?.title || "Project Details"}
-        pageUrl={slug ? `https://www.ctrlbits.com/projects/${slug}` : "https://www.ctrlbits.com/projects"}
+        pageUrl={
+          slug
+            ? `https://www.ctrlbits.com/projects/${slug}`
+            : "https://www.ctrlbits.com/projects"
+        }
       />
       <div className="max-w-4xl mx-auto px-6 py-20 md:py-32">
         {/* Back Button */}

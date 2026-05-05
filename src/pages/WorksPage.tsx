@@ -177,7 +177,7 @@ interface ProjectsResponse {
 }
 
 // API Service
-const API_URL = "https://api.ctrlbits.xyz/api";
+const API_URL = "https://api.ctrlbits.com/api";
 
 const fetchProjects = async (): Promise<ProjectsResponse> => {
   try {

@@ -89,7 +89,7 @@ export default function HeroClientsShowcase() {
   const fetchClients = async () => {
     try {
       setLoading(true);
-      const response = await fetch("https://api.ctrlbits.xyz/api/companies/");
+      const response = await fetch("https://api.ctrlbits.com/api/companies/");
       const data: CompanyResponse = await response.json();
       setClients(data.results);
     } catch (error) {
@@ -105,7 +105,7 @@ export default function HeroClientsShowcase() {
 
   const nationalClients = clients.filter((client) => !client.is_international);
   const internationalClients = clients.filter(
-    (client) => client.is_international
+    (client) => client.is_international,
   );
 
   const SectionDivider = ({ title }: { title: string }) => {

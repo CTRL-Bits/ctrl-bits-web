@@ -2,7 +2,7 @@
 
 import { Project } from "@/types";
 import axios from "axios";
-const API_URL = "https://api.ctrlbits.xyz/api"; // Replace with your actual API base URL
+const API_URL = "https://api.ctrlbits.com/api"; // Replace with your actual API base URL
 const apiClient = axios.create({
   baseURL: API_URL,
   headers: {
@@ -61,11 +61,11 @@ export const fetchProjectBySlug = async (slug: string): Promise<Project> => {
  * Fetch projects by category
  */
 export const fetchProjectsByCategory = async (
-  category: string
+  category: string,
 ): Promise<ProjectsResponse> => {
   try {
     const response = await fetch(
-      `${API_URL}/projects?category=${encodeURIComponent(category)}`
+      `${API_URL}/projects?category=${encodeURIComponent(category)}`,
     );
 
     if (!response.ok) {

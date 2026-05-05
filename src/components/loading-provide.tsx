@@ -12,11 +12,11 @@ const LoadingProvider = ({
   children,
   companyName,
   criticalEndpoints = [
-    "https://api.ctrlbits.xyz/api/testimonials/",
-    "https://api.ctrlbits.xyz/api/team/",
-    "https://api.ctrlbits.xyz/api/companies/",
-    "https://api.ctrlbits.xyz/api/tech/",
-    "https://api.ctrlbits.xyz/api/projects/",
+    "https://api.ctrlbits.com/api/testimonials/",
+    "https://api.ctrlbits.com/api/team/",
+    "https://api.ctrlbits.com/api/companies/",
+    "https://api.ctrlbits.com/api/tech/",
+    "https://api.ctrlbits.com/api/projects/",
   ],
 }: LoadingProviderProps) => {
   // Session storage key
@@ -42,8 +42,8 @@ const LoadingProvider = ({
                 throw new Error(`Failed to fetch ${url}`);
               }
               return response.json();
-            })
-          )
+            }),
+          ),
         );
 
         // Mark as loaded in this session

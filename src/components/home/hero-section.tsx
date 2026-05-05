@@ -13,7 +13,7 @@ interface TeamMemberResponse {
   results: TeamMember[];
 }
 
-const API_URL = "https://api.ctrlbits.xyz/api";
+const API_URL = "https://api.ctrlbits.com/api";
 
 const fetchTeamMembers = async (): Promise<TeamMember[]> => {
   try {

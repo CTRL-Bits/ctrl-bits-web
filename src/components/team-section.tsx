@@ -117,7 +117,7 @@ const iconMap: Record<string, React.ComponentType> = {
 };
 
 // API Service
-const API_URL = "https://api.ctrlbits.xyz/api";
+const API_URL = "https://api.ctrlbits.com/api";
 
 const fetchTeamMembers = async (): Promise<TeamMember[]> => {
   try {
@@ -295,7 +295,7 @@ export default function TeamSection() {
         setError(null);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "Failed to load team members"
+          err instanceof Error ? err.message : "Failed to load team members",
         );
       } finally {
         setLoading(false);

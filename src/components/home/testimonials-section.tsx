@@ -28,7 +28,7 @@ export function TestimonialsSection() {
     async function fetchTestimonials() {
       try {
         const response = await fetch(
-          "https://api.ctrlbits.xyz/api/testimonials"
+          "https://api.ctrlbits.com/api/testimonials",
         );
         if (!response.ok) {
           throw new Error("Failed to fetch testimonials");
@@ -132,7 +132,10 @@ export function TestimonialsSection() {
               {currentTestimonial.avatar ? (
                 <img
                   src={currentTestimonial.avatar}
-                  alt={currentTestimonial.name + " - Client testimonial for Ctrl Bits, Kathmandu web development and digital growth agency"}
+                  alt={
+                    currentTestimonial.name +
+                    " - Client testimonial for Ctrl Bits, Kathmandu web development and digital growth agency"
+                  }
                   width={48}
                   height={48}
                   className="bg-foreground/10 h-12 w-12 rounded-full border object-cover"

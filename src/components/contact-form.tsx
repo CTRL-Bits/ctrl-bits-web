@@ -127,7 +127,7 @@ export default function ContactSection() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
@@ -139,7 +139,7 @@ export default function ContactSection() {
     setError(null);
 
     try {
-      const response = await fetch("https://api.ctrlbits.xyz/api/contact/", {
+      const response = await fetch("https://api.ctrlbits.com/api/contact/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -152,13 +152,13 @@ export default function ContactSection() {
       } else {
         const data = await response.json();
         setError(
-          data.message || "Something went wrong. Please try again later."
+          data.message || "Something went wrong. Please try again later.",
         );
       }
     } catch (err) {
       console.error("Error submitting form:", err);
       setError(
-        "Failed to submit your inquiry. Please check your connection and try again."
+        "Failed to submit your inquiry. Please check your connection and try again.",
       );
     } finally {
       setIsSubmitting(false);
@@ -262,8 +262,8 @@ export default function ContactSection() {
                 {tab === "general"
                   ? "General Inquiries"
                   : tab === "support"
-                  ? "Technical Support"
-                  : "Sales & Projects"}
+                    ? "Technical Support"
+                    : "Sales & Projects"}
               </button>
             ))}
           </div>
@@ -305,7 +305,7 @@ export default function ContactSection() {
                     )}
                   </div>
                 </div>
-              )
+              ),
             )}
 
             {activeTab === "support" && (
@@ -335,8 +335,8 @@ export default function ContactSection() {
                   Thank You!
                 </h3>
                 <p className="text-center text-gray-600 dark:text-gray-400 max-w-md">
-                  Your message has been received. One of our agency specialists will
-                  get back to you within 24 hours.
+                  Your message has been received. One of our agency specialists
+                  will get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => {
