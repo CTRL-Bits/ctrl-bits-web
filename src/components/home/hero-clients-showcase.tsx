@@ -12,6 +12,9 @@ interface Company {
 
 interface CompanyResponse {
   results: Company[];
+  links?: {
+    next: string | null;
+  };
 }
 
 // Client Logo Component
@@ -89,9 +92,19 @@ export default function HeroClientsShowcase() {
   const fetchClients = async () => {
     try {
       setLoading(true);
-      const response = await fetch("https://api.ctrlbits.com/api/companies/");
-      const data: CompanyResponse = await response.json();
-      setClients(data.results);
+      let allClients: Company[] = [];
+      let nextUrl: string | null =
+        "https://api.ctrlbits.com/api/companies/?limit=100";
+
+      // Fetch all pages
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data: CompanyResponse = await response.json();
+        allClients = [...allClients, ...data.results];
+        nextUrl = data.links?.next || null;
+      }
+
+      setClients(allClients);
     } catch (error) {
       console.error("Error fetching clients:", error);
     } finally {
