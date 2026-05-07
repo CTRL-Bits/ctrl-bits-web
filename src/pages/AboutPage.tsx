@@ -1,18 +1,20 @@
-import ContentSection from "@/components/about-us-content-section";
-import TeamSection from "@/components/team-section";
+import CompanyLogoCloud from "@/components/sections/CompanyLogoCloud";
+import RouteHero from "@/components/sections/RouteHero";
+import CompanyProfile from "@/components/sections/CompanyProfile";
+import TeamDirectory from "@/components/sections/TeamDirectory";
 import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const AboutPage = () => {
   usePageMetadata({
-    title: "About Us",
+    title: "About Ctrl Bits | Software, Web & Digital Product Team in Nepal",
     description:
-      "Learn about Ctrl Bits, a Kathmandu-based digital team delivering web development, digital marketing, SEO, video editing, graphic design, and custom software solutions.",
+      "Meet Ctrl Bits, a Nepal-based digital product team building websites, apps, software systems, UI/UX, SEO, automation, and digital growth systems.",
     keywords:
-      "about Ctrl Bits agency, Kathmandu digital agency, web development Kathmandu, digital marketing Kathmandu, SEO Kathmandu",
-    ogTitle: "About Ctrl Bits | Kathmandu Digital Team",
+      "about Ctrl Bits, software company Nepal, web development team Kathmandu, digital product agency Nepal, automation team Nepal",
+    ogTitle: "About Ctrl Bits",
     ogDescription:
-      "Meet the Kathmandu team behind web development, digital marketing, SEO, video editing, graphic design, and custom software delivery.",
+      "The team behind Ctrl Bits: websites, apps, software systems, design, SEO, automation, and product development.",
     ogUrl: "https://www.ctrlbits.com/about",
     canonical: "https://www.ctrlbits.com/about",
     twitterCard: "summary_large_image",
@@ -25,8 +27,17 @@ const AboutPage = () => {
         pageName="About"
         pageUrl="https://www.ctrlbits.com/about"
       />
-      <ContentSection />
-      <TeamSection />
+      <main className="bg-[#f5f5f5]">
+        <RouteHero
+          eyebrow="Company"
+          title="A small technical team with sharp taste and practical delivery habits."
+          description="Ctrl Bits is built for companies that need digital work to feel polished, perform fast, explain clearly, rank better, and keep working after launch."
+        >
+          <CompanyLogoCloud compact title="Teams, brands, and companies around our work" />
+        </RouteHero>
+        <CompanyProfile />
+        <TeamDirectory />
+      </main>
     </>
   );
 };

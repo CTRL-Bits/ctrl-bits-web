@@ -11,15 +11,15 @@ export const seoConfig = {
     "Ctrl Bits — Web Development & Digital Marketing Agency in Kathmandu, Nepal",
   defaultDescription:
     "Ctrl Bits is a Kathmandu-based agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development services for Nepal and global clients.",
-  
+
   // Social media handles
   social: {
     twitter: "https://x.com/ctrl_bits",
     facebook: "https://www.facebook.com/ctrlbits",
     linkedin: "https://www.linkedin.com/company/ctrlbits",
-    instagram: "https://www.instagram.com/ctrl.bits/"
+    instagram: "https://www.instagram.com/ctrl.bits/",
   },
-  
+
   // Business information
   business: {
     name: "Ctrl Bits",
@@ -28,18 +28,18 @@ export const seoConfig = {
       city: "Kathmandu",
       region: "Bagmati",
       country: "Nepal",
-      countryCode: "NP"
+      countryCode: "NP",
     },
     contact: {
-      email: "info@ctrlbits.com",
-      phone: "+977-9709659012"
+      email: "hi@ctrlbits.com",
+      phone: "+977-9709659012",
     },
     coordinates: {
       latitude: "27.7172",
-      longitude: "85.3240"
-    }
+      longitude: "85.3240",
+    },
   },
-  
+
   // Primary keywords for different services
   keywords: {
     primary: [
@@ -47,7 +47,7 @@ export const seoConfig = {
       "digital marketing agency Kathmandu",
       "SEO agency Kathmandu",
       "video editing services Kathmandu",
-      "graphic design agency Kathmandu"
+      "graphic design agency Kathmandu",
     ],
     secondary: [
       "web development agency Nepal",
@@ -56,7 +56,7 @@ export const seoConfig = {
       "digital agency Kathmandu",
       "social media marketing Nepal",
       "branding and creative services Nepal",
-      "motion graphics Nepal"
+      "motion graphics Nepal",
     ],
     services: [
       "web development",
@@ -66,16 +66,16 @@ export const seoConfig = {
       "graphic design",
       "software development",
       "web application development",
-      "API integration"
-    ]
+      "API integration",
+    ],
   },
-  
+
   // Default Open Graph images
   images: {
     og: "/og-image.jpg",
     twitter: "/twitter-image.jpg",
-    logo: "/logo.webp"
-  }
+    logo: "/logo.webp",
+  },
 };
 
 /**
@@ -88,31 +88,33 @@ export const generatePageMeta = (page: {
   path?: string;
   image?: string;
 }) => {
-  const fullTitle = page.title 
+  const fullTitle = page.title
     ? `${page.title} | ${seoConfig.siteName}`
     : seoConfig.defaultTitle;
-  
-  const url = page.path 
+
+  const url = page.path
     ? `${seoConfig.siteUrl}${page.path}`
     : seoConfig.siteUrl;
-  
+
   const description = page.description || seoConfig.defaultDescription;
-  
-  const keywords = page.keywords 
+
+  const keywords = page.keywords
     ? [...seoConfig.keywords.primary, ...page.keywords].join(", ")
-    : [...seoConfig.keywords.primary, ...seoConfig.keywords.secondary].join(", ");
-  
-  const image = page.image 
+    : [...seoConfig.keywords.primary, ...seoConfig.keywords.secondary].join(
+        ", ",
+      );
+
+  const image = page.image
     ? `${seoConfig.siteUrl}${page.image}`
     : `${seoConfig.siteUrl}${seoConfig.images.og}`;
-  
+
   return {
     title: fullTitle,
     description,
     keywords,
     url,
     image,
-    canonical: url
+    canonical: url,
   };
 };
 

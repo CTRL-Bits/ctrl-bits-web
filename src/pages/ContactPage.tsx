@@ -1,17 +1,18 @@
-import ContactSection from "@/components/contact-form";
+import ContactForm from "@/components/contact-form";
+import RouteHero from "@/components/sections/RouteHero";
 import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const ContactPage = () => {
   usePageMetadata({
-    title: "Contact Our Kathmandu Team",
+    title: "Contact Ctrl Bits | Start a Web, App, SEO or Software Project",
     description:
-      "Contact Ctrl Bits in Kathmandu for web development, digital marketing, SEO, video editing, graphic design, and software development inquiries.",
+      "Contact Ctrl Bits for web development, app development, custom software, SEO, automation, UI/UX, branding, and digital product development inquiries.",
     keywords:
-      "contact web development agency Kathmandu, digital marketing agency Kathmandu contact, SEO agency Kathmandu contact, Ctrl Bits contact",
-    ogTitle: "Contact Ctrl Bits – Kathmandu Web Development & Marketing Team",
+      "contact Ctrl Bits, web development agency Kathmandu contact, app development Nepal contact, software company Kathmandu contact, SEO agency Nepal contact",
+    ogTitle: "Contact Ctrl Bits",
     ogDescription:
-      "Get in touch with Ctrl Bits in Kathmandu for your next web development, marketing, or software project.",
+      "Start a project with Ctrl Bits for websites, apps, systems, SEO, automation, and digital product work.",
     ogUrl: "https://www.ctrlbits.com/contact",
     canonical: "https://www.ctrlbits.com/contact",
     twitterCard: "summary_large_image",
@@ -24,7 +25,18 @@ const ContactPage = () => {
         pageName="Contact"
         pageUrl="https://www.ctrlbits.com/contact"
       />
-      <ContactSection />
+      <main className="bg-[#f5f5f5]">
+        <RouteHero
+          eyebrow="Contact"
+          title="Tell us what you are trying to build, fix, or automate."
+          description="Share the goal, timeline, and constraints. We will help shape the scope and recommend the right path for a website, app, software system, SEO, automation, or digital product."
+        />
+        <div className="px-4 pb-24 md:px-8">
+          <div className="mx-auto max-w-[88rem] overflow-hidden rounded-[2.5rem] bg-white">
+            <ContactForm />
+          </div>
+        </div>
+      </main>
     </>
   );
 };

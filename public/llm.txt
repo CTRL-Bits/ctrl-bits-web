@@ -3,7 +3,7 @@
 ## Company Information
 - Name: Ctrl Bits
 - Location: Kathmandu, Nepal
-- Primary Email: info@ctrlbits.com
+- Primary Email: hi@ctrlbits.com
 - Primary Phone: +977-9709659012
 - Industry: Web Development, Software Engineering, Digital Marketing, Creative Production
 - Website: https://www.ctrlbits.com

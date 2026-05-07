@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import LoadingScreen from "./ui/loading-screen";
+import { API_BASE_URL } from "@/services/api";
 
 // Interface for LoadingProvider props
 interface LoadingProviderProps {
@@ -12,11 +13,11 @@ const LoadingProvider = ({
   children,
   companyName,
   criticalEndpoints = [
-    "https://api.ctrlbits.com/api/testimonials/",
-    "https://api.ctrlbits.com/api/team/",
-    "https://api.ctrlbits.com/api/companies/",
-    "https://api.ctrlbits.com/api/tech/",
-    "https://api.ctrlbits.com/api/projects/",
+    `${API_BASE_URL}/testimonials/`,
+    `${API_BASE_URL}/team/`,
+    `${API_BASE_URL}/companies/`,
+    `${API_BASE_URL}/tech/`,
+    `${API_BASE_URL}/projects/`,
   ],
 }: LoadingProviderProps) => {
   // Session storage key

@@ -1,127 +1,86 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Send, MapPin, Phone, Mail, Heart } from "lucide-react";
+import {
+  ArrowUpRight,
+  Facebook,
+  Github,
+  Heart,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+} from "lucide-react";
 import axios from "axios";
+import { API_BASE_URL } from "@/services/api";
+import LogoIcon from "@/components/shared/LogoIcon";
 
-const links = [
-  {
-    title: "Our Services",
-    to: "/solutions",
-  },
-  {
-    title: "About",
-    to: "/about",
-  },
-  {
-    title: "Portfolio",
-    to: "/portfolio",
-  },
-  {
-    title: "Projects",
-    to: "/projects",
-  },
-  {
-    title: "Contact",
-    to: "/contact",
-  },
-  {
-    title: "Blog",
-    to: "https://blog.ctrlbits.com",
-  },
+const footerLinks = [
+  { title: "Solutions", to: "/solutions" },
+  { title: "About", to: "/about" },
+  { title: "Portfolio", to: "/portfolio" },
+  { title: "Projects", to: "/projects" },
+  { title: "Contact", to: "/contact" },
+  { title: "BitsBlog", to: "https://blog.ctrlbits.com" },
 ];
 
-const socialLinks = [
+const serviceLinks = [
+  "Web development",
+  "App development",
+  "Automation",
+  "SEO foundations",
+  "Brand systems",
+  "Cloud infrastructure",
+];
+
+const socialLinks: {
+  name: string;
+  to: string;
+  icon: ReactNode;
+}[] = [
   {
-    name: "X/Twitter",
+    name: "X",
     to: "https://x.com/ctrl_bits",
-    icon: (
-      <svg
-        className="size-5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="currentColor"
-          d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"
-        ></path>
-      </svg>
-    ),
-  },
-  {
-    name: "Facebook",
-    to: "https://facebook.com/ctrlbits",
-    icon: (
-      <svg
-        className="size-5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="currentColor"
-          d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
-        ></path>
-      </svg>
-    ),
-  },
-  {
-    name: "Threads",
-    to: "https://threads.com/ctrl.bits",
-    icon: (
-      <svg
-        className="size-5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          d="M19.25 8.505c-1.577-5.867-7-5.5-7-5.5s-7.5-.5-7.5 8.995s7.5 8.996 7.5 8.996s4.458.296 6.5-3.918c.667-1.858.5-5.573-6-5.573c0 0-3 0-3 2.5c0 .976 1 2 2.5 2s3.171-1.027 3.5-3c1-6-4.5-6.5-6-4"
-          color="currentColor"
-        ></path>
-      </svg>
-    ),
+    icon: <XIcon />,
   },
   {
     name: "Instagram",
     to: "https://instagram.com/ctrl.bits",
-    icon: (
-      <svg
-        className="size-5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="currentColor"
-          d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"
-        ></path>
-      </svg>
-    ),
+    icon: <Instagram className="h-4 w-4" aria-hidden="true" />,
+  },
+  {
+    name: "Facebook",
+    to: "https://facebook.com/ctrlbits",
+    icon: <Facebook className="h-4 w-4" aria-hidden="true" />,
+  },
+  {
+    name: "LinkedIn",
+    to: "https://linkedin.com/company/ctrlbits",
+    icon: <Linkedin className="h-4 w-4" aria-hidden="true" />,
+  },
+  {
+    name: "GitHub",
+    to: "https://github.com/ctrlbits",
+    icon: <Github className="h-4 w-4" aria-hidden="true" />,
   },
 ];
 
 const contactInfo = [
   {
-    icon: <MapPin className="h-4 w-4" />,
+    icon: <MapPin className="h-4 w-4" aria-hidden="true" />,
     text: "Kathmandu, Nepal",
   },
   {
-    icon: <Phone className="h-4 w-4" />,
+    icon: <Phone className="h-4 w-4" aria-hidden="true" />,
     text: "+977-9709659012",
+    href: "tel:+9779709659012",
   },
   {
-    icon: <Mail className="h-4 w-4" />,
-    text: "info@ctrlbits.com",
+    icon: <Mail className="h-4 w-4" aria-hidden="true" />,
+    text: "hi@ctrlbits.com",
+    href: "mailto:hi@ctrlbits.com",
   },
 ];
 
@@ -129,26 +88,16 @@ export default function FooterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [loaded, setLoaded] = useState(false);
 
-  // Animation on mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  interface SubscribeEvent extends React.FormEvent<HTMLFormElement> {}
-
-  const handleSubscribe = async (e: SubscribeEvent): Promise<void> => {
+  const handleSubscribe = async (
+    e: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     if (!email || isSubmitting) return;
 
     setIsSubmitting(true);
     try {
-      await axios.post(`https://api.ctrlbits.com/api/subscribers/`, { email });
+      await axios.post(`${API_BASE_URL}/subscribers/`, { email });
       setIsSubscribed(true);
       setEmail("");
     } catch (error) {
@@ -159,206 +108,200 @@ export default function FooterSection() {
   };
 
   return (
-    <footer className="relative bg-muted/10 pt-16 pb-12 md:pt-24 md:pb-16 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      </div>
+    <footer className="relative overflow-hidden bg-[#05070d] px-4 pt-20 text-white md:px-8 md:pt-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(0,88,252,0.18),transparent_34%),radial-gradient(circle_at_88%_100%,rgba(255,255,255,0.08),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-      <div
-        className={`mx-auto max-w-6xl px-6 transition-all duration-700 ${
-          loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <Link to="/" aria-label="go home" className="block">
-              <div className="flex items-center space-x-2">
-                <img
-                  src="/favicon.png"
-                  alt="Ctrl Bits - Kathmandu web development and digital growth agency"
-                  className="h-10 w-auto invert dark:invert-0"
-                />
-              </div>
+      <div className="relative mx-auto max-w-[88rem]">
+        <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1fr]">
+          <div>
+            <Link to="/" aria-label="Ctrl Bits home" className="inline-flex">
+              <LogoIcon className="text-white" />
             </Link>
-
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Kathmandu-based agency for web development, digital marketing,
-              SEO, video editing, graphic design, and custom software solutions.
+            <p className="mt-6 max-w-sm text-sm leading-7 text-white/56">
+              Digital product, software, SEO, automation, and creative systems
+              for teams that need their web presence to work with less noise.
             </p>
-
-            {/* Social Links - Desktop */}
-            <div className="hidden md:flex space-x-3">
-              {socialLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  to={link.to}
+            <div className="mt-7 flex flex-wrap gap-2">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.to}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="cursor-target text-muted-foreground hover:text-primary flex items-center justify-center h-9 w-9 rounded-full bg-primary/5 ring-1 ring-primary/10 hover:ring-primary/30 hover:bg-primary/10 transition-all duration-200"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-white/64 transition-colors hover:border-white/20 hover:bg-white/[0.12] hover:text-white"
                 >
                   {link.icon}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Quick Links
-            </h3>
-            <ul className="space-y-4">
-              {links.map((link, index) => (
-                <li key={index}>
-                  {link.to.startsWith("http") ? (
-                    <a
-                      href={link.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
-                    >
-                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
-                      <span>{link.title}</span>
-                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.to}
-                      className="cursor-target text-muted-foreground hover:text-primary flex items-center group transition-all duration-200"
-                    >
-                      <span className="mr-1.5 h-1 w-1 rounded-full bg-primary/40 group-hover:bg-primary group-hover:w-2 transition-all duration-200"></span>
-                      <span>{link.title}</span>
-                      <ArrowUpRight className="ml-1.5 h-3 w-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Contact Us
-            </h3>
-            <ul className="space-y-4">
-              {contactInfo.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-center text-sm text-muted-foreground"
+          <FooterColumn title="Explore">
+            {footerLinks.map((link) =>
+              link.to.startsWith("http") ? (
+                <a
+                  key={link.title}
+                  href={link.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 text-sm text-white/56 transition-colors hover:text-white"
                 >
-                  <div className="mr-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                    {item.icon}
-                  </div>
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-          </div>
+                  {link.title}
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+                </a>
+              ) : (
+                <Link
+                  key={link.title}
+                  to={link.to}
+                  className="group inline-flex items-center gap-1.5 text-sm text-white/56 transition-colors hover:text-white"
+                >
+                  {link.title}
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+                </Link>
+              ),
+            )}
+          </FooterColumn>
 
-          {/* Newsletter */}
-          <div className="space-y-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+          <FooterColumn title="Capabilities">
+            {serviceLinks.map((item) => (
+              <span key={item} className="text-sm text-white/56">
+                {item}
+              </span>
+            ))}
+          </FooterColumn>
+
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
               Stay Updated
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Subscribe to our newsletter for the latest updates and insights.
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-white/56">
+              Occasional notes on digital systems, websites, SEO, automation,
+              and product delivery.
             </p>
-            <form onSubmit={handleSubscribe} className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full rounded-lg border-0 bg-primary/5 py-2.5 pl-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-                disabled={isSubmitting || isSubscribed}
-                required
-              />
-              <button
-                type="submit"
-                className="absolute inset-y-0 right-0 flex items-center justify-center px-3 text-primary disabled:text-muted-foreground/50"
-                disabled={isSubmitting || isSubscribed}
-              >
-                {isSubmitting ? (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                ) : isSubscribed ? (
-                  <Heart className="h-4 w-4 text-primary animate-pulse" />
-                ) : (
-                  <Send className="h-4 w-4" />
-                )}
-              </button>
+            <form onSubmit={handleSubscribe} className="mt-5">
+              <div className="flex rounded-full border border-white/10 bg-white/[0.07] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  className="min-w-0 flex-1 bg-transparent px-4 text-sm text-white outline-none placeholder:text-white/34"
+                  disabled={isSubmitting || isSubscribed}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[#001ea2] transition-colors hover:bg-[#dbe8ff] disabled:bg-white/50"
+                  disabled={isSubmitting || isSubscribed}
+                  aria-label="Subscribe"
+                >
+                  {isSubmitting ? (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#001ea2] border-t-transparent" />
+                  ) : isSubscribed ? (
+                    <Heart className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Send className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
             </form>
             {isSubscribed && (
-              <p className="text-xs text-primary animate-fade-in">
-                Thanks for subscribing!
+              <p className="mt-3 text-xs text-white/58">
+                Thanks for subscribing.
               </p>
             )}
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="mt-12 border-t border-muted/20 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            {/* Copyright */}
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Ctrl Bits. All rights reserved.
+        <div className="grid gap-8 border-b border-white/10 py-10 md:grid-cols-[1fr_1fr] md:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/34">
+              Contact
             </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {contactInfo.map((item) => {
+                const content = (
+                  <>
+                    <span className="text-white/44">{item.icon}</span>
+                    <span>{item.text}</span>
+                  </>
+                );
 
-            {/* Social Links - Mobile */}
-            <div className="flex md:hidden space-x-4 mt-4 md:mt-0">
-              {socialLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  to={link.to}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                >
-                  {link.icon}
-                </Link>
-              ))}
-            </div>
-
-            {/* Legal Links */}
-            <div className="flex space-x-6">
-              <Link
-                to="/privacy"
-                rel="nofollow"
-                className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="/terms"
-                rel="nofollow"
-                className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Terms of Service
-              </Link>
+                return item.href ? (
+                  <a
+                    key={item.text}
+                    href={item.href}
+                    className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-4 py-2 text-sm text-white/58 transition-colors hover:bg-white/[0.10] hover:text-white"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <span
+                    key={item.text}
+                    className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-4 py-2 text-sm text-white/58"
+                  >
+                    {content}
+                  </span>
+                );
+              })}
             </div>
           </div>
-        </div>
-        <h1 className="text-7xl text-center font-bold my-8 text-transparent bg-clip-text bg-gradient-to-t from-black/60 to-white">
-          Ctrl the code, bit by bit.
-        </h1>
-      </div>
 
-      {/* Animation keyframes */}
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-in-out;
-        }
-      `}</style>
+          <p className="text-balance text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-white md:text-right md:text-7xl">
+            Ctrl the code, bit by bit.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-4 py-7 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Ctrl Bits. All rights reserved.</p>
+          <div className="flex gap-5">
+            <Link to="/privacy" rel="nofollow" className="hover:text-white/70">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" rel="nofollow" className="hover:text-white/70">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <div>
+      <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
+        {title}
+      </h2>
+      <div className="mt-5 flex flex-col gap-3">{children}</div>
+    </div>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      className="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M13.52 10.67 20.94 2h-1.76l-6.44 7.52L7.6 2H1.67l7.78 11.38L1.67 22h1.76l6.8-7.47L15.67 22h5.93zm-2.41 2.81-.79-1.13L4.05 3.32h2.71l5.06 7.29.79 1.13 6.58 9.48h-2.71z" />
+    </svg>
   );
 }

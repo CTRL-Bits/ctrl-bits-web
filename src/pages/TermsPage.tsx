@@ -121,7 +121,7 @@ const TermsAndConditions: React.FC = () => {
           <div class="contact-info">
             <h2>Contact</h2>
             <p>If you have any questions about these Terms, please contact us at:</p>
-            <p><strong>📧 Email:</strong> info@ctrlbits.com</p>
+            <p><strong>📧 Email:</strong> hi@ctrlbits.com</p>
             <p><strong>🌐 Website:</strong> https://ctrlbits.com</p>
           </div>
         </body>
@@ -358,7 +358,7 @@ const TermsAndConditions: React.FC = () => {
                   <div className="flex items-center ">
                     <Mail className="w-5 h-5 mr-3 text-blue-600" />
                     <span className="font-medium">Email:</span>
-                    <span className="ml-2 text-blue-600">info@ctrlbits.com</span>
+                    <span className="ml-2 text-blue-600">hi@ctrlbits.com</span>
                   </div>
                   <div className="flex items-center ">
                     <Globe className="w-5 h-5 mr-3 text-blue-600" />

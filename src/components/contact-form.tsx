@@ -1,96 +1,20 @@
-import { useState, useEffect } from "react";
-
-// Icon Components
-const MailIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-5 h-5"
-  >
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-    <polyline points="22,6 12,13 2,6" />
-  </svg>
-);
-
-const PhoneIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-5 h-5"
-  >
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
-const MessageIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-5 h-5"
-  >
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-  </svg>
-);
-
-const GlobeIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-5 h-5"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-  </svg>
-);
-
-const CheckCircleIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-8 h-8"
-  >
-    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-    <polyline points="22 4 12 14.01 9 11.01" />
-  </svg>
-);
-
-const AlertCircleIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-4 h-4"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="12" y1="8" x2="12" y2="12" />
-    <line x1="12" y1="16" x2="12.01" y2="16" />
-  </svg>
-);
-
-const ArrowRightIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className="w-4 h-4"
-  >
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
-  </svg>
-);
+import { useEffect, useState } from "react";
+import type { ChangeEvent, FormEvent, ReactNode } from "react";
+import {
+  AlertCircle,
+  ArrowRight,
+  BriefcaseBusiness,
+  CheckCircle2,
+  Globe2,
+  Headphones,
+  Mail,
+  MessageSquareText,
+  Phone,
+  Send,
+  Sparkles,
+} from "lucide-react";
+import { API_BASE_URL } from "@/services/api";
+import { cn } from "@/lib/utils";
 
 interface ContactFormData {
   name: string;
@@ -103,21 +27,45 @@ interface ContactFormData {
   message: string;
 }
 
+const tabs = [
+  {
+    id: "general",
+    label: "General",
+    icon: MessageSquareText,
+  },
+  {
+    id: "support",
+    label: "Support",
+    icon: Headphones,
+  },
+  {
+    id: "sales",
+    label: "Projects",
+    icon: BriefcaseBusiness,
+  },
+];
+
+const initialFormData: ContactFormData = {
+  name: "",
+  email: "",
+  company: "",
+  phone: "",
+  country: "",
+  job_function: "",
+  service_interest: "",
+  message: "",
+};
+
+const inputClass =
+  "h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-sm text-neutral-950 outline-none transition-all placeholder:text-neutral-400 focus:border-[#0058fc]/60 focus:ring-4 focus:ring-[#0058fc]/10";
+
+const labelClass = "text-sm font-semibold text-neutral-800";
+
 export default function ContactSection() {
   const [activeTab, setActiveTab] = useState("general");
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    country: "",
-    job_function: "",
-    service_interest: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -125,21 +73,19 @@ export default function ContactSection() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
     try {
-      const response = await fetch("https://api.ctrlbits.com/api/contact/", {
+      const response = await fetch(`${API_BASE_URL}/contact/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -151,9 +97,7 @@ export default function ContactSection() {
         setFormSubmitted(true);
       } else {
         const data = await response.json();
-        setError(
-          data.message || "Something went wrong. Please try again later.",
-        );
+        setError(data.message || "Something went wrong. Please try again later.");
       }
     } catch (err) {
       console.error("Error submitting form:", err);
@@ -168,405 +112,406 @@ export default function ContactSection() {
   const contactInfo = {
     general: [
       {
-        icon: <MailIcon />,
-        label: "Email Us",
-        value: "info@ctrlbits.com",
-        link: "mailto:info@ctrlbits.com",
+        icon: <Mail className="h-5 w-5" aria-hidden="true" />,
+        label: "Email",
+        value: "hi@ctrlbits.com",
+        link: "mailto:hi@ctrlbits.com",
       },
       {
-        icon: <PhoneIcon />,
-        label: "Call Us",
+        icon: <Phone className="h-5 w-5" aria-hidden="true" />,
+        label: "Phone",
         value: "+977-9709659012",
         subtitle: "Monday-Friday, 9AM-6PM NPT",
+        link: "tel:+9779709659012",
       },
     ],
     support: [
       {
-        icon: <MailIcon />,
-        label: "Support Email",
+        icon: <Mail className="h-5 w-5" aria-hidden="true" />,
+        label: "Support",
         value: "support@ctrlbits.com",
         link: "mailto:support@ctrlbits.com",
       },
       {
-        icon: <PhoneIcon />,
-        label: "Support Hotline",
+        icon: <Phone className="h-5 w-5" aria-hidden="true" />,
+        label: "Hotline",
         value: "+977-9709659012",
-        subtitle: "24/7 Technical Support",
+        subtitle: "For active clients and urgent fixes",
+        link: "tel:+9779709659012",
       },
       {
-        icon: <MessageIcon />,
-        label: "Live Chat",
-        value: "Available on our client portal",
-        link: "#",
+        icon: <Headphones className="h-5 w-5" aria-hidden="true" />,
+        label: "Client portal",
+        value: "Available for managed accounts",
       },
     ],
     sales: [
       {
-        icon: <MailIcon />,
-        label: "Sales Inquiries",
-        value: "sales@ctrlbits.com",
-        link: "mailto:sales@ctrlbits.com",
+        icon: <Mail className="h-5 w-5" aria-hidden="true" />,
+        label: "Projects",
+        value: "info@ctrlbits.com",
+        link: "mailto:info@ctrlbits.com",
       },
       {
-        icon: <PhoneIcon />,
-        label: "Sales Team",
+        icon: <Phone className="h-5 w-5" aria-hidden="true" />,
+        label: "Discovery call",
         value: "+977-9709659012",
-        subtitle: "Monday-Friday, 8AM-7PM NPT",
+        subtitle: "Scope, timeline, budget, and delivery path",
+        link: "tel:+9779709659012",
       },
       {
-        icon: <GlobeIcon />,
-        label: "Schedule a Demo",
-        value: "See our solutions in action",
-        link: "#",
+        icon: <Globe2 className="h-5 w-5" aria-hidden="true" />,
+        label: "Remote delivery",
+        value: "Nepal and international teams",
       },
     ],
   };
 
   return (
-    <section className="min-h-screen bg-white dark:bg-black">
-      <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
-        {/* Header */}
-        <div
-          className="text-center mb-16 space-y-4"
-          style={{ animation: "fadeIn 600ms ease-out backwards" }}
-        >
-          <div className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-900 rounded-full">
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
-              Let's Connect
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100">
-            Get in Touch
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Contact Ctrl Bits — Let's Build Smarter Together
-          </p>
-        </div>
-
-        {/* Tabs */}
-        <div
-          className="mb-12"
-          style={{ animation: "fadeIn 700ms ease-out 100ms backwards" }}
-        >
-          <div className="flex gap-2 justify-center flex-wrap">
-            {["general", "support", "sales"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                  activeTab === tab
-                    ? "bg-gray-900 dark:bg-gray-100 text-white dark:text-black"
-                    : "bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-                }`}
-              >
-                {tab === "general"
-                  ? "General Inquiries"
-                  : tab === "support"
-                    ? "Technical Support"
-                    : "Sales & Projects"}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-5 gap-8">
-          {/* Contact Info */}
-          <div
-            className="lg:col-span-2 space-y-6"
-            style={{ animation: "fadeIn 700ms ease-out 200ms backwards" }}
-          >
-            {contactInfo[activeTab as keyof typeof contactInfo].map(
-              (item, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-900 flex-shrink-0">
-                    {item.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
-                      {item.label}
-                    </h3>
-                    {item.link ? (
-                      <a
-                        href={item.link}
-                        className="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 break-all"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {item.value}
-                      </p>
-                    )}
-                    {item.subtitle && (
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                        {item.subtitle}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ),
-            )}
-
-            {activeTab === "support" && (
-              <div className="p-4 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 rounded-lg">
-                <div className="flex gap-2">
-                  <AlertCircleIcon />
-                  <p className="text-xs text-blue-900 dark:text-blue-300">
-                    For faster resolution, please have your client ID ready when
-                    contacting support.
-                  </p>
-                </div>
+    <section className="bg-white">
+      <div className="grid min-h-[44rem] lg:grid-cols-[0.82fr_1.18fr]">
+        <aside className="relative overflow-hidden bg-[#05070d] p-6 text-white md:p-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_8%,rgba(0,88,252,0.32),transparent_34%),radial-gradient(circle_at_92%_100%,rgba(255,255,255,0.12),transparent_30%)]" />
+          <div className="relative flex h-full flex-col justify-between gap-12">
+            <div>
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/[0.08] text-white">
+                <Sparkles className="h-5 w-5" aria-hidden="true" />
               </div>
-            )}
-          </div>
+              <h2 className="mt-8 max-w-md text-4xl font-semibold leading-[0.96] tracking-[-0.065em] md:text-5xl">
+                Start with the problem, not a package.
+              </h2>
+              <p className="mt-5 max-w-md text-sm leading-7 text-white/58">
+                Share what needs to work better. We will help shape the scope
+                for a website, app, system, SEO foundation, automation, or
+                digital product.
+              </p>
+            </div>
 
-          {/* Form */}
-          <div
-            className="lg:col-span-3"
-            style={{ animation: "fadeIn 700ms ease-out 300ms backwards" }}
-          >
-            {formSubmitted ? (
-              <div className="flex flex-col items-center justify-center py-16 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-950 flex items-center justify-center">
-                  <CheckCircleIcon />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                  Thank You!
-                </h3>
-                <p className="text-center text-gray-600 dark:text-gray-400 max-w-md">
-                  Your message has been received. One of our agency specialists
-                  will get back to you within 24 hours.
-                </p>
-                <button
-                  onClick={() => {
-                    setFormSubmitted(false);
-                    setFormData({
-                      name: "",
-                      email: "",
-                      company: "",
-                      phone: "",
-                      country: "",
-                      job_function: "",
-                      service_interest: "",
-                      message: "",
-                    });
-                  }}
-                  className="mt-4 px-5 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-black rounded-full text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-                >
-                  Send Another Message
-                </button>
+            <div>
+              <div className="mb-5 inline-flex rounded-full border border-white/10 bg-white/[0.06] p-1">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveTab(tab.id)}
+                      className={cn(
+                        "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold transition-colors",
+                        isActive
+                          ? "bg-white text-[#001ea2]"
+                          : "text-white/54 hover:text-white",
+                      )}
+                    >
+                      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
-            ) : (
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    Contact Our Team
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Tell us about your IT needs and our experts will get back to
-                    you within 24 hours.
-                  </p>
-                </div>
 
-                {error && (
-                  <div className="p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg">
-                    <div className="flex gap-2">
-                      <AlertCircleIcon />
-                      <p className="text-xs text-red-900 dark:text-red-300">
-                        {error}
-                      </p>
-                    </div>
-                  </div>
+              <div className="space-y-3">
+                {contactInfo[activeTab as keyof typeof contactInfo].map(
+                  (item) => (
+                    <ContactItem key={`${item.label}-${item.value}`} {...item} />
+                  ),
                 )}
+              </div>
 
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Full Name *
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Smith"
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
+              {activeTab === "support" && (
+                <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                  <div className="flex gap-3 text-sm leading-6 text-white/62">
+                    <AlertCircle
+                      className="mt-0.5 h-4 w-4 shrink-0 text-[#8eb6ff]"
+                      aria-hidden="true"
                     />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Work Email *
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="john@company.com"
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="company"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Company Name
-                    </label>
-                    <input
-                      id="company"
-                      type="text"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Acme Inc."
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="phone"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+1 (555) 123-4567"
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="country"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Country/Region *
-                    </label>
-                    <select
-                      id="country"
-                      value={formData.country}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
-                    >
-                      <option value="">Select your country</option>
-                      <option value="us">United States</option>
-                      <option value="ca">Canada</option>
-                      <option value="uk">United Kingdom</option>
-                      <option value="au">Australia</option>
-                      <option value="eu">European Union</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="job_function"
-                      className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                    >
-                      Job Function *
-                    </label>
-                    <select
-                      id="job_function"
-                      value={formData.job_function}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
-                    >
-                      <option value="">Select your role</option>
-                      <option value="executive">Executive/C-Level</option>
-                      <option value="it-manager">IT Manager</option>
-                      <option value="developer">Developer/Engineer</option>
-                      <option value="operations">Operations</option>
-                      <option value="security">Security</option>
-                      <option value="other">Other</option>
-                    </select>
+                    <p>
+                      For faster support, include your client ID, affected URL,
+                      browser, and screenshots when available.
+                    </p>
                   </div>
                 </div>
+              )}
+            </div>
+          </div>
+        </aside>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="service_interest"
-                    className="text-sm font-medium text-gray-900 dark:text-gray-100"
+        <div className="p-6 md:p-10">
+          {formSubmitted ? (
+            <SuccessState
+              onReset={() => {
+                setFormSubmitted(false);
+                setFormData(initialFormData);
+              }}
+            />
+          ) : (
+            <form onSubmit={handleSubmit} className="mx-auto max-w-3xl">
+              <div className="mb-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0058fc]">
+                  Project inquiry
+                </p>
+                <h3 className="mt-3 text-3xl font-semibold tracking-[-0.055em] text-neutral-950 md:text-4xl">
+                  Tell us what needs to happen.
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-neutral-600">
+                  The more specific you are about goals, timeline, budget, and
+                  constraints, the faster we can recommend the right next step.
+                </p>
+              </div>
+
+              {error && (
+                <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 p-4">
+                  <div className="flex gap-3 text-sm leading-6 text-red-800">
+                    <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                    <p>{error}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="grid gap-5 md:grid-cols-2">
+                <Field label="Full name" htmlFor="name" required>
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Aviral Ale"
+                    className={inputClass}
+                    required
+                  />
+                </Field>
+
+                <Field label="Work email" htmlFor="email" required>
+                  <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="name@company.com"
+                    className={inputClass}
+                    required
+                  />
+                </Field>
+
+                <Field label="Company" htmlFor="company">
+                  <input
+                    id="company"
+                    type="text"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company or brand name"
+                    className={inputClass}
+                  />
+                </Field>
+
+                <Field label="Phone" htmlFor="phone">
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+977 9709659012"
+                    className={inputClass}
+                  />
+                </Field>
+
+                <Field label="Country/region" htmlFor="country" required>
+                  <select
+                    id="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className={inputClass}
+                    required
                   >
-                    Service Interest *
-                  </label>
+                    <option value="">Select country</option>
+                    <option value="nepal">Nepal</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="australia">Australia</option>
+                    <option value="eu">European Union</option>
+                    <option value="other">Other</option>
+                  </select>
+                </Field>
+
+                <Field label="Your role" htmlFor="job_function" required>
+                  <select
+                    id="job_function"
+                    value={formData.job_function}
+                    onChange={handleChange}
+                    className={inputClass}
+                    required
+                  >
+                    <option value="">Select role</option>
+                    <option value="founder">Founder / owner</option>
+                    <option value="executive">Executive / C-level</option>
+                    <option value="marketing">Marketing / growth</option>
+                    <option value="operations">Operations</option>
+                    <option value="product">Product / design</option>
+                    <option value="technical">Technical / engineering</option>
+                    <option value="other">Other</option>
+                  </select>
+                </Field>
+              </div>
+
+              <div className="mt-5">
+                <Field label="Service interest" htmlFor="service_interest" required>
                   <select
                     id="service_interest"
                     value={formData.service_interest}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
+                    className={inputClass}
+                    required
                   >
-                    <option value="">
-                      What services are you interested in?
-                    </option>
-                    <option value="cloud">Cloud Migration & Services</option>
-                    <option value="security">Cybersecurity Solutions</option>
-                    <option value="development">
-                      Custom Software Development
-                    </option>
-                    <option value="consulting">IT Consulting</option>
-                    <option value="support">Managed IT Support</option>
-                    <option value="data">Data Analytics & AI</option>
+                    <option value="">Choose the closest match</option>
+                    <option value="website">Website or landing page</option>
+                    <option value="app-development">App development</option>
+                    <option value="custom-software">Custom software system</option>
+                    <option value="seo">SEO and content foundations</option>
+                    <option value="automation">Business automation</option>
+                    <option value="branding">Branding and UI/UX</option>
+                    <option value="maintenance">Maintenance or support</option>
                     <option value="other">Other</option>
                   </select>
-                </div>
+                </Field>
+              </div>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium text-gray-900 dark:text-gray-100"
-                  >
-                    Tell us about your project or requirements *
-                  </label>
+              <div className="mt-5">
+                <Field label="Project details" htmlFor="message" required>
                   <textarea
                     id="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Please describe your IT challenges or project requirements..."
-                    rows={5}
-                    className="w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-gray-600 transition-colors resize-none"
+                    placeholder="What are you trying to build, fix, improve, or automate?"
+                    rows={6}
+                    className={`${inputClass} h-auto resize-none py-4 leading-6`}
+                    required
                   />
-                </div>
+                </Field>
+              </div>
 
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-xs leading-5 text-neutral-500">
+                  We usually reply within one business day.
+                </p>
                 <button
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0058fc] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#0046c9] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit Inquiry"}
-                  <ArrowRightIcon />
+                  {isSubmitting ? "Submitting" : "Send inquiry"}
+                  {isSubmitting ? (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
+                  ) : (
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  )}
                 </button>
               </div>
-            )}
-          </div>
+            </form>
+          )}
         </div>
       </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
+  );
+}
+
+function ContactItem({
+  icon,
+  label,
+  value,
+  subtitle,
+  link,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+  subtitle?: string;
+  link?: string;
+}) {
+  const content = (
+    <>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/[0.08] text-white/80">
+        {icon}
+      </span>
+      <span className="min-w-0">
+        <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-white/34">
+          {label}
+        </span>
+        <span className="mt-1 block break-words text-sm font-semibold text-white/78">
+          {value}
+        </span>
+        {subtitle && (
+          <span className="mt-1 block text-xs leading-5 text-white/42">
+            {subtitle}
+          </span>
+        )}
+      </span>
+    </>
+  );
+
+  if (link) {
+    return (
+      <a
+        href={link}
+        className="flex gap-3 rounded-3xl border border-white/10 bg-white/[0.055] p-4 transition-colors hover:bg-white/[0.09]"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="flex gap-3 rounded-3xl border border-white/10 bg-white/[0.055] p-4">
+      {content}
+    </div>
+  );
+}
+
+function Field({
+  label,
+  htmlFor,
+  required = false,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className="space-y-2">
+      <label htmlFor={htmlFor} className={labelClass}>
+        {label}
+        {required && <span className="text-[#0058fc]"> *</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function SuccessState({ onReset }: { onReset: () => void }) {
+  return (
+    <div className="flex min-h-[34rem] flex-col items-center justify-center px-4 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0058fc]/10 text-[#0058fc]">
+        <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
+      </div>
+      <h3 className="mt-6 text-3xl font-semibold tracking-[-0.055em] text-neutral-950">
+        Message received.
+      </h3>
+      <p className="mt-3 max-w-md text-sm leading-7 text-neutral-600">
+        Thanks for reaching out. We will review the details and get back to you
+        with the right next step.
+      </p>
+      <button
+        type="button"
+        onClick={onReset}
+        className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-neutral-950 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
+      >
+        Send another message
+        <Send className="h-4 w-4" aria-hidden="true" />
+      </button>
+    </div>
   );
 }

@@ -1,14 +1,7 @@
 // src/services/projectService.ts
 
 import { Project } from "@/types";
-import axios from "axios";
-const API_URL = "https://api.ctrlbits.com/api"; // Replace with your actual API base URL
-const apiClient = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import { API_BASE_URL, apiClient } from "@/services/api";
 
 interface ProjectsResponse {
   links: {
@@ -26,7 +19,7 @@ interface ProjectsResponse {
  */
 export const fetchProjects = async (): Promise<ProjectsResponse> => {
   try {
-    const response = await apiClient.get(`${API_URL}/projects`);
+    const response = await apiClient.get<ProjectsResponse>("/projects/");
 
     if (!response) {
       throw new Error(`Error ${response}: ${response}`);
@@ -44,7 +37,7 @@ export const fetchProjects = async (): Promise<ProjectsResponse> => {
  */
 export const fetchProjectBySlug = async (slug: string): Promise<Project> => {
   try {
-    const response = await fetch(`${API_URL}/projects/${slug}`);
+    const response = await fetch(`${API_BASE_URL}/projects/${slug}`);
 
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -65,7 +58,7 @@ export const fetchProjectsByCategory = async (
 ): Promise<ProjectsResponse> => {
   try {
     const response = await fetch(
-      `${API_URL}/projects?category=${encodeURIComponent(category)}`,
+      `${API_BASE_URL}/projects?category=${encodeURIComponent(category)}`,
     );
 
     if (!response.ok) {
@@ -84,7 +77,7 @@ export const fetchProjectsByCategory = async (
  */
 export const fetchFeaturedProjects = async (): Promise<ProjectsResponse> => {
   try {
-    const response = await fetch(`${API_URL}/projects?featured=true`);
+    const response = await fetch(`${API_BASE_URL}/projects?featured=true`);
 
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);

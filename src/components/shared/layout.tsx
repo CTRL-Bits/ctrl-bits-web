@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import FooterSection from "./footer";
 import NavbarSection from "./navbar";
 
@@ -8,12 +9,19 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, className = "" }: LayoutProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className={`min-h-screen w-full ${className}`}>
       <NavbarSection />
-      <main className="flex flex-col justify-center items-center ">
+      <motion.main
+        className="w-full"
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
+        animate={shouldReduceMotion ? undefined : { opacity: 1 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+      >
         {children}
-      </main>
+      </motion.main>
 
       <FooterSection />
     </div>
