@@ -70,8 +70,8 @@ export const SchemaMarkup = ({
       },
       {
         "@type": "WebPage",
-        name: "Projects",
-        url: "https://www.ctrlbits.com/projects",
+        name: "Portfolio",
+        url: "https://www.ctrlbits.com/portfolio",
       },
     ],
   };

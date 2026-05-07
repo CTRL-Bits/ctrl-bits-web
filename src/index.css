@@ -414,3 +414,50 @@
     inset -14px -18px 28px rgba(15, 23, 42, 0.04),
     0 18px 60px rgba(15, 23, 42, 0.1);
 }
+
+.case-study-content {
+  color: rgb(82 82 82);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.case-study-content > * + * {
+  margin-top: 1rem;
+}
+
+.case-study-content h2,
+.case-study-content h3 {
+  color: rgb(10 10 10);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.case-study-content h2 {
+  margin-top: 2.25rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.case-study-content h3 {
+  margin-top: 1.75rem;
+  font-size: 1.5rem;
+}
+
+.case-study-content ul,
+.case-study-content ol {
+  padding-left: 1.25rem;
+}
+
+.case-study-content li + li {
+  margin-top: 0.5rem;
+}
+
+.case-study-content a {
+  color: #0058fc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.case-study-content a:hover {
+  text-decoration: underline;
+}

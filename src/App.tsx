@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ThemeProvider } from "./components/theme-provider";
 import HomePage from "./pages/HomePage";
@@ -6,7 +6,6 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import WorksPage from "./pages/WorksPage";
-import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoadingProvider from "./components/loading-provide";
@@ -14,6 +13,7 @@ import { Toaster } from "sonner";
 import TermsAndConditions from "./pages/TermsPage";
 import PrivacyPolicy from "./pages/PrivacyPage";
 import Layout from "./components/shared/layout";
+import LoadingScreen from "./components/ui/loading-screen";
 import "@/App.css";
 
 const App = () => {
@@ -54,11 +54,15 @@ const App = () => {
               <Route path="/solutions" element={<SolutionsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/portfolio" element={<WorksPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects" element={<Navigate to="/portfolio" replace />} />
               <Route path="/projects/:slug" element={<ProjectDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route
+                path="/loading-test"
+                element={<LoadingScreen companyName="Ctrl Bits" />}
+              />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Toaster richColors />

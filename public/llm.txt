@@ -130,7 +130,6 @@ Ctrl Bits is a Kathmandu-based web development and digital growth agency in Nepa
 - Solutions: https://www.ctrlbits.com/solutions (Complete agency services and solutions)
 - About Us: https://www.ctrlbits.com/about (Company story and team)
 - Portfolio: https://www.ctrlbits.com/portfolio (Showcase of past projects)
-- Projects: https://www.ctrlbits.com/projects (Individual project listings)
 - Contact: https://www.ctrlbits.com/contact (Contact form and information)
 - Terms: https://www.ctrlbits.com/terms (Terms and conditions)
 - Privacy: https://www.ctrlbits.com/privacy (Privacy policy)
@@ -196,7 +195,7 @@ Ctrl Bits is a Kathmandu-based web development and digital growth agency in Nepa
 - How can a business start a project with Ctrl Bits?
 	- Submit project details at https://www.ctrlbits.com/contact.
 - What are the primary service pages?
-	- https://www.ctrlbits.com/solutions, https://www.ctrlbits.com/portfolio, and https://www.ctrlbits.com/projects.
+	- https://www.ctrlbits.com/solutions and https://www.ctrlbits.com/portfolio.
 
 ## Contact Information
 For inquiries, collaboration, or project discussions:

@@ -21,7 +21,6 @@ const footerLinks = [
   { title: "Solutions", to: "/solutions" },
   { title: "About", to: "/about" },
   { title: "Portfolio", to: "/portfolio" },
-  { title: "Projects", to: "/projects" },
   { title: "Contact", to: "/contact" },
   { title: "BitsBlog", to: "https://blog.ctrlbits.com" },
 ];
