@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import LoadingScreen from "./ui/loading-screen";
 import { API_BASE_URL } from "@/services/api";
 
@@ -21,35 +22,26 @@ const LoadingProvider = ({
   companyName,
   criticalEndpoints = DEFAULT_CRITICAL_ENDPOINTS,
 }: LoadingProviderProps) => {
-  const SESSION_LOAD_KEY = "sessionLoadComplete";
+  const shouldReduceMotion = useReducedMotion();
 
-  const hasLoadedInThisSession =
-    typeof window !== "undefined" &&
-    sessionStorage.getItem(SESSION_LOAD_KEY) === "true";
-
-  const [isLoading, setIsLoading] = useState(!hasLoadedInThisSession);
-  const [loadProgress, setLoadProgress] = useState(
-    hasLoadedInThisSession ? 100 : 0,
-  );
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
 
   useEffect(() => {
-    if (hasLoadedInThisSession) return;
-
     let isCancelled = false;
     let hasFinished = false;
+    const controller = new AbortController();
     let completionTimer: ReturnType<typeof setTimeout> | undefined;
-    let errorTimer: ReturnType<typeof setTimeout> | undefined;
 
     const finishLoading = () => {
       if (isCancelled || hasFinished) return;
 
       hasFinished = true;
       setLoadProgress(100);
-      sessionStorage.setItem(SESSION_LOAD_KEY, "true");
 
       completionTimer = setTimeout(() => {
         if (!isCancelled) setIsLoading(false);
-      }, 350);
+      }, 550);
     };
 
     const loadAllEndpoints = async () => {
@@ -62,13 +54,21 @@ const LoadingProvider = ({
         const results = await Promise.allSettled(
           criticalEndpoints.map(async (url) => {
             try {
-              const response = await fetch(url);
+              const response = await fetch(url, {
+                signal: controller.signal,
+              });
 
               if (!response.ok) {
                 throw new Error(`Failed to fetch ${url}`);
               }
 
-              return response.json();
+              const data: unknown = await response.json();
+
+              if (data === null || typeof data === "undefined") {
+                throw new Error(`No data returned from ${url}`);
+              }
+
+              return data;
             } finally {
               completedEndpoints += 1;
 
@@ -94,27 +94,43 @@ const LoadingProvider = ({
 
         finishLoading();
       } catch (error) {
+        if (controller.signal.aborted) return;
+
         console.error("Error loading critical endpoints:", error);
-        errorTimer = setTimeout(finishLoading, 2000);
       }
     };
 
     loadAllEndpoints();
 
-    const safetyTimeout = setTimeout(finishLoading, 10000);
-
     return () => {
       isCancelled = true;
-      clearTimeout(safetyTimeout);
+      controller.abort();
       if (completionTimer) clearTimeout(completionTimer);
-      if (errorTimer) clearTimeout(errorTimer);
     };
-  }, [hasLoadedInThisSession, criticalEndpoints]);
+  }, [criticalEndpoints]);
 
-  return isLoading ? (
-    <LoadingScreen companyName={companyName} progress={loadProgress} />
-  ) : (
-    <>{children}</>
+  return (
+    <>
+      <motion.div
+        aria-hidden={isLoading}
+        className={isLoading ? "pointer-events-none" : undefined}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+        animate={
+          isLoading && !shouldReduceMotion
+            ? { opacity: 0.96, y: 12 }
+            : { opacity: 1, y: 0 }
+        }
+        transition={{ duration: 0.45, ease: "easeOut" }}
+      >
+        {children}
+      </motion.div>
+
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen companyName={companyName} progress={loadProgress} />
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

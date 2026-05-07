@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { SkiperProgressNumber } from "./skiper-ui/skiper37";
 
 interface LoadingScreenProps {
@@ -28,6 +29,7 @@ const LoadingScreen = ({
   companyName = "Ctrl Bits",
   progress,
 }: LoadingScreenProps) => {
+  const shouldReduceMotion = useReducedMotion();
   const [displayProgress, setDisplayProgress] = useState(progress ?? 0);
   const [targetProgress, setTargetProgress] = useState(progress ?? 0);
 
@@ -39,7 +41,14 @@ const LoadingScreen = ({
 
   useEffect(() => {
     if (typeof progress === "number") {
-      setTargetProgress(clampProgress(progress));
+      const nextProgress = clampProgress(progress);
+
+      setTargetProgress(nextProgress);
+
+      if (nextProgress >= 100) {
+        setDisplayProgress(100);
+      }
+
       return;
     }
 
@@ -73,10 +82,18 @@ const LoadingScreen = ({
   }, [targetProgress]);
 
   return (
-    <div
+    <motion.div
       className="fixed inset-0 z-[9999] flex min-h-screen items-center justify-center overflow-hidden bg-[#05070d] text-white"
       aria-busy={boundedProgress < 100}
       aria-label={`${companyName} loading ${roundedProgress}%`}
+      initial={shouldReduceMotion ? false : { opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={
+        shouldReduceMotion
+          ? { opacity: 0 }
+          : { opacity: 0, y: "-8%", scale: 1.02, filter: "blur(10px)" }
+      }
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(128deg,#03050b_0%,#071531_32%,#001ea2_67%,#0058fc_100%)]" />
@@ -112,31 +129,6 @@ const LoadingScreen = ({
           aria-valuenow={roundedProgress}
         />
 
-        {loadingStops.map((stop) => {
-          const isActive = boundedProgress >= stop.value;
-
-          return (
-            <div
-              key={stop.value}
-              className="absolute bottom-0 -translate-x-1/2"
-              style={{ left: `${stop.value}%` }}
-            >
-              <div
-                className={`h-5 w-px transition-colors duration-500 ${
-                  isActive ? "bg-white" : "bg-white/25"
-                }`}
-              />
-              <div
-                className={`absolute -top-8 left-1/2 hidden -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-normal transition-colors duration-500 sm:block ${
-                  isActive ? "text-white" : "text-white/38"
-                }`}
-              >
-                {stop.label}
-              </div>
-            </div>
-          );
-        })}
-
         <div className="absolute bottom-6 left-4 text-xs uppercase tracking-normal text-white/48 sm:left-8">
           Loading interface
         </div>
@@ -152,7 +144,7 @@ const LoadingScreen = ({
           }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 };
 
