@@ -16,7 +16,6 @@ const PrivacyPolicy: React.FC = () => {
     ogUrl: "https://www.ctrlbits.com/privacy",
     canonical: "https://www.ctrlbits.com/privacy",
     twitterCard: "summary",
-    indexable: false,
   });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation

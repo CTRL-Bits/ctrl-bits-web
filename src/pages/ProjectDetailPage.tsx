@@ -35,6 +35,36 @@ function getProjectSummary(project: Project): string {
   );
 }
 
+function getProjectKeywords(project: Project): string {
+  const keywords = new Set<string>([
+    "ctrl bits project",
+    "control bits project",
+    "project case study Nepal",
+    "website development agency Nepal",
+    "digital marketing agency Nepal",
+    "software development and marketing company Nepal",
+  ]);
+
+  if (project.title) {
+    keywords.add(`${project.title} case study`);
+    keywords.add(`${project.title} project Nepal`);
+  }
+
+  if (project.category) {
+    keywords.add(`${project.category} project Nepal`);
+    keywords.add(`${project.category} case study`);
+  }
+
+  for (const tag of project.tags || []) {
+    if (tag?.name) {
+      keywords.add(tag.name);
+      keywords.add(`${tag.name} project Nepal`);
+    }
+  }
+
+  return Array.from(keywords).join(", ");
+}
+
 const DetailSkeleton = () => (
   <section className="min-h-screen bg-[#f5f5f5] px-4 py-24 md:px-8">
     <div className="mx-auto max-w-[88rem] animate-pulse">
@@ -60,9 +90,9 @@ export default function ProjectDetailPage() {
   const navigate = useNavigate();
 
   const projectDescription = project ? getProjectSummary(project) : "Project Details";
-  const projectKeywords =
-    project?.tags?.map((tag) => tag.name).join(", ") ||
-    "web development project, Kathmandu, Nepal";
+  const projectKeywords = project
+    ? getProjectKeywords(project)
+    : "project case study Nepal, ctrl bits project, control bits project";
 
   usePageMetadata({
     title: project?.title || "Project Details",
@@ -200,7 +230,7 @@ export default function ProjectDetailPage() {
                   {project.thumbnail ? (
                     <img
                       src={project.thumbnail}
-                      alt={`${project.title} case study preview`}
+                      alt={`${project.title} project case study by Ctrl Bits in Nepal`}
                       className="h-full w-full object-cover"
                     />
                   ) : (

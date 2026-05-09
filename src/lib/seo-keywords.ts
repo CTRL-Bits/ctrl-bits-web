@@ -7,91 +7,103 @@ export const seoKeywords = {
   // Primary Keywords (High Volume, High Competition)
   primary: [
     "web development agency Nepal",
-    "digital agency services Nepal",
-    "software development agency Nepal",
-    "custom web development Kathmandu",
-    "automation services Nepal"
+    "app development company Nepal",
+    "custom software development Nepal",
+    "UI/UX design agency Nepal",
+    "creative services Nepal",
+    "digital marketing agency Nepal"
   ],
 
   // Secondary Keywords (Medium Volume)
   secondary: [
-    "web app development Nepal",
-    "IT company Kathmandu",
-    "digital transformation Nepal",
-    "business automation Nepal",
-    "Nepal tech company",
-    "software company Kathmandu"
+    "web development agency Kathmandu",
+    "app development agency Kathmandu",
+    "custom software company Nepal",
+    "creative services Kathmandu",
+    "digital marketing agency Kathmandu",
+    "website development company Nepal",
+    "control bits",
+    "control bits Nepal",
+    "control bits web development",
+    "control bits app development",
+    "control bits creative services",
+    "control bits digital marketing agency",
+    "control bits website development agency"
   ],
 
   // Long-tail Keywords (Low Competition, High Intent)
   longTail: [
     "best web development agency in Kathmandu Nepal",
-    "affordable custom software development Nepal",
-    "business process automation solutions Kathmandu",
-    "professional web development services Nepal",
-    "enterprise software and marketing services Nepal",
-    "custom web application development Kathmandu",
-    "cloud infrastructure services Nepal",
-    "mobile app development agency Kathmandu",
-    "e-commerce website development Nepal",
-    "startup web development services Nepal",
-    "API development and integration Nepal",
-    "database design and optimization Kathmandu",
-    "UI UX design services Nepal",
-    "data analytics solutions Nepal",
-    "DevOps consulting services Kathmandu"
+    "custom app development company for startups in Nepal",
+    "custom software development agency for SMEs in Kathmandu",
+    "UI UX design agency for SaaS products in Nepal",
+    "creative services and video production company in Nepal",
+    "digital marketing agency for local SEO and paid ads in Nepal",
+    "website redesign and SEO migration services Nepal",
+    "business dashboard and portal development company Nepal",
+    "product design and interface design services Kathmandu",
+    "web app and mobile app development company Nepal",
+    "graphic design and branding agency Nepal",
+    "animation and motion design services Kathmandu",
+    "brand-aligned digital marketing for Nepal businesses"
   ],
 
   // Service-Specific Keywords
   services: {
     webDevelopment: [
-      "React web development",
-      "Next.js development Nepal",
-      "responsive web design",
-      "progressive web apps Nepal",
-      "full-stack development Kathmandu"
+      "website development services Nepal",
+      "responsive website development",
+      "CMS website development Kathmandu",
+      "landing page development Nepal",
+      "ecommerce website development Kathmandu"
     ],
-    automation: [
-      "workflow automation Nepal",
-      "business process automation",
-      "RPA solutions Nepal",
-      "automation consulting Kathmandu"
+    digitalMarketing: [
+      "digital marketing services Nepal",
+      "SEO services Nepal",
+      "local SEO Kathmandu",
+      "Google Ads management Nepal",
+      "conversion rate optimization services"
     ],
-    cloudInfrastructure: [
-      "AWS cloud services Nepal",
-      "cloud migration services",
-      "serverless architecture Nepal",
-      "cloud infrastructure setup Kathmandu"
+    softwareDevelopment: [
+      "custom software development services",
+      "web app development Kathmandu",
+      "mobile app development Nepal",
+      "workflow software development Nepal",
+      "portal development Kathmandu"
     ],
     uiux: [
-      "UI UX design Nepal",
+      "UI/UX design Nepal",
       "user experience design Kathmandu",
       "interface design services",
-      "product design Nepal"
+      "design systems Nepal",
+      "product design Kathmandu"
     ],
-    dataAnalytics: [
-      "business intelligence Nepal",
-      "data visualization services",
-      "analytics dashboards Kathmandu",
-      "data-driven insights Nepal"
+    creativeServices: [
+      "video production services Nepal",
+      "graphic design agency Nepal",
+      "branding services Kathmandu",
+      "animation and motion design Nepal",
+      "illustration services"
     ]
   },
 
   // Location-Based Keywords
   location: [
-    "Kathmandu web development",
-    "Nepal software agency",
-    "Bagmati digital agency services",
-    "web developers in Kathmandu valley"
+    "Nepal web development agency",
+    "Nepal app development company",
+    "Nepal creative services",
+    "Kathmandu web development agency",
+    "Kathmandu custom software company",
+    "Nepal digital marketing agency"
   ],
 
   // Industry Keywords
   industry: [
-    "fintech development Nepal",
-    "e-commerce solutions Kathmandu",
+    "ecommerce development Nepal",
+    "SaaS product design Nepal",
     "healthcare software Nepal",
-    "education technology Nepal",
-    "restaurant management system Nepal"
+    "education platform development Nepal",
+    "business portal development Kathmandu"
   ]
 };
 
@@ -137,17 +149,18 @@ export const seoImplementation = {
  * Alt Text Templates for Images
  */
 export const altTextTemplates = {
-  hero: "Professional web development agency team in Kathmandu Nepal working on custom software projects",
+  hero: "Ctrl Bits team planning web development, app development, custom software, UI/UX design, and digital marketing projects in Nepal",
   services: {
-    webDev: "Custom web development services Nepal - modern responsive websites and applications",
-    automation: "Business process automation solutions for Nepal companies - workflow optimization",
-    cloud: "Cloud infrastructure and AWS services Nepal - scalable hosting and DevOps solutions",
-    analytics: "Data analytics and business intelligence dashboards Nepal",
-    design: "UI UX design services Nepal - user-centered interface design"
+    webDev: "Website development services in Nepal for responsive business websites, landing pages, and ecommerce",
+    customSoftware: "Custom software and workflow systems for Nepal companies that want fewer manual steps",
+    appDevelopment: "Web and app delivery for Nepal businesses built with scalable, maintainable architecture",
+    creativeServices: "Video production, graphic design, branding, and animation services for Nepal businesses",
+    digitalMarketing: "Growth-focused digital marketing and performance tracking for Nepal businesses",
+    design: "UI/UX design services in Nepal for user-centered digital product interfaces"
   },
-  team: "Expert software development team at Ctrl Bits Kathmandu Nepal",
-  portfolio: "Web development portfolio - successful projects delivered in Nepal",
-  contact: "Contact Ctrl Bits web development agency Kathmandu Nepal office"
+  team: "Ctrl Bits web, app, software, UI/UX, creative, and digital marketing team in Kathmandu, Nepal",
+  portfolio: "Website, app, software, UI/UX, creative, and digital marketing portfolio delivered for Nepal clients",
+  contact: "Contact Ctrl Bits for web development, app development, custom software, UI/UX design, creative services, and digital marketing in Nepal"
 };
 
 export default {

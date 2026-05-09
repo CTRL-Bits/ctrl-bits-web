@@ -11,7 +11,7 @@ const fallbackCompany: Company = {
   name: "Ctrl Bits",
   tagline: "Ctrl the code, bit by bit",
   description:
-    "Ctrl Bits is a Nepal-based digital agency focused on creating practical, scalable, and polished digital solutions for businesses. We work across websites, apps, systems, design, content, automation, and digital growth.",
+    "Ctrl Bits is a Nepal-based digital agency focused on creating practical, scalable, and polished digital solutions for businesses. We work across web development, app development, custom software, UI/UX design, and digital marketing.",
   email: "hi@ctrlbits.com",
   website: "https://ctrlbits.com",
   address: "Nepal Based, Global Ready",
@@ -57,11 +57,10 @@ export default function CompanyProfile() {
       : [
           "Web development",
           "App development",
-          "Software systems",
-          "UI/UX",
-          "Branding",
-          "SEO",
-          "Automation",
+          "Custom software",
+          "UI/UX design",
+          "Creative services",
+          "Digital marketing",
         ];
 
   return (
@@ -121,7 +120,7 @@ export default function CompanyProfile() {
             value={`${displayCompany.founded_year || "2026"}`}
             label="Founded"
           />
-          <StatCard value="Web & App" label="Major Revenue Focus" />
+          <StatCard value="Web / App" label="Major Revenue Focus" />
           <StatCard value="Nepal" label="Based, Global Ready" />
           <StatCard
             value={partnerCount ? `${partnerCount}+` : "API"}

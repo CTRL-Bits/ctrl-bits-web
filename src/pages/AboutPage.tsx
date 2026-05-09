@@ -7,14 +7,14 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const AboutPage = () => {
   usePageMetadata({
-    title: "About Ctrl Bits | Software, Web & Digital Product Team in Nepal",
+    title: "About Ctrl Bits | Web, App, Software, UI/UX, Creative, and Marketing Team",
     description:
-      "Meet Ctrl Bits, a Nepal-based digital product team building websites, apps, software systems, UI/UX, SEO, automation, and digital growth systems.",
+      "Meet Ctrl Bits, a Nepal-based agency delivering web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     keywords:
-      "about Ctrl Bits, software company Nepal, web development team Kathmandu, digital product agency Nepal, automation team Nepal",
+      "about Ctrl Bits, about control bits, web development agency Nepal team, app development Nepal team, custom software Nepal, UI/UX design Nepal, creative services Nepal, digital marketing agency Nepal team",
     ogTitle: "About Ctrl Bits",
     ogDescription:
-      "The team behind Ctrl Bits: websites, apps, software systems, design, SEO, automation, and product development.",
+      "The team behind Ctrl Bits: web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     ogUrl: "https://www.ctrlbits.com/about",
     canonical: "https://www.ctrlbits.com/about",
     twitterCard: "summary_large_image",
@@ -30,8 +30,8 @@ const AboutPage = () => {
       <main className="bg-[#f5f5f5]">
         <RouteHero
           eyebrow="Company"
-          title="A small technical team with sharp taste and practical delivery habits."
-          description="Ctrl Bits is built for companies that need digital work to feel polished, perform fast, explain clearly, rank better, and keep working after launch."
+          title="A delivery team for web development, app development, custom software, UI/UX design, creative services, and digital marketing."
+          description="Ctrl Bits helps businesses plan, build, and scale websites, apps, software systems, user experiences, creative assets, and growth campaigns with clear execution standards."
         >
           <CompanyLogoCloud compact title="Teams, brands, and companies around our work" />
         </RouteHero>
