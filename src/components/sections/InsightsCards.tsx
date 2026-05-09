@@ -78,8 +78,8 @@ export default function InsightsCards({ preview = false }: { preview?: boolean }
         <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeader
             eyebrow="Insights"
-            title="Expert views from the Ctrl Bits desk"
-            description="Fresh thinking from the Ctrl Bits blog on web development, software delivery, automation, SEO, digital strategy, and product decisions for Nepal and global teams."
+            title="Notes from the desk"
+            description="Short reads on websites, software, SEO, and digital decisions."
           />
           {!preview && categories.length > 1 && (
             <div className="flex max-w-xl flex-wrap gap-2">

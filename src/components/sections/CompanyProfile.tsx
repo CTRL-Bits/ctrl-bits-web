@@ -11,7 +11,7 @@ const fallbackCompany: Company = {
   name: "Ctrl Bits",
   tagline: "Ctrl the code, bit by bit",
   description:
-    "Ctrl Bits is a Nepal-based digital agency focused on creating practical, scalable, and polished digital solutions for businesses. We work across web development, app development, custom software, UI/UX design, and digital marketing.",
+    "Ctrl Bits is a Nepal-based digital agency building practical systems for growing businesses.",
   email: "hi@ctrlbits.com",
   website: "https://ctrlbits.com",
   address: "Nepal Based, Global Ready",
