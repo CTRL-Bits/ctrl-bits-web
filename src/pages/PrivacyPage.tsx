@@ -7,7 +7,7 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const PrivacyPolicy: React.FC = () => {
   usePageMetadata({
-    title: "Privacy Policy",
+    title: "Privacy Policy | Ctrl Bits",
     description:
       "Learn how Ctrl Bits protects your privacy and handles your personal data.",
     keywords: "privacy policy, data protection, personal information",

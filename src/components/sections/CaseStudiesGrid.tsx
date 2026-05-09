@@ -54,8 +54,8 @@ export default function CaseStudiesGrid({ preview = false }: CaseStudiesGridProp
         <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeader
             eyebrow={preview ? "Selected Work" : "Portfolio"}
-            title={preview ? "Case studies with a point of view" : "Portfolio and case studies"}
-            description="A focused archive of websites, apps, custom software, UI/UX systems, and digital marketing work delivered by Ctrl Bits."
+            title={preview ? "Work with a point of view" : "Portfolio"}
+            description="Projects built around clear business goals."
           />
           {!preview && (
             <div className="relative w-full max-w-md">

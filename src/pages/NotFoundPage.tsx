@@ -43,11 +43,11 @@ export default function NotFoundPage() {
   const [query, setQuery] = useState("");
 
   usePageMetadata({
-    title: "404 - Page Not Found",
+    title: "Page Not Found | Ctrl Bits",
     description:
       "The page you're looking for doesn't exist. Return to Ctrl Bits home page.",
     keywords: "404, not found, error page",
-    ogTitle: "404 - Page Not Found | Ctrl Bits",
+    ogTitle: "Page Not Found | Ctrl Bits",
     ogDescription: "The page you're looking for doesn't exist.",
     canonical: "https://www.ctrlbits.com/404",
     twitterCard: "summary",

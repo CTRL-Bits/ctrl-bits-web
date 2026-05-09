@@ -5,12 +5,12 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function WorksPage() {
   usePageMetadata({
-    title: "Portfolio & Case Studies | Ctrl Bits",
+    title: "Ctrl Bits Portfolio | Web & Digital Work",
     description:
       "Explore Ctrl Bits portfolio and case studies across web development, app development, custom software, UI/UX design, creative services, and digital marketing work.",
     keywords:
       "Ctrl Bits portfolio, web development portfolio Nepal, app development case studies, custom software case studies Kathmandu, UI/UX design case studies Nepal, creative services portfolio Nepal, digital marketing case studies Nepal",
-    ogTitle: "Portfolio & Case Studies | Ctrl Bits",
+    ogTitle: "Ctrl Bits Portfolio | Web & Digital Work",
     ogDescription:
       "Case studies from Ctrl Bits across websites, apps, custom software, UI/UX, creative work, and digital marketing delivery.",
     ogUrl: "https://www.ctrlbits.com/portfolio",
@@ -28,8 +28,8 @@ export default function WorksPage() {
       <main className="bg-[#f5f5f5]">
         <RouteHero
           eyebrow="Portfolio"
-          title="Case studies from the systems we have shipped."
-          description="A searchable portfolio of websites, apps, custom software, UI/UX systems, creative work, and digital marketing projects built for clients in Nepal and beyond."
+          title="Work shaped by strategy, design, and real business goals."
+          description="A focused archive of websites, systems, creative work, and campaigns delivered by Ctrl Bits."
         />
         <CaseStudiesGrid />
       </main>

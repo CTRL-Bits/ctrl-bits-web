@@ -92,12 +92,12 @@ const HomePage = () => {
 
   usePageMetadata({
     title:
-      "Web Development, App Development, Custom Software, UI/UX Design, Creative Services & Digital Marketing in Nepal | Ctrl Bits",
+      "Web Development & Digital Marketing Services in Nepal | Ctrl Bits",
     description:
       "Ctrl Bits is a Kathmandu-based agency for web development, app development, custom software, UI/UX design, creative services, and digital marketing across Nepal.",
     keywords:
       "web development agency Nepal, app development company Nepal, custom software development Nepal, UI/UX design agency Nepal, digital marketing agency Nepal, creative services Nepal, web development agency Kathmandu, app development agency Kathmandu, control bits, control bits Nepal",
-    ogTitle: "Web, App, Software, UI/UX, Creative, and Digital Marketing | Ctrl Bits",
+    ogTitle: "Web Development & Digital Marketing | Ctrl Bits",
     ogDescription:
       "Web development, app development, custom software, UI/UX design, creative services, and digital marketing for businesses in Kathmandu and across Nepal.",
     ogUrl: "https://www.ctrlbits.com/",
@@ -137,15 +137,14 @@ const HomePage = () => {
                   Ctrl the code, bit by bit
                 </p>
                 <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.085em] md:text-8xl lg:text-[8.75rem]">
-                  Websites, marketing, and software that drive growth.
+                  Digital work that moves business.
                 </h1>
               </div>
 
               <div className="mt-12 max-w-3xl">
                 <p className="text-xl leading-9 text-white/78">
-                  Ctrl Bits is a Kathmandu-based agency delivering web
-                  development, app development, custom software, UI/UX design,
-                  creative services, and digital marketing with clear SEO and conversion intent.
+                  We build fast websites, useful systems, sharp design, and
+                  growth-ready marketing from Kathmandu.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -293,10 +292,8 @@ const HomePage = () => {
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               <p className="text-lg leading-8 text-neutral-600 md:col-span-2">
-                A strong digital product is usually quiet. It answers the right
-                question, gives the next step, loads quickly, and makes the
-                business look competent. That is the direction for Ctrl Bits:
-                less noise, more signal, better structure.
+                Strong digital work feels simple: clear, fast, useful, and easy
+                to trust.
               </p>
               {principles.map((principle) => (
                 <div key={principle} className="flex items-start gap-3">
@@ -325,15 +322,10 @@ const HomePage = () => {
             </div>
             <div className="space-y-5 text-base leading-8 text-neutral-600">
               <p>
-                Enough context to understand Ctrl Bits, enough proof to trust
-                the work, and enough direction to choose the correct route.
-                The detailed service, portfolio, company, and contact content
-                now lives on separate pages for better SEO and better UX.
+                Give visitors the shortest path to trust, proof, and action.
               </p>
               <p>
-                That gives search engines clearer page intent and gives users a
-                cleaner path: learn what we do, inspect the work, understand the
-                team, or start a conversation.
+                Every page gets one clear job.
               </p>
             </div>
           </div>

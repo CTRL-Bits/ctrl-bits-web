@@ -79,8 +79,8 @@ export default function TeamDirectory() {
         <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="Team"
-            title="Builders behind the systems"
-            description="Team members are loaded from the existing team API with graceful fallback content only when needed."
+            title="Builders behind the work"
+            description="The people shaping the systems."
           />
         </div>
 

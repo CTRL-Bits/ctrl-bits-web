@@ -5,37 +5,37 @@ const services = [
   {
     title: "Web Development",
     description:
-      "Business websites, landing pages, and SEO-ready builds made for speed and clarity.",
+      "Fast, clear websites built to convert.",
     icon: Code2,
   },
   {
     title: "App Development",
     description:
-      "Mobile and web apps with clean architecture, secure APIs, and simple user flows.",
+      "Useful apps with simple flows.",
     icon: AppWindow,
   },
   {
     title: "Custom Software",
     description:
-      "Internal tools, dashboards, portals, and workflow systems tailored to how your team works.",
+      "Tools that fit how your team works.",
     icon: Blocks,
   },
   {
     title: "UI/UX Design",
     description:
-      "Research-led interfaces, wireframes, design systems, and user flows that make products easier to use.",
+      "Interfaces that feel clear and usable.",
     icon: PenTool,
   },
   {
     title: "Digital Marketing",
     description:
-      "SEO, local SEO, content, and paid campaigns focused on qualified traffic and measurable growth.",
+      "Search and campaigns built for growth.",
     icon: SearchCheck,
   },
   {
     title: "Creative Services",
     description:
-      "Video production, graphic design, branding, animation, and illustration that bring your ideas to life.",
+      "Brand visuals, video, and motion.",
     icon: Palette,
   },
 ];
@@ -48,8 +48,8 @@ export default function ServicesMatrix({ preview = false }: { preview?: boolean 
       <div className="mx-auto max-w-[88rem]">
         <SectionHeader
           eyebrow="Services"
-          title={preview ? "What we build best" : "Services built for search, speed, and scale"}
-          description="Clear services for web development, app development, custom software, UI/UX design, digital marketing, and creative services."
+          title={preview ? "What we build best" : "Services built to move"}
+          description="Focused work across build, design, creative, and growth."
         />
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {visibleServices.map((service) => {

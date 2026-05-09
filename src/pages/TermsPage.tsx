@@ -7,7 +7,7 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const TermsAndConditions: React.FC = () => {
   usePageMetadata({
-    title: "Terms & Conditions",
+    title: "Terms & Conditions | Ctrl Bits",
     description:
       "Read the terms and conditions of Ctrl Bits services and website usage.",
     keywords: "terms and conditions, legal, service agreement",
