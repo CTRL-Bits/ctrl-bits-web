@@ -1,214 +1,147 @@
-# Ctrl Bits - Web Development, Digital Marketing & Creative Agency in Kathmandu, Nepal
+# Ctrl Bits - Web Development, App Development, Custom Software, UI/UX Design, Creative Services, and Digital Marketing in Kathmandu, Nepal
 
 ## Company Information
 - Name: Ctrl Bits
+- Also searched as: Control Bits
 - Location: Kathmandu, Nepal
 - Primary Email: hi@ctrlbits.com
 - Primary Phone: +977-9709659012
-- Industry: Web Development, Software Engineering, Digital Marketing, Creative Production
 - Website: https://www.ctrlbits.com
-- Contact: https://www.ctrlbits.com/contact
-- Coordinates: 27.7172, 85.3240
+- Contact Page: https://www.ctrlbits.com/contact
 - Primary Service Area: Kathmandu Valley, Nepal
-- Secondary Service Area: Nepal (nationwide) and international remote delivery
+- Secondary Service Area: Nepal nationwide and remote international delivery
 
 ## About
-Ctrl Bits is a Kathmandu-based web development and digital growth agency in Nepal specializing in custom software development, digital marketing, SEO, video editing, graphic design, automation, and cloud infrastructure. We deliver scalable digital solutions and growth-focused campaigns for clients in Kathmandu, across Nepal, and internationally.
+Ctrl Bits is a Kathmandu-based digital agency in Nepal focused on six core services: web development, app development, custom software, UI/UX design, creative services, and digital marketing.
+
+We build clear, fast, search-friendly digital experiences for businesses that want practical delivery and measurable outcomes.
 
 ## Core Services
 
-### 1. Digital Marketing
-- SEO (on-page, technical, local)
-- Paid Advertising (Google Ads, Meta)
-- Social Media Marketing
-- Content Strategy & Copywriting
-- Conversion Optimization
+### 1. Web Development
+- Business websites
+- Landing pages
+- CMS builds
+- Ecommerce websites
+- SEO-ready site architecture
 
-### 2. Creative Production
-- Graphic Design
-- Motion Graphics
-- Video Editing
-- Brand Identity & Visual Systems
+### 2. App Development
+- Web applications
+- Mobile applications
+- Secure APIs
+- User flows and dashboards
+- Product builds for startups and service teams
 
-### 3. Digital Products & Design
-- UI/UX Design
-- Motion Design
-- Design Systems
-- User Research & Testing
-- Enterprise product design
-- Consumer product design
+### 3. Custom Software
+- Internal tools
+- Client portals
+- Admin dashboards
+- Workflow systems
+- Integration-heavy business applications
 
-### 4. Website Development
-- Content Strategy
-- Web Design
-- Interactive Experiences
-- Responsive & Mobile-First Design
-- Performance Optimization
-- SEO-optimized websites
+### 4. UI/UX Design
+- User research
+- Wireframes
+- Interface design
+- Design systems
+- Product flows and usability improvements
 
-### 5. Full-Stack Development
-- Web Application Development (React, Next.js, TypeScript)
-- Backend Development (Django, Node.js)
-- Mobile App Development
-- AI/ML Integration
-- Custom Applications
-- E-commerce Platforms
-- Progressive Web Apps (PWA)
-- API Development
+### 5. Creative Services
+- Video production
+- Graphic design
+- Branding
+- Animation
+- Illustration
 
-### 6. Business Automation & Intelligence
-- Workflow Automation Systems
-- Business Process Automation (BPA)
-- Robotic Process Automation (RPA)
-- AI-Assisted Decision Platforms
-- Form Automation
-- Integration with Existing Tools
-- Productivity Enhancement Solutions
-- Data Analytics Dashboards
-- Real-time Analytics & Insights
+### 6. Digital Marketing
+- SEO
+- Local SEO
+- Content strategy
+- Paid advertising
+- Conversion-focused growth campaigns
 
-### 7. Cloud Infrastructure & DevOps
-- AWS, Google Cloud, DigitalOcean Setup
-- Cloud Architecture & Strategy
-- Secure Cloud Hosting
-- Data Backup & Disaster Recovery
-- Load Balancing & Scaling
-- CI/CD Pipeline Setup
-- Container Orchestration (Docker, Kubernetes)
-- Infrastructure Monitoring
-- Security & Compliance Solutions
+## SEO Keyword Targets
 
-### 8. Continuous Innovation & Support
-- Future-Ready Digital Strategy
-- Performance Optimization
-- Security Audits
-- Ongoing Maintenance & Support
+### Primary Keywords
+- web development agency Nepal
+- app development company Nepal
+- custom software development Nepal
+- UI UX design agency Nepal
+- creative services Nepal
+- digital marketing agency Nepal
 
-## Technology Stack
-### Frontend
-- React 19.1.0
-- TypeScript 5.7.2
-- Vite 6.3.1
-- Tailwind CSS 4.1.4
-- Framer Motion 12.9.2
-- React Router DOM 7.5.3
+### Secondary Keywords
+- web development agency Kathmandu
+- app development agency Kathmandu
+- custom software company Nepal
+- UI/UX design Kathmandu
+- creative services Kathmandu
+- digital marketing agency Kathmandu
+- control bits
+- control bits Nepal
+- control bits web development
+- control bits app development
+- control bits creative services
 
-### Animation & 3D
-- GSAP 3.13.0
-- Three.js 0.167.1
-- React Three Fiber
+### Long-Tail Keyword Variants
+- best web development agency in Kathmandu Nepal
+- app development company for startups in Nepal
+- custom software development company for businesses in Kathmandu
+- UI/UX design agency for product teams in Nepal
+- creative services and video production company Nepal
+- digital marketing agency for local SEO in Nepal
+- graphic design and branding agency Kathmandu
+- animation and motion design services Nepal
+- website redesign and SEO migration services Nepal
+- business portal and dashboard development company Nepal
+- ecommerce website development agency in Kathmandu
 
-### UI Libraries
-- Radix UI (accessible components)
-- Lucide React (icons)
-- React Helmet Async (SEO)
+## Location Signals
+- Kathmandu website development agency
+- Nepal app development company
+- Kathmandu custom software company
+- Nepal UI/UX design agency
+- Nepal creative services
+- Nepal digital marketing agency
 
-### Backend & Cloud
-- Django
-- Node.js
-- AWS
-- Google Cloud
-- DigitalOcean
-
-## Target Keywords
-- Web development agency in Kathmandu
-- Web development agency in Nepal
-- Web development in Nepal
-- Digital marketing Kathmandu
-- Digital marketing Nepal
-- SEO services Kathmandu
-- Custom software development
-- Digital agency services Nepal
-- Automation services Nepal
-- Graphic design Nepal
-- Motion graphics Nepal
-- Video editing Nepal
-- Web design Nepal
+## Quick Answers for AEO
+- What does Ctrl Bits do?
+  - Ctrl Bits provides web development, app development, custom software, UI/UX design, creative services, and digital marketing.
+- Where is Ctrl Bits located?
+  - Kathmandu, Nepal.
+- Is Control Bits the same as Ctrl Bits?
+  - Yes. Control Bits is a common search variation of Ctrl Bits.
+- Which clients does Ctrl Bits serve?
+  - Businesses in Kathmandu, across Nepal, and remote international clients.
+- What creative services does Ctrl Bits provide?
+  - Video production, graphic design, branding, animation, and illustration.
+- How do I start a project?
+  - Use the contact page at https://www.ctrlbits.com/contact.
+- What is the main services page?
+  - https://www.ctrlbits.com/solutions
 
 ## Key Pages
-- Home: https://www.ctrlbits.com/ (Homepage with services overview)
-- Solutions: https://www.ctrlbits.com/solutions (Complete agency services and solutions)
-- About Us: https://www.ctrlbits.com/about (Company story and team)
-- Portfolio: https://www.ctrlbits.com/portfolio (Showcase of past projects)
-- Contact: https://www.ctrlbits.com/contact (Contact form and information)
-- Terms: https://www.ctrlbits.com/terms (Terms and conditions)
-- Privacy: https://www.ctrlbits.com/privacy (Privacy policy)
+- Home: https://www.ctrlbits.com/
+- Solutions: https://www.ctrlbits.com/solutions
+- About: https://www.ctrlbits.com/about
+- Portfolio: https://www.ctrlbits.com/portfolio
+- Contact: https://www.ctrlbits.com/contact
+- Privacy: https://www.ctrlbits.com/privacy
+- Terms: https://www.ctrlbits.com/terms
 
 ## Social Media
-- Twitter/X: https://x.com/ctrl_bits
 - Facebook: https://www.facebook.com/ctrlbits
-- LinkedIn: https://www.linkedin.com/company/ctrlbits
 - Instagram: https://www.instagram.com/ctrl.bits/
-
-## SEO Information
-- Sitemap: https://www.ctrlbits.com/sitemap.xml
-- Robots: https://www.ctrlbits.com/robots.txt
-- Schema Markup: Organization, LocalBusiness, Service, WebSite, WebPage, BreadcrumbList
-- Canonical Domain: https://www.ctrlbits.com
-- Preferred Language: English
-- Mobile-First: Yes
-- Performance: Optimized (WebP images, code splitting)
-- Accessibility: WCAG 2.1 compliant
-
-## Unique Value Propositions
-- Nepal-based with international quality standards
-- Full-stack development expertise (Frontend to Backend)
-- Custom solutions tailored to business needs
-- Scalable and future-proof architecture
-- Fast, SEO-optimized deliverables
-- Business automation & workflow optimization specialists
-- Cloud-native infrastructure experts
-- AI/ML integration capabilities
-- Design-first approach with user-centric solutions
-- Digital marketing and analytics for measurable growth
-- Creative production (graphics, motion, video) in-house
-- Modern technology stack (React, TypeScript, Django, AWS)
-
-## Industries Served
-- E-commerce
-- Corporate/Enterprise
-- Startups
-- Small and Medium Businesses
-- Education
-- Healthcare
-- Finance
-- Tourism
-
-## Delivery Standards
-- Mobile-first responsive design
-- Performance optimization (WebP images, code splitting, lazy loading)
-- Security-first development approach
-- Clean, maintainable, well-documented code
-- Comprehensive project documentation
-- Ongoing support and maintenance contracts
-- Regular code reviews and testing
-- SEO best practices from day one
-- Accessibility compliance (WCAG 2.1)
-
-## Quick Answers (AEO/LLMO)
-- What is Ctrl Bits?
-	- Ctrl Bits is a Kathmandu-based digital agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development.
-- Where is Ctrl Bits located?
-	- Kathmandu, Nepal.
-- Which regions does Ctrl Bits serve?
-	- Primary focus: Kathmandu and Nepal; remote delivery for international clients.
-- How can a business start a project with Ctrl Bits?
-	- Submit project details at https://www.ctrlbits.com/contact.
-- What are the primary service pages?
-	- https://www.ctrlbits.com/solutions and https://www.ctrlbits.com/portfolio.
+- LinkedIn: https://www.linkedin.com/company/ctrlbits
+- X: https://x.com/ctrl_bits
 
 ## Contact Information
-For inquiries, collaboration, or project discussions:
-- Website Contact Form: https://www.ctrlbits.com/contact
-- Location: Kathmandu, Nepal (Primary Service Location)
-- Service Area: Nepal and International
-
-## API Information
-- Company API: https://api.ctrlbits.com/api/companies/
-- Subscriber API: https://api.ctrlbits.com/api/subscribers/
+- Email: hi@ctrlbits.com
+- Phone: +977-9709659012
+- Location: Kathmandu, Nepal
 
 ## Copyright
 © 2026 Ctrl Bits. All rights reserved.
 
 ---
-Last Updated: March 5, 2026
+Last Updated: May 9, 2026

@@ -15,14 +15,15 @@ const process = [
 
 export default function SolutionsPage() {
   usePageMetadata({
-    title: "Web Development, App Development, SEO & Automation Services in Nepal",
+    title:
+      "Web Development, App Development, Custom Software, UI/UX Design, Creative Services & Digital Marketing",
     description:
-      "Ctrl Bits provides web development, app development, custom software, UI/UX, branding, SEO, automation, and digital product development services from Nepal.",
+      "Ctrl Bits provides web development, app development, custom software, UI/UX design, creative services, and digital marketing for businesses across Nepal.",
     keywords:
-      "web development services Kathmandu, app development Nepal, custom software development Kathmandu, SEO services Kathmandu, UI UX design Nepal, business automation Nepal",
+      "web development agency Nepal, app development company Nepal, custom software development Nepal, UI/UX design Nepal, creative services Nepal, digital marketing agency Nepal, control bits services",
     ogTitle: "Services | Ctrl Bits",
     ogDescription:
-      "Digital services for websites, apps, systems, SEO, branding, automation, and product development.",
+      "Web development, app development, custom software, UI/UX design, creative services, and digital marketing from Ctrl Bits.",
     ogUrl: "https://www.ctrlbits.com/solutions",
     canonical: "https://www.ctrlbits.com/solutions",
     twitterCard: "summary_large_image",
@@ -38,8 +39,8 @@ export default function SolutionsPage() {
       <main className="bg-[#f5f5f5]">
         <RouteHero
           eyebrow="Services"
-          title="Services for businesses that need more than a pretty website."
-          description="Ctrl Bits works across strategy, design, engineering, SEO, automation, and digital growth so your digital product can be found, trusted, used, and improved."
+          title="Web development, app development, custom software, UI/UX design, creative services, and digital marketing."
+          description="We deliver conversion-ready websites, mobile and web apps, custom software systems, user-centered interfaces, creative work, and measurable marketing with clear scope and execution."
         >
           <Link
             to="/contact"
@@ -55,7 +56,7 @@ export default function SolutionsPage() {
             <SectionHeader
               eyebrow="Process"
               title="A clean build process, without theatre"
-              description="Every project needs enough structure to move fast without guessing. This is the operating rhythm we use for websites, apps, software systems, SEO foundations, and automation work."
+              description="Every project needs enough structure to move fast without guessing. This is the operating rhythm we use for websites, apps, custom software, UI/UX, creative services, and digital marketing work."
             />
             <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {process.map(([number, title, description]) => (

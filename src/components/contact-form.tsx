@@ -182,8 +182,8 @@ export default function ContactSection() {
               </h2>
               <p className="mt-5 max-w-md text-sm leading-7 text-white/58">
                 Share what needs to work better. We will help shape the scope
-                for a website, app, system, SEO foundation, automation, or
-                digital product.
+                for web development, app development, custom software, UI/UX
+                design, digital marketing, or creative services.
               </p>
             </div>
 
@@ -366,13 +366,12 @@ export default function ContactSection() {
                     required
                   >
                     <option value="">Choose the closest match</option>
-                    <option value="website">Website or landing page</option>
+                    <option value="web-development">Web development</option>
                     <option value="app-development">App development</option>
                     <option value="custom-software">Custom software system</option>
-                    <option value="seo">SEO and content foundations</option>
-                    <option value="automation">Business automation</option>
-                    <option value="branding">Branding and UI/UX</option>
-                    <option value="maintenance">Maintenance or support</option>
+                    <option value="ui-ux-design">UI/UX design</option>
+                    <option value="digital-marketing">Digital marketing</option>
+                    <option value="creative-services">Creative services</option>
                     <option value="other">Other</option>
                   </select>
                 </Field>

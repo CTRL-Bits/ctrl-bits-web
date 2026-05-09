@@ -13,7 +13,6 @@ import { Toaster } from "sonner";
 import TermsAndConditions from "./pages/TermsPage";
 import PrivacyPolicy from "./pages/PrivacyPage";
 import Layout from "./components/shared/layout";
-import LoadingScreen from "./components/ui/loading-screen";
 import "@/App.css";
 
 const App = () => {
@@ -59,10 +58,7 @@ const App = () => {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route
-                path="/loading-test"
-                element={<LoadingScreen companyName="Ctrl Bits" />}
-              />
+         
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Toaster richColors />

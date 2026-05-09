@@ -19,24 +19,24 @@ export const SchemaMarkup = ({
   pageName,
   pageUrl,
 }: SchemaMarkupProps) => {
-  // Organization Schema - for all pages
   const organizationSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://www.ctrlbits.com/#organization",
     name: "Ctrl Bits",
-    alternateName: ["Ctrl Bits", "ctrl bits"],
+    alternateName: ["Ctrl Bits", "ctrl bits", "Control Bits"],
     url: "https://www.ctrlbits.com",
     logo: "https://www.ctrlbits.com/logo.webp",
     description:
-      "Ctrl Bits is a Kathmandu-based digital agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development services.",
+      "Ctrl Bits is a Nepal-based agency providing web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     knowsAbout: [
+      "Website Development",
       "Web Development",
+      "App Development",
+      "Custom Software",
+      "UI/UX Design",
+      "Creative Services",
       "Digital Marketing",
-      "SEO",
-      "Video Editing",
-      "Graphic Design",
-      "Software Development",
     ],
     address: {
       "@type": "PostalAddress",
@@ -65,13 +65,13 @@ export const SchemaMarkup = ({
       },
       {
         "@type": "WebPage",
-        name: "About",
-        url: "https://www.ctrlbits.com/about",
+        name: "Portfolio",
+        url: "https://www.ctrlbits.com/portfolio",
       },
       {
         "@type": "WebPage",
-        name: "Portfolio",
-        url: "https://www.ctrlbits.com/portfolio",
+        name: "Contact",
+        url: "https://www.ctrlbits.com/contact",
       },
     ],
   };
@@ -82,25 +82,24 @@ export const SchemaMarkup = ({
     "@id": "https://www.ctrlbits.com/#website",
     url: "https://www.ctrlbits.com/",
     name: "Ctrl Bits",
-    alternateName: ["ctrl bits"],
+    alternateName: ["ctrl bits", "control bits"],
     description:
-      "Ctrl Bits is a Kathmandu-based digital agency for web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+      "Ctrl Bits is a Nepal-based agency delivering web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     inLanguage: "en",
     publisher: {
       "@id": "https://www.ctrlbits.com/#organization",
     },
   };
 
-  // Local Business Schema - for homepage and about page
   const localBusinessSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.ctrlbits.com/#localbusiness",
     name: "Ctrl Bits",
-    alternateName: ["ctrl bits"],
+    alternateName: ["ctrl bits", "control bits"],
     image: "https://www.ctrlbits.com/logo.webp",
     description:
-      "Kathmandu-based digital agency offering web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+      "Nepal agency offering web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     url: "https://www.ctrlbits.com/",
     parentOrganization: {
       "@id": "https://www.ctrlbits.com/#organization",
@@ -123,7 +122,28 @@ export const SchemaMarkup = ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Web Development",
+            name: "Website Development",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "App Development",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Software",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "UI/UX Design",
           },
         },
         {
@@ -137,28 +157,7 @@ export const SchemaMarkup = ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "SEO Services",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Video Editing",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Graphic Design",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Custom Software Development",
+            name: "Creative Services",
           },
         },
       ],
@@ -179,12 +178,12 @@ export const SchemaMarkup = ({
     priceRange: "$$",
   };
 
-  // Service Schema - for solutions page
   const serviceSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://www.ctrlbits.com/#service",
-    serviceType: "Web Development, Digital Marketing & Creative Services",
+    serviceType:
+      "Web Development, App Development, Custom Software, UI/UX Design, Creative Services, and Digital Marketing",
     provider: {
       "@id": "https://www.ctrlbits.com/#organization",
     },
@@ -206,9 +205,36 @@ export const SchemaMarkup = ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Web Development",
+            name: "Website Development",
             description:
-              "Responsive websites, web apps, e-commerce development, and CMS implementation.",
+              "Website design and development, CMS builds, landing pages, and performance-focused business sites.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "App Development",
+            description:
+              "Mobile and web apps with clean architecture and secure APIs.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Software",
+            description:
+              "Internal tools, portals, dashboards, and workflow systems tailored to operations.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "UI/UX Design",
+            description:
+              "Research-led interfaces, wireframes, and design systems that make products easier to use.",
           },
         },
         {
@@ -217,50 +243,22 @@ export const SchemaMarkup = ({
             "@type": "Service",
             name: "Digital Marketing",
             description:
-              "Paid campaigns, social media marketing, and conversion-focused growth strategies.",
+              "SEO, local SEO, content, and paid campaigns.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "SEO Services",
+            name: "Creative Services",
             description:
-              "Technical SEO, on-page optimization, local SEO, and content SEO strategy.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Video Editing & Motion Graphics",
-            description:
-              "Editing for ads, product demos, social reels, and brand storytelling content.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Graphic Design & Branding",
-            description:
-              "Brand identity, marketing creatives, and UI graphics for digital channels.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Custom Software Development",
-            description:
-              "Tailored software systems, API integration, and workflow automation solutions.",
+              "Video production, graphic design, branding, animation, and illustration.",
           },
         },
       ],
     },
   };
 
-  // Breadcrumb Schema
   const breadcrumbSchema: Record<string, any> | null = pageName
     ? {
         "@context": "https://schema.org",
@@ -283,17 +281,16 @@ export const SchemaMarkup = ({
       }
     : null;
 
-  // WebPage Schema
   const webPageSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${pageUrl || "https://www.ctrlbits.com"}#webpage`,
     name:
       pageName ||
-      "Ctrl Bits - Kathmandu Web Development & Digital Marketing Agency",
+      "Ctrl Bits - Web Development, App Development, Custom Software, UI/UX Design, and Digital Marketing in Nepal",
     url: pageUrl || "https://www.ctrlbits.com",
     description:
-      "Kathmandu-based agency offering web development, digital marketing, SEO, video editing, graphic design, and custom software development.",
+      "Nepal-based agency offering web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     inLanguage: "en",
     isPartOf: {
       "@id": "https://www.ctrlbits.com/#website",
@@ -323,7 +320,6 @@ export const SchemaMarkup = ({
     schemaToRender = breadcrumbSchema;
   }
 
-  // Combine multiple schemas if needed
   const schemas: Record<string, any>[] = Array.isArray(schemaToRender)
     ? [...schemaToRender]
     : [schemaToRender];

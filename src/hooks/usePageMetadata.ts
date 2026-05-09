@@ -78,7 +78,7 @@ export const usePageMetadata = (metadata: PageMetadata) => {
     }
     robotsMeta.setAttribute(
       "content",
-      indexable ? "index, follow" : "noindex, nofollow"
+      indexable ? "index, follow" : "noindex, follow"
     );
 
     // Core SEO tags

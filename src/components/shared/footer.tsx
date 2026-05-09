@@ -19,19 +19,19 @@ import LogoIcon from "@/components/shared/LogoIcon";
 
 const footerLinks = [
   { title: "Solutions", to: "/solutions" },
-  { title: "About", to: "/about" },
   { title: "Portfolio", to: "/portfolio" },
   { title: "Contact", to: "/contact" },
+  { title: "About", to: "/about" },
   { title: "BitsBlog", to: "https://blog.ctrlbits.com" },
 ];
 
 const serviceLinks = [
   "Web development",
   "App development",
-  "Automation",
-  "SEO foundations",
-  "Brand systems",
-  "Cloud infrastructure",
+  "Custom software",
+  "UI/UX design",
+  "Digital marketing",
+  "Creative services",
 ];
 
 const socialLinks: {
@@ -118,8 +118,9 @@ export default function FooterSection() {
               <LogoIcon className="text-white" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-white/56">
-              Digital product, software, SEO, automation, and creative systems
-              for teams that need their web presence to work with less noise.
+              Web development, app development, custom software, UI/UX design,
+              digital marketing, and creative services for teams that need their web presence to
+              work with less noise.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
               {socialLinks.map((link) => (
@@ -182,8 +183,8 @@ export default function FooterSection() {
               Stay Updated
             </h2>
             <p className="mt-5 text-sm leading-7 text-white/56">
-              Occasional notes on digital systems, websites, SEO, automation,
-              and product delivery.
+              Occasional notes on websites, apps, software, UI/UX, and digital
+              marketing.
             </p>
             <form onSubmit={handleSubscribe} className="mt-5">
               <div className="flex rounded-full border border-white/10 bg-white/[0.07] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
@@ -262,10 +263,10 @@ export default function FooterSection() {
         <div className="flex flex-col gap-4 py-7 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Ctrl Bits. All rights reserved.</p>
           <div className="flex gap-5">
-            <Link to="/privacy" rel="nofollow" className="hover:text-white/70">
+            <Link to="/privacy" className="hover:text-white/70">
               Privacy Policy
             </Link>
-            <Link to="/terms" rel="nofollow" className="hover:text-white/70">
+            <Link to="/terms" className="hover:text-white/70">
               Terms of Service
             </Link>
           </div>

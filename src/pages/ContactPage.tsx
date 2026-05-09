@@ -5,14 +5,14 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const ContactPage = () => {
   usePageMetadata({
-    title: "Contact Ctrl Bits | Start a Web, App, SEO or Software Project",
+    title: "Contact Ctrl Bits | Web, App, Software, UI/UX, Creative, and Marketing",
     description:
-      "Contact Ctrl Bits for web development, app development, custom software, SEO, automation, UI/UX, branding, and digital product development inquiries.",
+      "Contact Ctrl Bits to start web development, app development, custom software, UI/UX design, creative services, or digital marketing across Nepal.",
     keywords:
-      "contact Ctrl Bits, web development agency Kathmandu contact, app development Nepal contact, software company Kathmandu contact, SEO agency Nepal contact",
+      "contact Ctrl Bits, contact control bits, contact web development agency Nepal, contact app development agency Nepal, custom software inquiry Nepal, UI/UX design Nepal, creative services Nepal, digital marketing agency Nepal",
     ogTitle: "Contact Ctrl Bits",
     ogDescription:
-      "Start a project with Ctrl Bits for websites, apps, systems, SEO, automation, and digital product work.",
+      "Start a project with Ctrl Bits for web development, app development, custom software, UI/UX design, creative services, and digital marketing.",
     ogUrl: "https://www.ctrlbits.com/contact",
     canonical: "https://www.ctrlbits.com/contact",
     twitterCard: "summary_large_image",
@@ -29,7 +29,7 @@ const ContactPage = () => {
         <RouteHero
           eyebrow="Contact"
           title="Tell us what you are trying to build, fix, or automate."
-          description="Share the goal, timeline, and constraints. We will help shape the scope and recommend the right path for a website, app, software system, SEO, automation, or digital product."
+          description="Share your timeline, budget range, and business goals. We will scope web development, app development, custom software, UI/UX design, creative services, and digital marketing clearly before execution."
         />
         <div className="px-4 pb-24 md:px-8">
           <div className="mx-auto max-w-[88rem] overflow-hidden rounded-[2.5rem] bg-white">

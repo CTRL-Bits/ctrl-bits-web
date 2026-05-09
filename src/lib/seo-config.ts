@@ -4,23 +4,18 @@
  */
 
 export const seoConfig = {
-  // Base configuration
   siteName: "Ctrl Bits",
   siteUrl: "https://www.ctrlbits.com",
   defaultTitle:
-    "Ctrl Bits — Web Development & Digital Marketing Agency in Kathmandu, Nepal",
+    "Web Development, App Development, Custom Software, UI/UX Design, Creative Services & Digital Marketing in Kathmandu | Ctrl Bits",
   defaultDescription:
-    "Ctrl Bits is a Kathmandu-based agency providing web development, digital marketing, SEO, video editing, graphic design, and custom software development services for Nepal and global clients.",
+    "Ctrl Bits is a Nepal-based agency delivering web development, app development, custom software, UI/UX design, creative services, and digital marketing across Nepal.",
 
-  // Social media handles
   social: {
-    twitter: "https://x.com/ctrl_bits",
     facebook: "https://www.facebook.com/ctrlbits",
-    linkedin: "https://www.linkedin.com/company/ctrlbits",
     instagram: "https://www.instagram.com/ctrl.bits/",
   },
 
-  // Business information
   business: {
     name: "Ctrl Bits",
     legalName: "Ctrl Bits Pvt. Ltd.",
@@ -40,37 +35,45 @@ export const seoConfig = {
     },
   },
 
-  // Primary keywords for different services
   keywords: {
     primary: [
-      "web development agency Kathmandu",
-      "digital marketing agency Kathmandu",
-      "SEO agency Kathmandu",
-      "video editing services Kathmandu",
-      "graphic design agency Kathmandu",
+      "web development agency Nepal",
+      "app development company Nepal",
+      "custom software development Nepal",
+      "UI/UX design agency Nepal",
+      "creative services Nepal",
+      "digital marketing agency Nepal",
     ],
     secondary: [
-      "web development agency Nepal",
-      "web app development Nepal",
-      "custom software development Nepal",
-      "digital agency Kathmandu",
-      "social media marketing Nepal",
-      "branding and creative services Nepal",
-      "motion graphics Nepal",
+      "web development agency Kathmandu",
+      "app development agency Kathmandu",
+      "custom software company Nepal",
+      "creative services Kathmandu",
+      "digital marketing agency Kathmandu",
+      "website development company Nepal",
+      "control bits",
+      "control bits Nepal",
+      "control bits web development",
+      "control bits app development",
+      "control bits creative services",
+      "control bits digital marketing",
     ],
     services: [
+      "website development",
       "web development",
-      "digital marketing",
-      "search engine optimization",
-      "video editing",
+      "app development",
+      "custom software",
+      "ui/ux design",
+      "creative services",
+      "video production",
       "graphic design",
-      "software development",
+      "animation",
+      "digital marketing",
+      "website design",
       "web application development",
-      "API integration",
     ],
   },
 
-  // Default Open Graph images
   images: {
     og: "/og-image.jpg",
     twitter: "/twitter-image.jpg",
@@ -78,9 +81,6 @@ export const seoConfig = {
   },
 };
 
-/**
- * Generate page-specific SEO metadata
- */
 export const generatePageMeta = (page: {
   title?: string;
   description?: string;

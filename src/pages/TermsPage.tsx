@@ -16,7 +16,6 @@ const TermsAndConditions: React.FC = () => {
     ogUrl: "https://www.ctrlbits.com/terms",
     canonical: "https://www.ctrlbits.com/terms",
     twitterCard: "summary",
-    indexable: false,
   });
   const handleDownloadPDF = () => {
     // Create a new window with the content for PDF generation
@@ -86,11 +85,11 @@ const TermsAndConditions: React.FC = () => {
           <p>Ctrl Bits provides agency services including (but not limited to):</p>
           <ul>
             <li>Web Development</li>
-            <li>Digital Marketing</li>
-            <li>SEO Services</li>
-            <li>Video Editing & Motion Graphics</li>
-            <li>Graphic Design & Branding</li>
             <li>Custom Software Development</li>
+            <li>App Development</li>
+            <li>UI/UX Design</li>
+            <li>Creative Services</li>
+            <li>Digital Marketing</li>
           </ul>
           <p>We reserve the right to modify or discontinue any service at any time without notice.</p>
           
@@ -223,23 +222,19 @@ const TermsAndConditions: React.FC = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  Digital Marketing
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  SEO Services
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  Video Editing & Motion Graphics
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  Graphic Design & Branding
+                  App Development
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   Custom Software Development
+                </li>
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  UI/UX Design
+                </li>
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  Digital Marketing
                 </li>
               </ul>
               <p className=" leading-relaxed">

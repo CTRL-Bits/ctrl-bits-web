@@ -4,10 +4,12 @@ import {
   Blocks,
   CheckCircle2,
   Code2,
-  Compass,
   Gauge,
+  PenTool,
   SearchCheck,
   ShieldCheck,
+  AppWindow,
+  Palette,
 } from "lucide-react";
 import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 import CaseStudiesGrid from "@/components/sections/CaseStudiesGrid";
@@ -18,24 +20,45 @@ import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const servicePaths = [
   {
-    title: "Websites that explain, rank, and convert",
+    title: "Web Development",
     description:
-      "Business websites, landing pages, CMS builds, and e-commerce experiences built around speed, search intent, trust, and lead generation.",
-    icon: SearchCheck,
+      "Business websites, landing pages, and SEO-ready builds optimized for speed and lead generation.",
+    icon: Code2,
     to: "/solutions",
   },
   {
-    title: "Apps and software systems that reduce operational drag",
+    title: "App Development",
     description:
-      "Web apps, dashboards, internal tools, automation workflows, integrations, and custom software for teams that have outgrown spreadsheets.",
+      "Web apps and mobile apps with clean architecture, secure APIs, and simple user flows.",
+    icon: AppWindow,
+    to: "/solutions",
+  },
+  {
+    title: "Custom Software",
+    description:
+      "Dashboards, portals, internal tools, and integrations that reduce manual work.",
     icon: Blocks,
     to: "/solutions",
   },
   {
-    title: "Product design with enough taste to stay useful",
+    title: "UI/UX Design",
     description:
-      "Interface systems, UX flows, brand direction, SEO structure, and content architecture shaped before code turns expensive.",
-    icon: Compass,
+      "Research-led interfaces, wireframes, and design systems that make products easier to use.",
+    icon: PenTool,
+    to: "/solutions",
+  },
+  {
+    title: "Creative Services",
+    description:
+      "Video production, graphic design, branding, animation, and illustration that bring your ideas to life.",
+    icon: Palette,
+    to: "/solutions",
+  },
+  {
+    title: "Digital Marketing",
+    description:
+      "SEO, local SEO, content, and paid campaigns built to generate qualified traffic and measurable growth.",
+    icon: SearchCheck,
     to: "/solutions",
   },
 ];
@@ -69,14 +92,14 @@ const HomePage = () => {
 
   usePageMetadata({
     title:
-      "Ctrl Bits | Web Development, App Development & Software Company in Nepal",
+      "Web Development, App Development, Custom Software, UI/UX Design, Creative Services & Digital Marketing in Nepal | Ctrl Bits",
     description:
-      "Ctrl Bits is a Nepal-based software and digital product company for web development, app development, UI/UX, SEO, automation, branding, and custom systems.",
+      "Ctrl Bits is a Kathmandu-based agency for web development, app development, custom software, UI/UX design, creative services, and digital marketing across Nepal.",
     keywords:
-      "web development Kathmandu, app development Nepal, software company Kathmandu, SEO services Kathmandu, UI UX design Nepal, business automation Nepal, digital product development Nepal",
-    ogTitle: "Ctrl Bits | Websites, Apps, Software and Automation",
+      "web development agency Nepal, app development company Nepal, custom software development Nepal, UI/UX design agency Nepal, digital marketing agency Nepal, creative services Nepal, web development agency Kathmandu, app development agency Kathmandu, control bits, control bits Nepal",
+    ogTitle: "Web, App, Software, UI/UX, Creative, and Digital Marketing | Ctrl Bits",
     ogDescription:
-      "A Nepal-based digital product team building fast websites, useful apps, custom software, SEO foundations, and automation systems.",
+      "Web development, app development, custom software, UI/UX design, creative services, and digital marketing for businesses in Kathmandu and across Nepal.",
     ogUrl: "https://www.ctrlbits.com/",
     canonical: "https://www.ctrlbits.com/",
     twitterCard: "summary_large_image",
@@ -114,15 +137,15 @@ const HomePage = () => {
                   Ctrl the code, bit by bit
                 </p>
                 <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.085em] md:text-8xl lg:text-[8.75rem]">
-                  Practical digital systems for serious businesses.
+                  Websites, marketing, and software that drive growth.
                 </h1>
               </div>
 
               <div className="mt-12 max-w-3xl">
                 <p className="text-xl leading-9 text-white/78">
-                  Ctrl Bits designs and builds websites, apps, software systems,
-                  SEO foundations, brands, and automation workflows for
-                  companies that need their digital presence to do actual work.
+                  Ctrl Bits is a Kathmandu-based agency delivering web
+                  development, app development, custom software, UI/UX design,
+                  creative services, and digital marketing with clear SEO and conversion intent.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -154,7 +177,7 @@ const HomePage = () => {
                 <div className="overflow-hidden rounded-[1.45rem] bg-[#edf3ff] md:rounded-[2.2rem]">
                   <img
                     src="/bitman.png"
-                    alt="Ctrl Bits digital product visual placeholder"
+                    alt="Ctrl Bits website development, software, and digital marketing team visual"
                     className="aspect-[4/4.35] w-full object-cover object-center"
                   />
                 </div>
@@ -207,7 +230,7 @@ const HomePage = () => {
         <motion.section className="px-4 py-16 md:px-8 md:py-24" {...revealProps()}>
           <div className="mx-auto max-w-[88rem]">
             <motion.div
-              className="grid gap-4 lg:grid-cols-3"
+              className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
               initial={shouldReduceMotion ? false : "hidden"}
               whileInView={shouldReduceMotion ? undefined : "visible"}
               viewport={{ once: true, margin: "-90px" }}
