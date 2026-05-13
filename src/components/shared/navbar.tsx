@@ -7,7 +7,7 @@ const navItems = [
   { label: "Services", to: "/solutions" },
   { label: "Work", to: "/portfolio" },
   { label: "Company", to: "/about" },
-  { label: "Insights", to: "https://blog.ctrlbits.com" },
+  { label: "Blog", to: "https://blog.ctrlbits.com" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -42,7 +42,7 @@ export default function NavbarSection() {
         </Link>
 
         <div className="relative z-10 hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
+          {navItems.map((item) =>
             item.to.startsWith("http") ? (
               <a
                 key={item.label}
@@ -63,18 +63,18 @@ export default function NavbarSection() {
                 to={item.to}
                 className={({ isActive }) =>
                   `text-sm font-semibold transition-colors ${
-                  isActive
-                    ? "text-[#0058fc]"
-                    : isHome
-                      ? "text-[#001ea2]/70 hover:text-[#0058fc]"
-                      : "text-neutral-600 hover:text-[#0058fc]"
+                    isActive
+                      ? "text-[#0058fc]"
+                      : isHome
+                        ? "text-[#001ea2]/70 hover:text-[#0058fc]"
+                        : "text-neutral-600 hover:text-[#0058fc]"
                   }`
                 }
               >
                 {item.label}
               </NavLink>
-            )
-          ))}
+            ),
+          )}
         </div>
 
         <div className="relative z-10 flex items-center gap-2">

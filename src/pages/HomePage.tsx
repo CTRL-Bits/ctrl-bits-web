@@ -14,6 +14,7 @@ import {
 import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 import CaseStudiesGrid from "@/components/sections/CaseStudiesGrid";
 import CompanyLogoCloud from "@/components/sections/CompanyLogoCloud";
+import GradientBlinds from "@/components/GradientBlinds";
 import InsightsCards from "@/components/sections/InsightsCards";
 import SchemaMarkup from "@/components/schema-markup";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
@@ -63,9 +64,6 @@ const servicePaths = [
   },
 ];
 
-const HERO_VIDEO_URL =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4";
-
 const principles = [
   "Fast pages before decorative pages",
   "Search intent before keyword stuffing",
@@ -110,22 +108,30 @@ const HomePage = () => {
       <SchemaMarkup type="localBusiness" />
       <main className="bg-[#f5f5f5] text-neutral-950">
         <section className="relative min-h-screen overflow-hidden rounded-b-[2rem] bg-[#05070d] px-4 pb-10 pt-32 text-white md:rounded-b-[4rem] md:px-8 md:pb-14 md:pt-40">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.35]"
-          >
-            <source src={HERO_VIDEO_URL} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-[linear-gradient(118deg,rgba(5,7,13,0.96)_0%,rgba(0,24,82,0.90)_42%,rgba(0,88,252,0.44)_78%,rgba(255,255,255,0.10)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(0,88,252,0.30),transparent_34%),radial-gradient(circle_at_88%_100%,rgba(255,255,255,0.11),transparent_30%)]" />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#05070d]/78 to-transparent" />
+          <div className="absolute inset-0 z-0">
+            <GradientBlinds
+              className="h-full w-full"
+              gradientColors={["#00143f", "#0058fc", "#38bdf8", "#ffffff"]}
+              angle={28}
+              noise={0.16}
+              blindCount={18}
+              blindMinWidth={72}
+              mouseDampening={0.12}
+              mirrorGradient
+              spotlightRadius={0.58}
+              spotlightSoftness={1.25}
+              spotlightOpacity={0.72}
+              distortAmount={0.2}
+              shineDirection="right"
+              mixBlendMode="normal"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(118deg,rgba(5,7,13,0.86)_0%,rgba(0,24,82,0.72)_42%,rgba(0,88,252,0.18)_78%,rgba(255,255,255,0.04)_100%)]" />
+          <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_16%_0%,rgba(0,88,252,0.24),transparent_34%),radial-gradient(circle_at_88%_100%,rgba(255,255,255,0.09),transparent_30%)]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-[#05070d]/78 to-transparent" />
 
-          <div className="relative mx-auto grid min-h-[calc(100vh-11rem)] max-w-[88rem] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="pointer-events-none relative z-20 mx-auto grid min-h-[calc(100vh-11rem)] max-w-[88rem] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <motion.div
               className="flex h-full flex-col justify-center"
               initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
@@ -149,14 +155,14 @@ const HomePage = () => {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#001ea2] transition-colors hover:bg-[#dbe8ff]"
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#001ea2] transition-colors hover:bg-[#dbe8ff]"
                   >
                     Start a project
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                   <Link
                     to="/portfolio"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/[0.18]"
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/[0.18]"
                   >
                     View case studies
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

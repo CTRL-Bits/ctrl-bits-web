@@ -20,6 +20,7 @@
   },
   "registries": {
     "@magicui": "https://magicui.design/r/{name}",
-    "@skiper-ui": "https://skiper-ui.com/registry/{name}.json"
+    "@skiper-ui": "https://skiper-ui.com/registry/{name}.json",
+    "@react-bits": "https://reactbits.dev/r/{name}.json"
   }
 }

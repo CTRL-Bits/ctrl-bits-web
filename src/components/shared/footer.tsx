@@ -115,12 +115,12 @@ export default function FooterSection() {
         <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1fr]">
           <div>
             <Link to="/" aria-label="Ctrl Bits home" className="inline-flex">
-              <LogoIcon className="text-white" />
+              <LogoIcon invert={false} className="text-white" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-white/56">
               Web development, app development, custom software, UI/UX design,
-              digital marketing, and creative services for teams that need their web presence to
-              work with less noise.
+              digital marketing, and creative services for teams that need their
+              web presence to work with less noise.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
               {socialLinks.map((link) => (

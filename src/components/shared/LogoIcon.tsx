@@ -1,26 +1,21 @@
 type LogoIconProps = {
   className?: string;
-  showText?: boolean;
+  invert?: boolean;
 };
 
 export default function LogoIcon({
   className = "",
-  showText = true,
+  invert = true,
 }: LogoIconProps) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <img
-        src="/favicon.png"
+        src="/fulllogo.png"
         alt=""
-        width={32}
-        height={32}
-        className="h-8 w-8"
+        // width={32}
+        // height={32}
+        className={`h-8 ${invert ? "invert" : ""}`}
       />
-      {showText && (
-        <span className="text-lg font-semibold tracking-[-0.02em]">
-          Ctrl Bits
-        </span>
-      )}
     </span>
   );
 }
