@@ -1,0 +1,67 @@
+# Ctrl Bits API Documentation
+
+Public API endpoints used by ctrlbits.com.
+
+## Projects
+
+`GET https://api.ctrlbits.com/api/projects/`
+
+Returns portfolio project records. Supports pagination from the API response.
+
+`GET https://api.ctrlbits.com/api/projects/{slug}`
+
+Returns a single project detail record.
+
+## Team
+
+`GET https://api.ctrlbits.com/api/team/`
+
+Returns active team members.
+
+## Companies
+
+`GET https://api.ctrlbits.com/api/companies/`
+
+Returns company, client, and partner records.
+
+## Testimonials
+
+`GET https://api.ctrlbits.com/api/testimonials/`
+
+Returns testimonial records.
+
+## Tech
+
+`GET https://api.ctrlbits.com/api/tech/`
+
+Returns technology and stack data.
+
+## Contact
+
+`POST https://api.ctrlbits.com/api/contact/`
+
+Accepts project inquiry form submissions.
+
+## Subscribers
+
+`POST https://api.ctrlbits.com/api/subscribers/`
+
+Accepts newsletter or update subscription requests.
+
+## Posts
+
+`GET https://api-blog.ctrlbits.com/api/posts/`
+
+Returns published blog posts. Common query parameters include `page` and `status`.
+
+## Discovery
+
+- API catalog: `https://www.ctrlbits.com/.well-known/api-catalog`
+- OpenAPI description: `https://www.ctrlbits.com/.well-known/openapi.json`
+- Status endpoint: `https://www.ctrlbits.com/.well-known/api-status`
+- OAuth authorization server metadata: `https://www.ctrlbits.com/.well-known/oauth-authorization-server`
+- OAuth protected resource metadata: `https://www.ctrlbits.com/.well-known/oauth-protected-resource`
+- OAuth JWKS: `https://www.ctrlbits.com/.well-known/oauth-jwks.json`
+- MCP server card: `https://www.ctrlbits.com/.well-known/mcp/server-card.json`
+- MCP transport endpoint: `https://www.ctrlbits.com/mcp`
+- Agent skills index: `https://www.ctrlbits.com/.well-known/agent-skills/index.json`

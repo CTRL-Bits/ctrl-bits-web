@@ -1,0 +1,14 @@
+{
+  "status": "available",
+  "updated": "2026-05-20",
+  "services": [
+    {
+      "name": "Ctrl Bits API",
+      "url": "https://api.ctrlbits.com/api/"
+    },
+    {
+      "name": "Ctrl Bits Blog API",
+      "url": "https://api-blog.ctrlbits.com/api/"
+    }
+  ]
+}
