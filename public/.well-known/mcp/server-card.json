@@ -1,0 +1,93 @@
+{
+  "mcpCard": "1.0",
+  "name": "com.ctrlbits.website",
+  "title": "Ctrl Bits Website MCP",
+  "description": "Discovery-oriented MCP server for Ctrl Bits website resources, API documentation, and agent metadata.",
+  "websiteUrl": "https://www.ctrlbits.com",
+  "version": "1.0.0",
+  "serverInfo": {
+    "name": "Ctrl Bits Website MCP",
+    "version": "1.0.0"
+  },
+  "supportedProtocolVersions": [
+    "2025-06-18",
+    "2025-03-26"
+  ],
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://www.ctrlbits.com/mcp"
+  },
+  "transports": [
+    {
+      "type": "streamable-http",
+      "endpoint": "https://www.ctrlbits.com/mcp"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.ctrlbits.com/mcp",
+      "supportedProtocolVersions": [
+        "2025-06-18",
+        "2025-03-26"
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "metadataUrl": "https://www.ctrlbits.com/.well-known/oauth-authorization-server",
+        "resourceMetadataUrl": "https://www.ctrlbits.com/.well-known/oauth-protected-resource",
+        "scopes": [
+          "api:read"
+        ]
+      }
+    }
+  ],
+  "capabilities": {
+    "resources": {
+      "listChanged": false
+    },
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "resources": [
+    {
+      "uri": "https://www.ctrlbits.com/.well-known/api-catalog",
+      "name": "API Catalog",
+      "description": "RFC 9727 API catalog for Ctrl Bits public APIs.",
+      "mimeType": "application/linkset+json"
+    },
+    {
+      "uri": "https://www.ctrlbits.com/.well-known/openapi.json",
+      "name": "OpenAPI Description",
+      "description": "OpenAPI description for Ctrl Bits public API endpoints.",
+      "mimeType": "application/vnd.oai.openapi+json"
+    },
+    {
+      "uri": "https://www.ctrlbits.com/docs/api",
+      "name": "API Documentation",
+      "description": "Markdown documentation for Ctrl Bits public API endpoints.",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://www.ctrlbits.com/llm.txt",
+      "name": "LLM Summary",
+      "description": "Machine-readable summary of Ctrl Bits company, services, and key pages.",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://www.ctrlbits.com/.well-known/agent-skills/index.json",
+      "name": "Agent Skills Index",
+      "description": "Agent Skills Discovery RFC v0.2.0 index for Ctrl Bits skills.",
+      "mimeType": "application/json"
+    }
+  ],
+  "tools": [],
+  "_meta": {
+    "com.ctrlbits.discovery": {
+      "apiCatalog": "https://www.ctrlbits.com/.well-known/api-catalog",
+      "oauthAuthorizationServer": "https://www.ctrlbits.com/.well-known/oauth-authorization-server",
+      "oauthProtectedResource": "https://www.ctrlbits.com/.well-known/oauth-protected-resource",
+      "agentSkills": "https://www.ctrlbits.com/.well-known/agent-skills/index.json"
+    }
+  }
+}

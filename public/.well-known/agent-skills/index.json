@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "api-discovery",
+      "type": "skill-md",
+      "description": "Discover Ctrl Bits public API endpoints, OpenAPI descriptions, OAuth metadata, and health/status resources.",
+      "url": "/.well-known/agent-skills/api-discovery/SKILL.md",
+      "digest": "sha256:bb488826f2db6a2d2e7d3e2398e36078467b44d257970c33704033e4e4b28c36"
+    },
+    {
+      "name": "markdown-for-agents",
+      "type": "skill-md",
+      "description": "Request markdown versions of Ctrl Bits pages using HTTP content negotiation.",
+      "url": "/.well-known/agent-skills/markdown-for-agents/SKILL.md",
+      "digest": "sha256:01292aaaf8fd113d7fae8694d695310e6f72d6bf7f69f70d1411c0f30ddd4a89"
+    },
+    {
+      "name": "mcp-discovery",
+      "type": "skill-md",
+      "description": "Discover and connect to the Ctrl Bits MCP endpoint for site resources and API metadata.",
+      "url": "/.well-known/agent-skills/mcp-discovery/SKILL.md",
+      "digest": "sha256:e96fbaa10e4e182e1f494ccd6f071fae2675ef5c0eb99a71ac9743a34de8d3f8"
+    }
+  ]
+}

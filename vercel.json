@@ -2,7 +2,37 @@
   "installCommand": "npm install --legacy-peer-deps",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": {
+            "re": ".*[Tt][Ee][Xx][Tt]/[Mm][Aa][Rr][Kk][Dd][Oo][Ww][Nn].*"
+          }
+        }
+      ],
+      "destination": "/api/markdown?path=/"
+    },
+    {
+      "source": "/:path((?!api/markdown|api/mcp|mcp|assets/|.*\\..*).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": {
+            "re": ".*[Tt][Ee][Xx][Tt]/[Mm][Aa][Rr][Kk][Dd][Oo][Ww][Nn].*"
+          }
+        }
+      ],
+      "destination": "/api/markdown?path=/:path*"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
+      "source": "/:path((?!api/markdown|api/mcp|mcp|assets/|\\.well-known/|docs/api|.*\\..*).*)",
       "destination": "/index.html"
     }
   ],
@@ -18,8 +48,143 @@
       "source": "/(.*)",
       "headers": [
         {
+          "key": "Link",
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\""
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        },
+        {
           "key": "Cache-Control",
           "value": "public, max-age=3600, s-maxage=86400"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/openapi.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.oai.openapi+json"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/oauth-protected-resource",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/oauth-jwks.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/api-status",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "source": "/docs/api",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/mcp/server-card.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/agent-skills/index.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/agent-skills/(.*)/SKILL.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/http-message-signatures-directory",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/http-message-signatures-directory+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }

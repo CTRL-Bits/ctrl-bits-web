@@ -1,0 +1,172 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://api.ctrlbits.com/api/projects/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1projects~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#projects",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/team/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1team~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#team",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/companies/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1companies~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#companies",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/testimonials/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1testimonials~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#testimonials",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/tech/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1tech~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#tech",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/contact/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1contact~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#contact",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.ctrlbits.com/api/subscribers/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1subscribers~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#subscribers",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api-blog.ctrlbits.com/api/posts/",
+      "service-desc": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/openapi.json#/paths/~1api~1posts~1",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.ctrlbits.com/docs/api#posts",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.ctrlbits.com/.well-known/api-status",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}
