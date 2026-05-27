@@ -1,0 +1,17 @@
+{
+  "resource": "https://www.ctrlbits.com",
+  "authorization_servers": [
+    "https://www.ctrlbits.com"
+  ],
+  "scopes_supported": [
+    "api:read",
+    "api:write"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
+  "resource_name": "Ctrl Bits Public APIs",
+  "resource_documentation": "https://www.ctrlbits.com/docs/api",
+  "resource_policy_uri": "https://www.ctrlbits.com/privacy",
+  "resource_tos_uri": "https://www.ctrlbits.com/terms"
+}

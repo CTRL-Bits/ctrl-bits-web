@@ -13,6 +13,7 @@ import { Toaster } from "sonner";
 import TermsAndConditions from "./pages/TermsPage";
 import PrivacyPolicy from "./pages/PrivacyPage";
 import Layout from "./components/shared/layout";
+import WebMCPProvider from "./components/WebMCPProvider";
 import "@/App.css";
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
         <meta name="ICBM" content="27.7172, 85.3240" />
         <meta name="author" content="Ctrl Bits" />
         <meta name="publisher" content="Ctrl Bits" />
-        
+
         {/* Google Analytics */}
         <script
           async
@@ -45,6 +46,7 @@ const App = () => {
           }}
         />
       </Helmet>
+      <WebMCPProvider />
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <LoadingProvider companyName="Ctrl Bits">
           <Layout>
@@ -58,7 +60,7 @@ const App = () => {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
-         
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Toaster richColors />

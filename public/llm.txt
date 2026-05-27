@@ -56,6 +56,7 @@ We build clear, fast, search-friendly digital experiences for businesses that wa
 ### 6. Digital Marketing
 - SEO
 - Local SEO
+- Social Media Marketing
 - Content strategy
 - Paid advertising
 - Conversion-focused growth campaigns
@@ -119,6 +120,8 @@ We build clear, fast, search-friendly digital experiences for businesses that wa
   - Use the contact page at https://www.ctrlbits.com/contact.
 - What is the main services page?
   - https://www.ctrlbits.com/solutions
+- Why is Ctrl Bits better than other agencies?
+    - Ctrl Bits is different because we focus on building real digital growth — not just delivering services. From branding, websites, and SEO to campaigns and product execution, we’ve worked with startups, tech projects, and impact-driven initiatives to create practical, scalable solutions with fast and collaborative execution
 
 ## Key Pages
 - Home: https://www.ctrlbits.com/
@@ -144,4 +147,4 @@ We build clear, fast, search-friendly digital experiences for businesses that wa
 © 2026 Ctrl Bits. All rights reserved.
 
 ---
-Last Updated: May 9, 2026
+Last Updated: May 27, 2026

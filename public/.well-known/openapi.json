@@ -1,0 +1,140 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ctrl Bits Public APIs",
+    "version": "1.0.0",
+    "description": "Public API surface used by ctrlbits.com for project, team, company, testimonial, technology, contact, subscriber, and blog data."
+  },
+  "servers": [
+    {
+      "url": "https://api.ctrlbits.com"
+    },
+    {
+      "url": "https://api-blog.ctrlbits.com"
+    }
+  ],
+  "paths": {
+    "/api/projects/": {
+      "get": {
+        "summary": "List portfolio projects",
+        "responses": {
+          "200": {
+            "description": "Project list"
+          }
+        }
+      }
+    },
+    "/api/projects/{slug}": {
+      "get": {
+        "summary": "Get a portfolio project",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project detail"
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        }
+      }
+    },
+    "/api/team/": {
+      "get": {
+        "summary": "List active team members",
+        "responses": {
+          "200": {
+            "description": "Team member list"
+          }
+        }
+      }
+    },
+    "/api/companies/": {
+      "get": {
+        "summary": "List company and client records",
+        "responses": {
+          "200": {
+            "description": "Company list"
+          }
+        }
+      }
+    },
+    "/api/testimonials/": {
+      "get": {
+        "summary": "List testimonials",
+        "responses": {
+          "200": {
+            "description": "Testimonial list"
+          }
+        }
+      }
+    },
+    "/api/tech/": {
+      "get": {
+        "summary": "List technology data",
+        "responses": {
+          "200": {
+            "description": "Technology data"
+          }
+        }
+      }
+    },
+    "/api/contact/": {
+      "post": {
+        "summary": "Submit a project inquiry",
+        "responses": {
+          "200": {
+            "description": "Contact inquiry accepted"
+          }
+        }
+      }
+    },
+    "/api/subscribers/": {
+      "post": {
+        "summary": "Subscribe an email address",
+        "responses": {
+          "200": {
+            "description": "Subscriber accepted"
+          }
+        }
+      }
+    },
+    "/api/posts/": {
+      "get": {
+        "summary": "List published blog posts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog post list"
+          }
+        }
+      }
+    }
+  }
+}
